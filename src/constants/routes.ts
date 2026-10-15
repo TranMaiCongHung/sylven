@@ -6,7 +6,7 @@ export const ROUTES = {
   ITEMS: "#items",
   FEATURES: "#features",
   ABOUT: "#about",
-  CONTACT: "#contact",
+  CONTACT: "mailto:curator@sylven.dev",
 } as const;
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES];

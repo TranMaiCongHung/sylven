@@ -1,296 +1,445 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ArrowRight,
+  ArrowDown,
   Sparkles,
-  Layers,
-  Palette,
-  CheckCircle2,
-  Component,
-  Database,
-  Star,
-  Quote,
-  HelpCircle,
-  Code2,
+  Cpu,
+  Gem,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Button, Card, Badge } from "@/components/ui";
-import { SectionTitle } from "@/components/common";
-import {
-  siteHeroData,
-  siteFeaturesData,
-  siteTestimonialsData,
-  siteFaqData,
-} from "@/mock/site.data";
-import { ItemsExplorer, ItemInquiryForm } from "@/features/items";
+import { Button, FlexCarousel, SCULPTURE_ITEMS, ReflectiveCard, ShinyText, SlingButton } from "@/components/ui";
+import { ScrollReveal, BrandLogo } from "@/components/common";
 
-const featureIcons: Record<string, React.ReactNode> = {
-  Layers: <Layers className="h-6 w-6" />,
-  Palette: <Palette className="h-6 w-6" />,
-  CheckCircle2: <CheckCircle2 className="h-6 w-6" />,
-  Component: <Component className="h-6 w-6" />,
-  Database: <Database className="h-6 w-6" />,
-  Sparkles: <Sparkles className="h-6 w-6" />,
-};
+const CURATED_ARTWORKS = [
+  {
+    title: "Digital Odyssey Earrings",
+    subtitle: "Aquamarines and Silver",
+    image: "/images/artworks/curated_01_a.jpg",
+    hoverImage: "/images/artworks/curated_01_b.jpg",
+  },
+  {
+    title: "Digital Odyssey Sapphire Earrings",
+    subtitle: "White Gold, Diamonds and Sapphire",
+    image: "/images/artworks/curated_02_a.jpg",
+    hoverImage: "/images/artworks/curated_02_b.png",
+  },
+  {
+    title: "Silver Code Necklace",
+    subtitle: "Ruby, Pearls and Silver",
+    image: "/images/artworks/curated_03_a.jpg",
+    hoverImage: "/images/artworks/curated_03_b.jpg",
+  },
+];
 
 export default function HomePage() {
+  const [mounted, setMounted] = React.useState(false);
+  const [scrollY, setScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    // Trigger hero load fade-in
+    const timer = setTimeout(() => setMounted(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  React.useEffect(() => {
+    let rafId: number;
+    const handleScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col gap-20 sm:gap-28 pb-20">
-      {/* HERO SECTION */}
-      <section className="relative overflow-hidden pt-24 sm:pt-32 lg:pt-36">
-        {/* Ambient background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-brand-100/50 via-indigo-50/20 to-transparent blur-3xl -z-10 pointer-events-none dark:from-brand-950/20" />
+    <div className="flex flex-col gap-24 sm:gap-36 pb-28 w-full max-w-full overflow-hidden">
+      {/* 1. HERO BRAND INTRO: EXCLUSIVE FULL-VIEWPORT COMMANDING ENTRANCE */}
+      <section
+        id="top"
+        className="relative flex flex-col justify-between items-center h-[100svh] max-h-[100svh] w-full px-4 overflow-hidden pt-10 sm:pt-12 pb-4 sm:pb-6"
+      >
+        {/* Ambient Warm Luxury Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[520px] bg-gradient-to-b from-[#F5F2EB]/90 via-[#EBE7DF]/40 to-transparent blur-3xl -z-10 pointer-events-none rounded-full" />
 
-        <Container>
+        {/* Center Stage: Logo + ShinyText Brand Name + Tagline */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center my-auto min-h-0">
+          {/* Prominent Emblem Logo */}
+          <div
+            className={`relative group mb-2 sm:mb-3 transition-all duration-1000 ease-out ${
+              mounted ? "opacity-100 scale-100" : "opacity-0 scale-90"
+            }`}
+          >
+            <BrandLogo className="w-56 h-32 sm:w-72 sm:h-40 md:w-88 md:h-50 lg:w-[420px] lg:h-[235px] max-w-[80vw] max-h-[25vh] drop-shadow-xl" />
+            <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-3xl -z-10" />
+          </div>
+
+          {/* Majestic SYLVEN with ShinyText Effect */}
+          <div
+            className={`font-yavimayan text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-[0.2em] sm:tracking-[0.25em] leading-none select-none my-2 sm:my-3 transition-all duration-1000 delay-200 ease-out ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            <ShinyText
+              text="SYLVEN"
+              color="#18181b"
+              shineColor="#ffffff"
+              speed={2}
+              shineWidth={40}
+              softness={0.8}
+              trigger="loop"
+              delay={0}
+              angle={120}
+              bands={1}
+              glow={0}
+              direction="left"
+              easing="smooth"
+              yoyo={false}
+              followPointer={false}
+              pauseOnHover={false}
+              disabled={false}
+            />
+          </div>
+
+          {/* Subtitle Tagline */}
+          <span
+            className={`text-[11px] sm:text-xs md:text-sm font-mono uppercase tracking-[0.35em] sm:tracking-[0.45em] text-stone-500 mt-1 sm:mt-2 font-medium transition-all duration-1000 delay-300 ease-out ${
+              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            Atelier d&apos;Art Contemporain
+          </span>
+        </div>
+
+        {/* Bottom Scroll Cue */}
+        <div
+          className={`flex flex-col items-center justify-center pt-2 pb-1 transition-all duration-1000 delay-500 ease-out shrink-0 ${
+            mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
+          <Link
+            href="#manifesto"
+            className="group flex flex-col items-center gap-1.5 text-stone-400 hover:text-stone-800 transition-colors duration-300 cursor-pointer"
+          >
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
+              Cuộn để khám phá
+            </span>
+            <div className="w-5 h-8 rounded-full border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
+              <div className="w-1.5 h-2 rounded-full bg-stone-500 group-hover:bg-stone-800 animate-bounce transition-colors" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* 2. MANIFESTO & PHILOSOPHY HEADLINE SECTION */}
+      <section id="manifesto" className="scroll-mt-20 pt-16 sm:pt-24 pb-8 sm:pb-16 relative overflow-hidden">
+        <Container size="lg">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/80 px-4 py-1.5 text-xs font-semibold text-brand-700 shadow-xs backdrop-blur-md dark:border-brand-800 dark:bg-slate-900/80 dark:text-brand-300">
-              <Sparkles className="h-3.5 w-3.5 text-brand-500 animate-pulse" />
-              <span>{siteHeroData.badge}</span>
-            </div>
+            {/* Atelier Badge */}
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-stone-300/80 bg-[#FAF8F5]/90 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-stone-700 shadow-xs backdrop-blur-md">
+                <Sparkles className="h-3.5 w-3.5 text-stone-800" />
+                <span>Sylven Atelier • Contemporary Sculpture</span>
+              </div>
+            </ScrollReveal>
 
-            {/* Main Headline */}
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-[1.15]">
-              {siteHeroData.title}{" "}
-              <span className="bg-gradient-to-r from-brand-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                {siteHeroData.highlight}
-              </span>
-            </h1>
+            {/* Headline */}
+            <ScrollReveal direction="up" delay={0.2}>
+              <h1 className="mt-8 text-3xl font-extrabold tracking-tight text-[#18181B] sm:text-6xl lg:text-7xl leading-[1.12]">
+                Tái sinh mảnh ghép công nghệ thành{" "}
+                <span className="font-serif italic font-normal text-stone-800 underline decoration-stone-300 underline-offset-8">
+                  tác phẩm điêu khắc
+                </span>{" "}
+                đương đại.
+              </h1>
+            </ScrollReveal>
 
-            {/* Subtitle */}
-            <p className="mt-6 text-base sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
-              {siteHeroData.description}
-            </p>
-
-            {/* Call to Actions */}
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Link href={siteHeroData.primaryCta.href}>
-                <Button
-                  size="lg"
-                  variant="primary"
-                  rightIcon={<ArrowRight className="h-4 w-4" />}
-                >
-                  {siteHeroData.primaryCta.label}
-                </Button>
-              </Link>
-              <Link href={siteHeroData.secondaryCta.href}>
-                <Button size="lg" variant="outline">
-                  {siteHeroData.secondaryCta.label}
-                </Button>
-              </Link>
-            </div>
-
-            {/* Key Metrics / Stats Bar */}
-            <div className="mt-14 sm:mt-20 grid grid-cols-2 gap-4 rounded-3xl border border-slate-200/80 bg-white/70 p-6 shadow-sm backdrop-blur-md sm:grid-cols-4 dark:border-slate-800 dark:bg-slate-900/60">
-              {siteHeroData.stats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  className={`flex flex-col items-center justify-center p-2 text-center ${
-                    i !== siteHeroData.stats.length - 1
-                      ? "sm:border-r sm:border-slate-100 dark:sm:border-slate-800"
-                      : ""
-                  }`}
-                >
-                  <span className="text-3xl font-black text-slate-900 dark:text-white sm:text-4xl tracking-tight">
-                    {stat.value}
-                  </span>
-                  <span className="mt-1 text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
-                    {stat.label}
-                  </span>
-                  <span className="mt-1 text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-                    {stat.description}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* ARCHITECTURE FEATURES SECTION */}
-      <section id="features" className="scroll-mt-20">
-        <Container>
-          <SectionTitle
-            badge="Kiến Trúc & Công Nghệ"
-            title="Các Trụ Cột Nền Tảng Trong Dự Án"
-            description="Được thiết kế dựa trên các tiêu chuẩn kỹ thuật hàng đầu, mang lại khả năng mở rộng không giới hạn và bảo trì dễ dàng."
-          />
-
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {siteFeaturesData.map((feature) => (
-              <Card
-                key={feature.id}
-                className="group relative flex flex-col p-6 transition-all duration-300 hover:shadow-lg hover:border-brand-500/30"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-brand-950/60 dark:text-brand-400">
-                    {featureIcons[feature.iconName] || <Code2 className="h-6 w-6" />}
-                  </div>
-                  {feature.badge && (
-                    <Badge variant="brand" size="sm">
-                      {feature.badge}
-                    </Badge>
-                  )}
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors dark:text-white dark:group-hover:text-brand-400">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {feature.description}
-                </p>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ITEMS EXPLORER FEATURE SECTION (INTERACTIVE CLIENT MODULE) */}
-      <section id="items" className="scroll-mt-20">
-        <Container>
-          <SectionTitle
-            badge="Thư Viện Bài Viết & Dự Án"
-            title="Khám Phá Dữ Liệu Nội Bộ Độc Lập"
-            description="Tìm kiếm theo từ khóa, lọc theo chủ đề, xem chi tiết bài viết và tương tác mượt mà thông qua Mock Data Engine."
-          />
-
-          <ItemsExplorer />
-        </Container>
-      </section>
-
-      {/* TESTIMONIALS SECTION */}
-      <section className="bg-slate-100/60 py-16 dark:bg-slate-900/40">
-        <Container>
-          <SectionTitle
-            badge="Cộng Đồng & Đánh Giá"
-            title="Được Tin Tưởng Bởi Đội Ngũ Kỹ Sư"
-            description="Những phản hồi thực tế từ các kỹ sư và chuyên gia công nghệ khi trải nghiệm kiến trúc mã nguồn chuẩn mực."
-          />
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {siteTestimonialsData.map((t) => (
-              <Card key={t.id} className="flex flex-col justify-between p-6">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex text-amber-400">
-                      {Array.from({ length: t.rating }).map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-amber-400" />
-                      ))}
-                    </div>
-                    <Quote className="h-6 w-6 text-slate-300 dark:text-slate-700" />
-                  </div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                </div>
-
-                <div className="mt-6 flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
-                  <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-brand-500/20">
-                    <Image
-                      src={t.avatar}
-                      alt={t.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">
-                      {t.author}
-                    </h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
-                      {t.role} • {t.company}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ABOUT & FAQ SECTION */}
-      <section id="about" className="scroll-mt-20">
-        <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* About Narrative */}
-            <div className="space-y-6">
-              <Badge variant="brand" size="md">
-                Về Dự Án Sylven
-              </Badge>
-              <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl dark:text-white leading-tight">
-                Triết Lý Phát Triển Frontend Độc Lập & Hiện Đại
-              </h2>
-              <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                Sylven được xây dựng nhằm cung cấp giải pháp mẫu hoàn chỉnh cho các dự án web yêu cầu tính độc lập cao, không bị nghẽn bởi tiến độ phát triển backend API.
+            {/* Subhead */}
+            <ScrollReveal direction="up" delay={0.3}>
+              <p className="mt-6 text-base sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
+                Bản hòa ca giữa kỹ thuật chế tác kim hoàn và vẻ đẹp cấu trúc vi
+                mạch. Mỗi thiết kế là một tác phẩm độc bản lưu giữ dấu ấn của kỷ
+                nguyên số.
               </p>
-              <div className="space-y-4 pt-2">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
-                    <CheckCircle2 className="h-4 w-4" />
+            </ScrollReveal>
+
+            {/* CTAs */}
+            <ScrollReveal direction="up" delay={0.4}>
+              <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4">
+                <Link href="#showcase">
+                  <Button
+                    size="lg"
+                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-full shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide"
+                    rightIcon={<ArrowDown className="h-4 w-4 animate-bounce" />}
+                  >
+                    Khám phá tác phẩm
+                  </Button>
+                </Link>
+
+                <Link href="#alchemy">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-stone-300 bg-white/70 text-stone-800 hover:bg-[#F5F2EB] px-7 py-3.5 rounded-full font-medium text-sm sm:text-base tracking-wide backdrop-blur-sm"
+                  >
+                    Triết lý thương hiệu
+                  </Button>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+        </Container>
+      </section>
+
+      {/* 2. SHOWCASE COMPONENT: WEBGL FLEX CAROUSEL */}
+      <section id="showcase" className="scroll-mt-24 relative overflow-hidden">
+        <Container size="full">
+          {/* Section Header with Scroll Reveal */}
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-10 sm:mb-14 px-4">
+            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
+              Interactive WebGL Exhibition
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
+              Bộ Sưu Tập Tác Phẩm Tiêu Biểu
+            </h2>
+            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
+              Trải nghiệm dòng chảy thấu kính chất lỏng WebGL. Kéo chuột hoặc lướt nhẹ để chiêm ngưỡng các thiết kế điêu khắc độc bản.
+            </p>
+          </ScrollReveal>
+
+          {/* WebGL FlexCarousel Container with Harmonized Luxury Background */}
+          <ScrollReveal direction="up" delay={0.2} duration={1.1}>
+            <div className="relative mx-auto w-full max-w-7xl h-[520px] sm:h-[620px] rounded-3xl overflow-hidden border border-stone-200/90 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFE6] to-[#ECE5D8] shadow-2xl shadow-stone-900/5">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.7),_transparent_70%)] pointer-events-none" />
+              <FlexCarousel
+                items={SCULPTURE_ITEMS}
+                preset="liquid"
+                cardHeight={0.55}
+                gap={16}
+                radius={16}
+                fit="portrait"
+                captions={true}
+                focusOnClick={true}
+                className="w-full h-full relative z-10"
+              />
+            </div>
+          </ScrollReveal>
+        </Container>
+      </section>
+
+      {/* 3. ALCHEMY: BRAND PHILOSOPHY & CRAFTSMANSHIP */}
+      <section id="alchemy" className="scroll-mt-24 overflow-hidden">
+        <Container size="lg">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Narrative with Staggered Scroll Reveal */}
+            <div className="lg:col-span-6 min-w-0 w-full space-y-5">
+              <ScrollReveal direction="up" delay={0.1}>
+                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
+                  Triết Lý Thương Hiệu
+                </span>
+                <h2 className="mt-2 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight leading-tight">
+                  Nghệ Thuật Giả Kim <br />
+                  <span className="font-serif italic font-normal text-stone-700">
+                    Kỷ Nguyên Số
+                  </span>
+                </h2>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={0.2}>
+                <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
+                  Tại Sylven Atelier, chúng tôi hòa quyện kỹ nghệ kim hoàn bậc thầy cùng kiến trúc bán dẫn. Từng vi mạch, tinh thể silicon và vàng khối được tái sinh thành tác phẩm điêu khắc độc bản lưu giữ linh hồn thời đại số.
+                </p>
+              </ScrollReveal>
+
+              {/* Three Pillars */}
+              <div className="pt-2 space-y-3">
+                <ScrollReveal direction="up" delay={0.3}>
+                  <div className="flex items-center gap-4 rounded-2xl border border-stone-200/90 bg-[#FAF8F5]/90 p-3.5 transition-all hover:bg-white hover:shadow-md">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
+                      <Cpu className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#18181B]">
+                        Khai Quật Vi Mạch (Silicon Archaeology)
+                      </h4>
+                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
+                        Tuyển chọn chip và tinh thể bán dẫn mang tính biểu tượng từ các cột mốc công nghệ.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">
-                    <strong>Zero External Dependencies:</strong> Không cần chạy server backend, không lo lắng về CORS hay sự cố ngắt kết nối mạng.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
-                    <CheckCircle2 className="h-4 w-4" />
+                </ScrollReveal>
+
+                <ScrollReveal direction="up" delay={0.4}>
+                  <div className="flex items-center gap-4 rounded-2xl border border-stone-200/90 bg-[#FAF8F5]/90 p-3.5 transition-all hover:bg-white hover:shadow-md">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
+                      <Gem className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#18181B]">
+                        Chế Tác Kim Hoàn (Haute Craftsmanship)
+                      </h4>
+                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
+                        Chế tác vi mô bằng vàng 24k dát mỏng, bạch kim và đá sapphire dưới kính hiển vi.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">
-                    <strong>Feature-Based Architecture:</strong> Tách biệt rõ ràng ranh giới nghiệp vụ, giúp nhiều lập trình viên làm việc song song hiệu quả.
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-400">
-                    <CheckCircle2 className="h-4 w-4" />
+                </ScrollReveal>
+
+                <ScrollReveal direction="up" delay={0.5}>
+                  <div className="flex items-center gap-4 rounded-2xl border border-stone-200/90 bg-[#FAF8F5]/90 p-3.5 transition-all hover:bg-white hover:shadow-md">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
+                      <ShieldCheck className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-[#18181B]">
+                        Mỗi Thiết Kế Là Độc Bản (Unique Pieces)
+                      </h4>
+                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
+                        Không sản xuất hàng loạt. Từng tác phẩm là duy nhất với chứng thư giám định số.
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300">
-                    <strong>Type-Safe End-to-End:</strong> Toàn bộ luồng dữ liệu, tham số bộ lọc và biểu mẫu đều được kiểm tra chặt chẽ bởi TypeScript và Zod.
-                  </p>
-                </div>
+                </ScrollReveal>
               </div>
             </div>
 
-            {/* FAQ Accordion Cards */}
-            <div className="space-y-4">
-              <h3 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white mb-6">
-                <HelpCircle className="h-5 w-5 text-brand-600" /> Giải Đáp Thắc Mắc
-              </h3>
-              {siteFaqData.map((faq) => (
-                <div
-                  key={faq.id}
-                  className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs dark:border-slate-800 dark:bg-slate-900"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <h4 className="text-base font-bold text-slate-900 dark:text-white">
-                      {faq.question}
-                    </h4>
-                    <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600 dark:bg-slate-800 dark:text-slate-300">
-                      {faq.category}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              ))}
+            {/* Right ReflectiveCard Display with Scroll Reveal */}
+            <div className="lg:col-span-6 min-w-0 w-full flex justify-center lg:justify-end">
+              <ScrollReveal direction="up" delay={0.3} duration={1} className="w-full flex justify-center lg:justify-end">
+                <ReflectiveCard
+                  imageSrc="/images/artworks/oushaba_sculpture.jpg"
+                  imageAlt="Tác phẩm điêu khắc vi mạch kim hoàn Oushaba Sylven"
+                  tint="#ffffff"
+                  metalness={1}
+                  roughness={0.3}
+                  blurStrength={6}
+                  shine={1}
+                  glare={0.5}
+                  grayscale={1}
+                  warp={0.6}
+                  warpScale={1}
+                  bevel={3}
+                  tiltStrength={12}
+                  radius={24}
+                  enableTilt={true}
+                  intro={true}
+                  width="100%"
+                  height={520}
+                  className="w-full max-w-[420px]"
+                />
+              </ScrollReveal>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* CONTACT & INQUIRY FORM SECTION */}
-      <section id="contact" className="scroll-mt-20">
-        <Container>
-          <SectionTitle
-            badge="Liên Hệ & Tư Vấn"
-            title="Kết Nối Với Đội Ngũ Kiến Trúc Sư"
-            description="Biểu mẫu sử dụng React Hook Form kết hợp Zod validation. Hãy thử nhập sai dữ liệu để kiểm tra tính năng xác thực tức thì."
-          />
+      {/* 4. CURATED ARTWORKS GRID WITH STAGGERED SCROLL REVEAL */}
+      <section id="collection" className="scroll-mt-24 overflow-hidden">
+        <Container size="lg">
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-14">
+            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
+              Curated Masterpieces
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
+              Tác Phẩm Sưu Tập Độc Bản
+            </h2>
+            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600">
+              Mỗi tác phẩm đi kèm chứng chỉ giám định chất liệu, mã số vi mạch lịch sử và hòm lưu trữ cao cấp.
+            </p>
+          </ScrollReveal>
 
-          <ItemInquiryForm />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {CURATED_ARTWORKS.map((artwork, idx) => (
+              <ScrollReveal
+                key={artwork.title + idx}
+                direction="up"
+                delay={0.15 * (idx + 1)}
+                className="min-w-0 w-full"
+              >
+                <Link
+                  href="#showcase"
+                  className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1"
+                >
+                  {/* Image Container with Smooth Crossfade Hover Animation */}
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-[#ECE8E1]/50 border border-stone-200/70 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:border-stone-300">
+                    {/* Default Image */}
+                    <Image
+                      src={artwork.image}
+                      alt={artwork.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
+                    />
+                    {/* Hover Image */}
+                    <Image
+                      src={artwork.hoverImage}
+                      alt={`${artwork.title} - chi tiết`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover object-center opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+                    />
+                  </div>
+
+                  {/* Minimalist Gallery Typography */}
+                  <div className="mt-4 sm:mt-5 text-left">
+                    <h3 className="font-serif text-lg sm:text-xl font-normal text-stone-900 tracking-tight transition-colors duration-300 group-hover:text-stone-700">
+                      {artwork.title}
+                    </h3>
+                    <p className="mt-1 text-xs sm:text-sm text-stone-500 font-light tracking-wide">
+                      {artwork.subtitle}
+                    </p>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
         </Container>
       </section>
+
+      {/* Floating Back to Top SlingButton: Appears when scrolling to Component 2 */}
+      <div
+        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 transition-all duration-500 ease-out ${
+          scrollY > 300
+            ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
+            : "opacity-0 translate-y-8 pointer-events-none scale-75"
+        }`}
+      >
+        <div className="relative group">
+          <SlingButton
+            onSend={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            padColor="#FAF8F5"
+            iconColor="#18181B"
+            accentColor="#FAF8F5"
+            wellColor="#27272A"
+            bandColor="#52525B"
+            size={52}
+            strokeWidth={1.5}
+            gap={0.5}
+            armAt={42}
+            maxPull={140}
+            launchSpeed={2600}
+            recoil={0.2}
+            flight={100}
+            particles={12}
+            spread={60}
+            axis="any"
+            tapSends
+            disabled={false}
+            ariaLabel="Quay về đầu trang"
+          />
+        </div>
+      </div>
     </div>
   );
 }
