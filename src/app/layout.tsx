@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     locale: "vi_VN",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -36,9 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-surface-50">
+      <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-surface-50 overflow-x-hidden max-w-full">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,7 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
-import { Sparkles, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { siteConfig } from "@/config";
+import { BrandLogo } from "@/components/common";
 import { Container } from "./Container";
 
 export function Footer() {
@@ -16,17 +17,15 @@ export function Footer() {
             <div className="lg:col-span-2 space-y-4">
               <Link
                 href="/"
-                className="flex items-center gap-2 font-bold text-lg text-slate-900 dark:text-white"
+                className="flex items-center gap-3 font-bold text-lg text-slate-900 dark:text-white"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-600 to-indigo-500 text-white shadow-sm">
-                  <Sparkles className="h-4 w-4" />
-                </div>
-                <span className="text-xl font-extrabold tracking-tight">
-                  {siteConfig.name}
+                <BrandLogo size={36} />
+                <span className="font-yavimayan text-xl font-bold tracking-[0.2em] text-[#18181B] dark:text-[#F5F2EB]">
+                  SYLVEN
                 </span>
               </Link>
               <p className="max-w-sm text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                {siteConfig.description}
+                Tái sinh mảnh ghép công nghệ thành tác phẩm điêu khắc đương đại. Bản hòa ca giữa kỹ thuật chế tác kim hoàn và vẻ đẹp cấu trúc vi mạch.
               </p>
               <div className="flex items-center gap-3 pt-2 text-slate-500">
                 <a

@@ -20,10 +20,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   z-index: 50;
   overflow: hidden;
+  contain: paint;
   pointer-events: none;
 }
 
@@ -31,19 +34,22 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2rem;
+  padding: 0 1rem;
   background: transparent;
   pointer-events: none;
   z-index: 60;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .staggered-menu-header {
-    padding: 1rem 1.25rem;
+    height: 72px;
+    padding: 0 2rem;
   }
 }
 
