@@ -1,10 +1,10 @@
 import { ROUTES } from "@/constants";
 
 export const siteConfig = {
-  name: "Sylven Studio",
-  title: "Sylven - Nền tảng Tri thức & Công nghệ Hiện đại",
+  name: "SYLVEN",
+  title: "SYLVEN | Trang Sức Đương Đại Từ Linh Kiện Công Nghệ Tái Sinh",
   description:
-    "Khám phá các giải pháp công nghệ tiên tiến, bài viết chuyên sâu và tài nguyên kiến thức mở hoàn toàn độc lập với mock data.",
+    "SYLVEN là thương hiệu trang sức định hướng thiết kế (design-led), kết hợp Bạc 925 và Titanium F136 chuẩn y sinh cùng linh kiện điện tử tuyển chọn được bọc resin an toàn, mang đến dấu ấn cá nhân và câu chuyện tuần hoàn độc bản.",
   url: "https://sylven.dev",
   ogImage: "/images/og-image.png",
   links: {

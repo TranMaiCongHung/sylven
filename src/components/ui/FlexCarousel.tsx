@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Renderer, Program, Mesh, Triangle, Plane, Texture, RenderTarget } from "ogl";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./FlexCarousel.css";
 
 export interface FlexCarouselItem {
@@ -16,43 +17,67 @@ const photo = (id: string) => `https://images.unsplash.com/${id}?w=1200&q=85&aut
 export const SCULPTURE_ITEMS: FlexCarouselItem[] = [
   {
     src: "/images/artworks/collection_01.png",
-    alt: "Connection Salvaged Earrings",
-    title: "Connection Salvaged Earrings",
-    subtitle: "Vàng 18k & Bo mạch vi xử lý tái sinh",
+    alt: "F136 Titanium Circuit Necklace",
+    title: "F136 Titanium Circuit Necklace",
+    subtitle: "ASTM F136 Titanium & Vi mạch bọc Resin ngọc",
   },
   {
     src: "/images/artworks/collection_02.jpg",
-    alt: "Constellation Relic Necklace",
-    title: "Constellation Relic Necklace",
-    subtitle: "Vàng khối 18k, Kim cương & Vi tinh thể bán dẫn",
+    alt: "Silver 925 Logic Ring",
+    title: "Silver 925 Logic Ring",
+    subtitle: "Bạc 925 cao cấp & Vi phiến Silicon quang khắc",
   },
   {
     src: "/images/artworks/collection_03.png",
-    alt: "Alliance Salvaged Earrings",
-    title: "Alliance Salvaged Earrings",
-    subtitle: "Bạch kim, Vàng 18k & Vi mạch tích hợp",
+    alt: "Reclaimed Circuit Drop Earrings",
+    title: "Reclaimed Circuit Drop Earrings",
+    subtitle: "Bạc 999 & Bo mạch vi xử lý tuyển chọn",
   },
   {
     src: "/images/artworks/collection_04.jpg",
-    alt: "Memento Relic Necklace",
-    title: "Memento Relic Necklace",
-    subtitle: "Vàng nguyên khối 18k & Bảng mạch vi xử lý lịch sử",
+    alt: "Titanium F136 Memento Bracelet",
+    title: "Titanium F136 Memento Bracelet",
+    subtitle: "Titanium F136 siêu nhẹ & Vi mạch cơ học bọc Resin",
   },
   {
     src: "/images/artworks/collection_05.jpg",
-    alt: "Mini Code & Blue Jade Necklace",
-    title: "Mini Code & Blue Jade Necklace",
-    subtitle: "Ngọc bích lam thiên nhiên, Bạc 925 & Vi phiến Silicon",
+    alt: "Silver 925 Code Pendant",
+    title: "Silver 925 Code Pendant",
+    subtitle: "Bạc 925 phủ Rhodium & Tinh thể bán dẫn",
   },
   {
     src: "/images/artworks/collection_06.jpg",
-    alt: "Solid Gold USB Relic Necklace",
-    title: "Solid Gold USB Relic Necklace",
-    subtitle: "Vàng 18k chạm khắc thủ công & Cổng giao tiếp dữ liệu số",
+    alt: "18K Gold Bespoke Relic",
+    title: "18K Gold Bespoke Relic",
+    subtitle: "Vàng 18K (Au750) & Cổng dữ liệu kỷ niệm (Made-to-order)",
   },
 ];
 
 const BEND_PRESETS = {
+  straight: {
+    lensWidth: 1.0,
+    lensHeight: 1.0,
+    tilt: 0,
+    roundness: 1,
+    bend: 0,
+    reach: 0,
+    curl: "twist",
+    dispersion: 0,
+    liquid: 0,
+    followCursor: false,
+  },
+  flat: {
+    lensWidth: 1.0,
+    lensHeight: 1.0,
+    tilt: 0,
+    roundness: 1,
+    bend: 0,
+    reach: 0,
+    curl: "twist",
+    dispersion: 0,
+    liquid: 0,
+    followCursor: false,
+  },
   liquid: {
     lensWidth: 0.74,
     lensHeight: 1.18,
@@ -283,7 +308,7 @@ const Digits = ({ value }: { value: number }) => (
 
 export interface FlexCarouselProps {
   items?: FlexCarouselItem[];
-  preset?: "liquid" | "ribbon" | "vortex" | "arch";
+  preset?: "straight" | "flat" | "liquid" | "ribbon" | "vortex" | "arch";
   intro?: "rise" | "bloom" | "spin" | "deal" | "fade" | "none";
   cardHeight?: number;
   gap?: number;
@@ -313,8 +338,8 @@ export interface FlexCarouselProps {
 
 export const FlexCarousel: React.FC<FlexCarouselProps> = ({
   items = SCULPTURE_ITEMS,
-  preset = "liquid",
-  intro = "rise",
+  preset = "straight",
+  intro = "fade",
   cardHeight = 0.52,
   gap = 14,
   radius = 12,
@@ -329,7 +354,7 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
   dispersion,
   liquid,
   followCursor,
-  squeeze = 0.2,
+  squeeze = 0,
   focusOnClick = true,
   autoplay = false,
   interval = 4,
@@ -350,7 +375,7 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
   const [revealed, setRevealed] = useState(false);
   const [focusOpen, setFocusOpen] = useState(false);
 
-  const base = BEND_PRESETS[preset] || BEND_PRESETS.liquid;
+  const base = BEND_PRESETS[preset] || BEND_PRESETS.straight;
   const pick = (value: unknown, key: string) =>
     value === undefined || value === null
       ? (base as Record<string, unknown>)[key]
@@ -432,7 +457,7 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         uReady: { value: 0 },
         uShift: { value: 0 },
         uDpr: { value: 1 },
-        uPlaceholder: { value: [0.95, 0.94, 0.92] },
+        uPlaceholder: { value: [0.98, 0.976, 0.965] },
       },
     });
     cardProgram.setBlendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -1054,6 +1079,7 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
             });
           }
         }
+        const isFlat = !s.bend && !s.dispersion && !s.tilt;
         draws.sort((a, b) => Math.abs(b.rel) - Math.abs(a.rel));
         let first = true;
         for (const draw of draws) {
@@ -1067,13 +1093,17 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
           ];
           cardProgram.uniforms.uSize.value = [draw.cw, draw.ch];
           cardProgram.uniforms.uImage.value = slot.image;
-          cardProgram.uniforms.uAlpha.value = draw.alpha;
+          cardProgram.uniforms.uAlpha.value = draw.alpha * effects.sceneAlpha;
           cardProgram.uniforms.uReady.value = slot.ready;
           cardProgram.uniforms.uShift.value = reducedMotion
             ? 0
             : Math.max(-1, Math.min(1, draw.rel / (width * 0.75)));
           cardProgram.uniforms.uPlaceholder.value = slot.color;
-          renderer.render({ scene: cardMesh, target, clear: first });
+          if (isFlat) {
+            renderer.render({ scene: cardMesh, clear: first });
+          } else {
+            renderer.render({ scene: cardMesh, target, clear: first });
+          }
           first = false;
           instances.push({
             index: draw.i,
@@ -1084,36 +1114,44 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
           });
         }
         if (first) {
-          renderer.bindFramebuffer(target);
-          gl.viewport(0, 0, target.width, target.height);
-          gl.clear(gl.COLOR_BUFFER_BIT);
+          if (isFlat) {
+            renderer.bindFramebuffer();
+            gl.viewport(0, 0, renderer.width, renderer.height);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+          } else {
+            renderer.bindFramebuffer(target);
+            gl.viewport(0, 0, target.width, target.height);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+          }
         }
-        renderer.bindFramebuffer();
-        target.texture.bind();
-        gl.generateMipmap(gl.TEXTURE_2D);
+        if (!isFlat) {
+          renderer.bindFramebuffer();
+          target.texture.bind();
+          gl.generateMipmap(gl.TEXTURE_2D);
 
-        lensUniforms.uResolution.value = [width, height];
-        lensUniforms.uDpr.value = dpr;
-        lensUniforms.uCenter.value = [lensX, lens.y];
-        lensUniforms.uHalf.value = [Math.max(halfW, 1), Math.max(halfH, 1)];
-        lensUniforms.uAngle.value = (s.tilt * Math.PI) / 180;
-        lensUniforms.uExponent.value =
-          2 + Math.pow(1 - clamp01(s.roundness), 1.5) * 10;
-        const spanW = Math.max(halfW, 1);
-        const spanH = Math.max(halfH, 1);
-        const inner = Math.max(4, s.reach * (spanW + spanH) * 0.5);
-        lensUniforms.uInner.value = inner;
-        lensUniforms.uOuter.value = inner * 1.6;
-        lensUniforms.uFlow.value = s.bend * (spanW + spanH) * 0.45;
-        lensUniforms.uCurl.value =
-          s.curl === "rise" ? 1 : s.curl === "fall" ? -1 : 0;
-        lensUniforms.uDispersion.value =
-          s.dispersion *
-          0.12 *
-          (1 + Math.abs(deform) * liquidAmount * 1.2);
-        lensUniforms.uStrength.value = effects.strength * (1 - focusEase);
-        lensUniforms.uSceneAlpha.value = effects.sceneAlpha;
-        renderer.render({ scene: lensMesh });
+          lensUniforms.uResolution.value = [width, height];
+          lensUniforms.uDpr.value = dpr;
+          lensUniforms.uCenter.value = [lensX, lens.y];
+          lensUniforms.uHalf.value = [Math.max(halfW, 1), Math.max(halfH, 1)];
+          lensUniforms.uAngle.value = (s.tilt * Math.PI) / 180;
+          lensUniforms.uExponent.value =
+            2 + Math.pow(1 - clamp01(s.roundness), 1.5) * 10;
+          const spanW = Math.max(halfW, 1);
+          const spanH = Math.max(halfH, 1);
+          const inner = Math.max(4, s.reach * (spanW + spanH) * 0.5);
+          lensUniforms.uInner.value = inner;
+          lensUniforms.uOuter.value = inner * 1.6;
+          lensUniforms.uFlow.value = s.bend * (spanW + spanH) * 0.45;
+          lensUniforms.uCurl.value =
+            s.curl === "rise" ? 1 : s.curl === "fall" ? -1 : 0;
+          lensUniforms.uDispersion.value =
+            s.dispersion *
+            0.12 *
+            (1 + Math.abs(deform) * liquidAmount * 1.2);
+          lensUniforms.uStrength.value = effects.strength * (1 - focusEase);
+          lensUniforms.uSceneAlpha.value = effects.sceneAlpha;
+          renderer.render({ scene: lensMesh });
+        }
       }
 
       let nextHover = "";
@@ -1395,6 +1433,22 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         start();
       },
       setItems,
+      prev: () => {
+        const s = settingsRef.current;
+        if (!s) return;
+        skipIntro();
+        closeFocus();
+        interactedAt = performance.now();
+        step(metrics(s), -1);
+      },
+      next: () => {
+        const s = settingsRef.current;
+        if (!s) return;
+        skipIntro();
+        closeFocus();
+        interactedAt = performance.now();
+        step(metrics(s), 1);
+      },
     };
 
     resize();
@@ -1424,6 +1478,16 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
     };
   }, []);
 
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    engineRef.current?.prev();
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    engineRef.current?.next();
+  };
+
   const current = list[active] || list[0];
   const label = current
     ? current.title || current.alt || `Artwork ${active + 1}`
@@ -1444,6 +1508,24 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
       aria-label="Sculptures and Artworks Carousel"
       tabIndex={0}
     >
+      {/* Side Arrow Navigation */}
+      <button
+        type="button"
+        onClick={handlePrev}
+        aria-label="Previous artwork"
+        className="pointer-events-auto absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        <ChevronLeft className="w-5 h-5 text-stone-700" />
+      </button>
+
+      <button
+        type="button"
+        onClick={handleNext}
+        aria-label="Next artwork"
+        className="pointer-events-auto absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        <ChevronRight className="w-5 h-5 text-stone-700" />
+      </button>
       {captions && current && revealed && (
         <div className="flex-carousel__caption" aria-hidden="true">
           <span key={active} className="flex-carousel__title">

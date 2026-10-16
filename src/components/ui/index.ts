@@ -6,3 +6,4 @@ export * from "./FlexCarousel";
 export * from "./ReflectiveCard";
 export * from "./ShinyText";
 export { default as SlingButton } from "./SlingButton";
+export * from "./SpotlightCard";

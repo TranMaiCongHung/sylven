@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { siteConfig } from "@/config";
 import "./globals.css";
 
@@ -10,15 +11,16 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [
-    "Next.js 15",
-    "React 19",
-    "Tailwind CSS v4",
-    "TypeScript",
-    "Frontend Architecture",
-    "Mock Data",
-    "Clean Code",
+    "SYLVEN",
+    "Trang sức công nghệ",
+    "Upcycled Jewelry",
+    "Trang sức tái sinh",
+    "Titanium F136",
+    "Bạc 925",
+    "Cyberpunk Jewelry",
+    "TechDNA",
   ],
-  authors: [{ name: "Sylven Studio" }],
+  authors: [{ name: "SYLVEN Group 02" }],
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -43,11 +45,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="scroll-smooth">
+    <html lang="vi">
       <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-surface-50 overflow-x-hidden max-w-full">
-        <Header />
-        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
