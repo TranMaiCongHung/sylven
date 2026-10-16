@@ -75,8 +75,8 @@ export function Header() {
           : "-translate-y-full opacity-0 pointer-events-none"
       } ${
         isScrolled
-          ? "bg-[#FAF8F5]/92 backdrop-blur-md border-b border-stone-200/80 shadow-xs"
-          : "bg-[#FAF8F5]/80 backdrop-blur-sm border-b border-stone-200/40"
+          ? "bg-[#FAF9F6]/92 backdrop-blur-md border-b border-stone-200/80 shadow-xs"
+          : "bg-[#FAF9F6]/80 backdrop-blur-sm border-b border-stone-200/40"
       }`}
       style={{ height: "72px" }}
       aria-hidden={!isHeaderVisible}
@@ -123,9 +123,13 @@ export function Header() {
                   {item.label}
                 </span>
 
-                {/* Underline Component marking current page */}
+                {/* Underline Component marking current page with fluid sliding motion */}
                 {active ? (
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] bg-[#18181B] rounded-full shadow-xs transition-all duration-200" />
+                  <motion.span
+                    layoutId="headerNavUnderline"
+                    transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] bg-[#18181B] rounded-full shadow-xs"
+                  />
                 ) : (
                   <span className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-stone-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                 )}
@@ -134,36 +138,38 @@ export function Header() {
           })}
         </nav>
 
-        {/* RIGHT: Language Toggle Switcher (VIE / ENG) & Mobile Hamburger */}
+        {/* RIGHT: Streamlined Micro Language Toggle Switcher (VI / EN) & Mobile Hamburger */}
         <div className="flex items-center gap-3">
-          {/* Dual Language Pill Toggle */}
+          {/* Streamlined Micro Language Pill Toggle */}
           <div
             role="group"
             aria-label={t.nav.languageToggle}
-            className="inline-flex items-center rounded-full bg-stone-200/70 p-1 border border-stone-300/80 text-[11px] font-mono select-none"
+            className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-mono select-none"
           >
-            <button
-              type="button"
-              onClick={() => setLanguage("vi")}
-              className={`px-3 py-1 rounded-full transition-all duration-300 cursor-pointer ${
-                language === "vi"
-                  ? "bg-[#18181B] text-[#FAF8F5] shadow-xs font-bold"
-                  : "text-stone-600 hover:text-stone-950 font-medium"
-              }`}
-            >
-              VIE
-            </button>
-            <button
-              type="button"
-              onClick={() => setLanguage("en")}
-              className={`px-3 py-1 rounded-full transition-all duration-300 cursor-pointer ${
-                language === "en"
-                  ? "bg-[#18181B] text-[#FAF8F5] shadow-xs font-bold"
-                  : "text-stone-600 hover:text-stone-950 font-medium"
-              }`}
-            >
-              ENG
-            </button>
+            {(["vi", "en"] as const).map((lang) => {
+              const active = language === lang;
+              return (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setLanguage(lang)}
+                  className={`relative z-10 px-2 py-0.5 rounded-full uppercase tracking-wider transition-colors duration-200 cursor-pointer ${
+                    active
+                      ? "text-[#FAF9F6] font-bold"
+                      : "text-stone-600 hover:text-stone-900 font-medium"
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="activeLangIndicator"
+                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                      className="absolute inset-0 bg-[#18181B] rounded-full -z-10 shadow-2xs"
+                    />
+                  )}
+                  {lang}
+                </button>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Hamburger Button */}
@@ -186,7 +192,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden absolute top-[72px] left-0 right-0 w-full bg-[#FAF8F5]/98 backdrop-blur-xl border-b border-stone-200 shadow-lg px-6 py-6"
+            className="md:hidden absolute top-[72px] left-0 right-0 w-full bg-[#FAF9F6]/98 backdrop-blur-xl border-b border-stone-200 shadow-lg px-6 py-6"
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => {
@@ -226,29 +232,31 @@ export function Header() {
                   <Globe className="w-3.5 h-3.5 text-stone-500" />
                   <span>{t.nav.languageToggle}</span>
                 </span>
-                <div className="inline-flex items-center rounded-full bg-stone-200/70 p-1 border border-stone-300/80 text-[11px] font-mono">
-                  <button
-                    type="button"
-                    onClick={() => setLanguage("vi")}
-                    className={`px-3 py-1 rounded-full transition-all duration-300 ${
-                      language === "vi"
-                        ? "bg-[#18181B] text-[#FAF8F5] font-bold shadow-xs"
-                        : "text-stone-600"
-                    }`}
-                  >
-                    VIE
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setLanguage("en")}
-                    className={`px-3 py-1 rounded-full transition-all duration-300 ${
-                      language === "en"
-                        ? "bg-[#18181B] text-[#FAF8F5] font-bold shadow-xs"
-                        : "text-stone-600"
-                    }`}
-                  >
-                    ENG
-                  </button>
+                <div className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-mono select-none">
+                  {(["vi", "en"] as const).map((lang) => {
+                    const active = language === lang;
+                    return (
+                      <button
+                        key={lang}
+                        type="button"
+                        onClick={() => setLanguage(lang)}
+                        className={`relative z-10 px-2.5 py-0.5 rounded-full uppercase tracking-wider transition-colors duration-200 cursor-pointer ${
+                          active
+                            ? "text-[#FAF9F6] font-bold"
+                            : "text-stone-600 font-medium"
+                        }`}
+                      >
+                        {active && (
+                          <motion.span
+                            layoutId="mobileActiveLangIndicator"
+                            transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                            className="absolute inset-0 bg-[#18181B] rounded-full -z-10 shadow-2xs"
+                          />
+                        )}
+                        {lang}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
