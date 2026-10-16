@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { siteConfig } from "@/config";
 import "./globals.css";
 
@@ -43,11 +44,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="scroll-smooth">
+    <html lang="vi">
       <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-surface-50 overflow-x-hidden max-w-full">
-        <Header />
-        <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

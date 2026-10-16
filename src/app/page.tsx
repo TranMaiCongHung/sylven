@@ -14,31 +14,33 @@ import {
 import { Container } from "@/components/layout";
 import { Button, FlexCarousel, SCULPTURE_ITEMS, ReflectiveCard, ShinyText, SlingButton } from "@/components/ui";
 import { ScrollReveal, BrandLogo } from "@/components/common";
-
-const CURATED_ARTWORKS = [
-  {
-    title: "Digital Odyssey Earrings",
-    subtitle: "Aquamarines and Silver",
-    image: "/images/artworks/curated_01_a.jpg",
-    hoverImage: "/images/artworks/curated_01_b.jpg",
-  },
-  {
-    title: "Digital Odyssey Sapphire Earrings",
-    subtitle: "White Gold, Diamonds and Sapphire",
-    image: "/images/artworks/curated_02_a.jpg",
-    hoverImage: "/images/artworks/curated_02_b.png",
-  },
-  {
-    title: "Silver Code Necklace",
-    subtitle: "Ruby, Pearls and Silver",
-    image: "/images/artworks/curated_03_a.jpg",
-    hoverImage: "/images/artworks/curated_03_b.jpg",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HomePage() {
+  const { language, t } = useLanguage();
   const [mounted, setMounted] = React.useState(false);
   const [scrollY, setScrollY] = React.useState(0);
+
+  const curatedArtworks = React.useMemo(() => [
+    {
+      title: "Digital Odyssey Earrings",
+      subtitle: language === "vi" ? "Aquamarines & Bạc tái sinh" : "Aquamarines & Reclaimed Silver",
+      image: "/images/artworks/curated_01_a.jpg",
+      hoverImage: "/images/artworks/curated_01_b.jpg",
+    },
+    {
+      title: "Digital Odyssey Sapphire Earrings",
+      subtitle: language === "vi" ? "Vàng trắng, Kim cương & Sapphire" : "White Gold, Diamonds & Sapphire",
+      image: "/images/artworks/curated_02_a.jpg",
+      hoverImage: "/images/artworks/curated_02_b.png",
+    },
+    {
+      title: "Silver Code Necklace",
+      subtitle: language === "vi" ? "Ruby, Ngọc trai & Bạc" : "Ruby, Pearls & Silver",
+      image: "/images/artworks/curated_03_a.jpg",
+      hoverImage: "/images/artworks/curated_03_b.jpg",
+    },
+  ], [language]);
 
   React.useEffect(() => {
     // Trigger hero load fade-in
@@ -64,7 +66,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-24 sm:gap-36 pb-28 w-full max-w-full overflow-hidden">
+    <div className="scroll-smooth flex flex-col gap-24 sm:gap-36 pb-28 w-full max-w-full overflow-hidden">
       {/* 1. HERO BRAND INTRO: EXCLUSIVE FULL-VIEWPORT COMMANDING ENTRANCE */}
       <section
         id="top"
@@ -118,7 +120,7 @@ export default function HomePage() {
               mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Atelier d&apos;Art Contemporain
+            {t.hero.tagline}
           </span>
         </div>
 
@@ -133,7 +135,7 @@ export default function HomePage() {
             className="group flex flex-col items-center gap-1.5 text-stone-400 hover:text-stone-800 transition-colors duration-300 cursor-pointer"
           >
             <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
-              Cuộn để khám phá
+              {t.hero.scrollPrompt}
             </span>
             <div className="w-5 h-8 rounded-full border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
               <div className="w-1.5 h-2 rounded-full bg-stone-500 group-hover:bg-stone-800 animate-bounce transition-colors" />
@@ -150,27 +152,25 @@ export default function HomePage() {
             <ScrollReveal direction="up" delay={0.1}>
               <div className="inline-flex items-center gap-2 rounded-full border border-stone-300/80 bg-[#FAF8F5]/90 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-stone-700 shadow-xs backdrop-blur-md">
                 <Sparkles className="h-3.5 w-3.5 text-stone-800" />
-                <span>Sylven Atelier • Contemporary Sculpture</span>
+                <span>{t.manifesto.badge}</span>
               </div>
             </ScrollReveal>
 
             {/* Headline */}
             <ScrollReveal direction="up" delay={0.2}>
               <h1 className="mt-8 text-3xl font-extrabold tracking-tight text-[#18181B] sm:text-6xl lg:text-7xl leading-[1.12]">
-                Tái sinh mảnh ghép công nghệ thành{" "}
+                {t.manifesto.titlePrefix}
                 <span className="font-serif italic font-normal text-stone-800 underline decoration-stone-300 underline-offset-8">
-                  tác phẩm điêu khắc
-                </span>{" "}
-                đương đại.
+                  {t.manifesto.titleHighlight}
+                </span>
+                {t.manifesto.titleSuffix}
               </h1>
             </ScrollReveal>
 
             {/* Subhead */}
             <ScrollReveal direction="up" delay={0.3}>
               <p className="mt-6 text-base sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
-                Bản hòa ca giữa kỹ thuật chế tác kim hoàn và vẻ đẹp cấu trúc vi
-                mạch. Mỗi thiết kế là một tác phẩm độc bản lưu giữ dấu ấn của kỷ
-                nguyên số.
+                {t.manifesto.description}
               </p>
             </ScrollReveal>
 
@@ -180,10 +180,10 @@ export default function HomePage() {
                 <Link href="#showcase">
                   <Button
                     size="lg"
-                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-full shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide"
+                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-full shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide cursor-pointer"
                     rightIcon={<ArrowDown className="h-4 w-4 animate-bounce" />}
                   >
-                    Khám phá tác phẩm
+                    {t.manifesto.exploreBtn}
                   </Button>
                 </Link>
 
@@ -191,9 +191,9 @@ export default function HomePage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-stone-300 bg-white/70 text-stone-800 hover:bg-[#F5F2EB] px-7 py-3.5 rounded-full font-medium text-sm sm:text-base tracking-wide backdrop-blur-sm"
+                    className="border-stone-300 bg-white/70 text-stone-800 hover:bg-[#F5F2EB] px-7 py-3.5 rounded-full font-medium text-sm sm:text-base tracking-wide backdrop-blur-sm cursor-pointer"
                   >
-                    Triết lý thương hiệu
+                    {t.manifesto.philosophyBtn}
                   </Button>
                 </Link>
               </div>
@@ -208,13 +208,13 @@ export default function HomePage() {
           {/* Section Header with Scroll Reveal */}
           <ScrollReveal direction="up" delay={0.1} className="text-center mb-10 sm:mb-14 px-4">
             <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
-              Interactive WebGL Exhibition
+              {t.showcase.badge}
             </span>
             <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
-              Bộ Sưu Tập Tác Phẩm Tiêu Biểu
+              {t.showcase.title}
             </h2>
             <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
-              Trải nghiệm dòng chảy thấu kính chất lỏng WebGL. Kéo chuột hoặc lướt nhẹ để chiêm ngưỡng các thiết kế điêu khắc độc bản.
+              {t.showcase.description}
             </p>
           </ScrollReveal>
 
@@ -246,19 +246,19 @@ export default function HomePage() {
             <div className="lg:col-span-6 min-w-0 w-full space-y-5">
               <ScrollReveal direction="up" delay={0.1}>
                 <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
-                  Triết Lý Thương Hiệu
+                  {t.alchemy.badge}
                 </span>
                 <h2 className="mt-2 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight leading-tight">
-                  Nghệ Thuật Giả Kim <br />
+                  {t.alchemy.titleMain} <br />
                   <span className="font-serif italic font-normal text-stone-700">
-                    Kỷ Nguyên Số
+                    {t.alchemy.titleItalic}
                   </span>
                 </h2>
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.2}>
                 <p className="text-sm sm:text-base text-stone-600 leading-relaxed">
-                  Tại Sylven Atelier, chúng tôi hòa quyện kỹ nghệ kim hoàn bậc thầy cùng kiến trúc bán dẫn. Từng vi mạch, tinh thể silicon và vàng khối được tái sinh thành tác phẩm điêu khắc độc bản lưu giữ linh hồn thời đại số.
+                  {t.alchemy.description}
                 </p>
               </ScrollReveal>
 
@@ -271,10 +271,10 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-[#18181B]">
-                        Khai Quật Vi Mạch (Silicon Archaeology)
+                        {t.alchemy.pillars[0].title}
                       </h4>
                       <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        Tuyển chọn chip và tinh thể bán dẫn mang tính biểu tượng từ các cột mốc công nghệ.
+                        {t.alchemy.pillars[0].desc}
                       </p>
                     </div>
                   </div>
@@ -287,10 +287,10 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-[#18181B]">
-                        Chế Tác Kim Hoàn (Haute Craftsmanship)
+                        {t.alchemy.pillars[1].title}
                       </h4>
                       <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        Chế tác vi mô bằng vàng 24k dát mỏng, bạch kim và đá sapphire dưới kính hiển vi.
+                        {t.alchemy.pillars[1].desc}
                       </p>
                     </div>
                   </div>
@@ -303,10 +303,10 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-[#18181B]">
-                        Mỗi Thiết Kế Là Độc Bản (Unique Pieces)
+                        {t.alchemy.pillars[2].title}
                       </h4>
                       <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        Không sản xuất hàng loạt. Từng tác phẩm là duy nhất với chứng thư giám định số.
+                        {t.alchemy.pillars[2].desc}
                       </p>
                     </div>
                   </div>
@@ -319,7 +319,7 @@ export default function HomePage() {
               <ScrollReveal direction="up" delay={0.3} duration={1} className="w-full flex justify-center lg:justify-end">
                 <ReflectiveCard
                   imageSrc="/images/artworks/oushaba_sculpture.jpg"
-                  imageAlt="Tác phẩm điêu khắc vi mạch kim hoàn Oushaba Sylven"
+                  imageAlt="Sylven Sculpture Atelier"
                   tint="#ffffff"
                   metalness={1}
                   roughness={0.3}
@@ -349,18 +349,18 @@ export default function HomePage() {
         <Container size="lg">
           <ScrollReveal direction="up" delay={0.1} className="text-center mb-14">
             <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
-              Curated Masterpieces
+              {t.collection.badge}
             </span>
             <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
-              Tác Phẩm Sưu Tập Độc Bản
+              {t.collection.title}
             </h2>
             <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600">
-              Mỗi tác phẩm đi kèm chứng chỉ giám định chất liệu, mã số vi mạch lịch sử và hòm lưu trữ cao cấp.
+              {t.collection.description}
             </p>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {CURATED_ARTWORKS.map((artwork, idx) => (
+            {curatedArtworks.map((artwork, idx) => (
               <ScrollReveal
                 key={artwork.title + idx}
                 direction="up"
@@ -368,7 +368,7 @@ export default function HomePage() {
                 className="min-w-0 w-full"
               >
                 <Link
-                  href="#showcase"
+                  href="/san-pham"
                   className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1"
                 >
                   {/* Image Container with Smooth Crossfade Hover Animation */}
@@ -384,7 +384,7 @@ export default function HomePage() {
                     {/* Hover Image */}
                     <Image
                       src={artwork.hoverImage}
-                      alt={`${artwork.title} - chi tiết`}
+                      alt={`${artwork.title} - view`}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover object-center opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
@@ -404,6 +404,17 @@ export default function HomePage() {
               </ScrollReveal>
             ))}
           </div>
+
+          {/* CTA to All Products Page */}
+          <ScrollReveal direction="up" delay={0.3} className="mt-12 text-center">
+            <Link
+              href="/san-pham"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#18181B] text-[#FAF8F5] hover:bg-[#27272A] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+            >
+              <span>{t.collection.ctaBtn}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </ScrollReveal>
         </Container>
       </section>
 
@@ -436,7 +447,7 @@ export default function HomePage() {
             axis="any"
             tapSends
             disabled={false}
-            ariaLabel="Quay về đầu trang"
+            ariaLabel={t.hero.backToTop}
           />
         </div>
       </div>
