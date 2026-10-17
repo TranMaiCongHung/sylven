@@ -51,8 +51,15 @@ export interface TranslationSchema {
     categories: {
       all: string;
       necklaces: string;
+      bracelets: string;
       rings: string;
       earrings: string;
+    };
+    materialsFilter: {
+      all: string;
+      titanium: string;
+      silver: string;
+      gold: string;
     };
     emptyCategory: string;
     certificateLabel: string;
@@ -160,9 +167,16 @@ export const translations: Record<Language, TranslationSchema> = {
       showingCount: "Hiển thị",
       categories: {
         all: "Tất cả",
-        necklaces: "Dây chuyền",
+        necklaces: "Vòng cổ",
+        bracelets: "Vòng tay",
+        earrings: "Khuyên tai",
         rings: "Nhẫn",
-        earrings: "Hoa tai",
+      },
+      materialsFilter: {
+        all: "Tất cả chất liệu",
+        titanium: "Titanium F136",
+        silver: "Bạc 925",
+        gold: "Vàng 18K",
       },
       emptyCategory: "Hiện chưa có tác phẩm nào trong danh mục này.",
       certificateLabel: "Chứng chỉ:",
@@ -272,10 +286,17 @@ export const translations: Record<Language, TranslationSchema> = {
       allCount: "creations",
       showingCount: "Showing",
       categories: {
-        all: "All Creations",
+        all: "All",
         necklaces: "Necklaces",
-        rings: "Rings",
+        bracelets: "Bracelets",
         earrings: "Earrings",
+        rings: "Rings",
+      },
+      materialsFilter: {
+        all: "All Materials",
+        titanium: "Titanium F136",
+        silver: "925 Silver",
+        gold: "18K Gold",
       },
       emptyCategory: "No creations available in this category yet.",
       certificateLabel: "Certificate:",
@@ -312,7 +333,7 @@ export const translations: Record<Language, TranslationSchema> = {
   },
 };
 
-export type ProductCategory = "necklaces" | "rings" | "earrings";
+export type ProductCategory = "necklaces" | "bracelets" | "rings" | "earrings";
 
 export interface ProductTranslationItem {
   id: string;

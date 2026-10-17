@@ -32,11 +32,11 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(50% + var(--flex-carousel-half) * var(--flex-carousel-lift, 1) + 24px);
+  top: calc(50% + var(--flex-carousel-half) * var(--flex-carousel-lift, 1) + 12px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   padding: 0 16px;
   pointer-events: none;
   text-align: center;
@@ -120,6 +120,7 @@
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -130,12 +131,14 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .flex-carousel__caption,
   .flex-carousel__title {
     animation: none;

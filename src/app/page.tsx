@@ -5,48 +5,31 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowDown,
-  Sparkles,
   Cpu,
   Gem,
   ArrowRight,
   ShieldCheck,
 } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Button, FlexCarousel, SCULPTURE_ITEMS, ReflectiveCard, ShinyText, SlingButton, SpotlightCard } from "@/components/ui";
+import { Button, FlexCarousel, ShinyText, SlingButton, SpotlightCard } from "@/components/ui";
 import { ScrollReveal, BrandLogo } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
+import { productRepository, PRODUCTS_DATABASE } from "@/data";
 
 export default function HomePage() {
   const { language, t } = useLanguage();
   const [mounted, setMounted] = React.useState(false);
   const [scrollY, setScrollY] = React.useState(0);
 
-  const curatedArtworks = React.useMemo(() => [
-    {
-      title: "F136 Titanium Circuit Suite",
-      subtitle:
-        language === "vi"
-          ? "ASTM F136 Titanium • Vi Mạch Bọc Resin"
-          : "ASTM F136 Titanium • Resin-Shielded Circuitry",
-      image: "/images/artworks/curated_01_b.jpg",
-    },
-    {
-      title: "Silver 925 Geometric Suite",
-      subtitle:
-        language === "vi"
-          ? "Bạc 925 Cao Cấp • Vi Phiến Silicon Quang Khắc"
-          : "925 Sterling Silver • Photolithographic Silicon Die",
-      image: "/images/artworks/curated_02_b.png",
-    },
-    {
-      title: "Reclaimed Logic Pearl Pendant",
-      subtitle:
-        language === "vi"
-          ? "Bạc 999 • Bo Mạch Vi Xử Lý Tuyển Chọn"
-          : "999 Fine Silver • Screened Micro-PCB",
-      image: "/images/artworks/curated_03_b.jpg",
-    },
-  ], [language]);
+  const curatedArtworks = React.useMemo(() => {
+    return PRODUCTS_DATABASE.filter((it) => it.featuredFlags?.isCurated)
+      .slice(0, 3)
+      .map((it) => ({
+        title: it.title,
+        subtitle: it.subtitle[language],
+        image: it.image,
+      }));
+  }, [language]);
 
   const showcaseItems = React.useMemo(() => [
     {
@@ -111,39 +94,37 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="scroll-smooth flex flex-col gap-24 sm:gap-36 pb-28 w-full max-w-full overflow-hidden">
+    <div className="scroll-smooth flex flex-col gap-12 sm:gap-16 pb-24 w-full max-w-full overflow-hidden">
       {/* 1. HERO BRAND INTRO: EXCLUSIVE FULL-VIEWPORT COMMANDING ENTRANCE */}
       <section
         id="top"
         className="relative flex flex-col justify-between items-center h-[100svh] max-h-[100svh] w-full px-4 overflow-hidden pt-10 sm:pt-12 pb-4 sm:pb-6"
       >
         {/* Ambient Subtle Luxury Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[520px] bg-stone-200/25 blur-3xl -z-10 pointer-events-none rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[420px] bg-stone-200/25 blur-3xl -z-10 pointer-events-none rounded-full" />
 
         {/* Center Stage: Logo + ShinyText Brand Name */}
-        <div className="flex-1 flex flex-col items-center justify-center text-center my-auto min-h-0">
-          {/* Prominent Emblem Logo */}
+        <div className="flex-1 flex flex-col items-center justify-center text-center my-auto min-h-0 w-full px-2">
+          {/* Prominent Emblem Logo (Responsive Balanced Luxury Size) */}
           <div
-            className={`relative group mb-3 sm:mb-4 transition-all duration-1000 ease-out ${
-              mounted ? "opacity-100 scale-100" : "opacity-0 scale-90"
-            }`}
+            className={`relative group mb-2 sm:mb-4 transition-all duration-1000 ease-out ${mounted ? "opacity-100 scale-100" : "opacity-0 scale-90"
+              }`}
           >
-            <BrandLogo className="w-64 h-36 sm:w-84 sm:h-48 md:w-[460px] md:h-[260px] lg:w-[560px] lg:h-[315px] xl:w-[640px] xl:h-[360px] max-w-[88vw] max-h-[40vh] drop-shadow-2xl" />
-            <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-3xl -z-10" />
+            <BrandLogo className="w-48 h-27 sm:w-64 sm:h-36 md:w-80 md:h-45 lg:w-[390px] lg:h-[220px] xl:w-[450px] xl:h-[254px] 2xl:w-[500px] 2xl:h-[282px] max-w-[82vw] max-h-[30vh] drop-shadow-xl" />
+            <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-2xl -z-10" />
           </div>
 
-          {/* Majestic SYLVEN with ShinyText Effect */}
+          {/* Majestic SYLVEN with ShinyText Effect (Responsive Fluid Sizing) */}
           <div
-            className={`font-yavimayan text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10.5rem] font-bold tracking-[0.22em] sm:tracking-[0.26em] md:tracking-[0.28em] leading-none select-none my-2 sm:my-4 transition-all duration-1000 delay-200 ease-out ${
-              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-            }`}
+            className={`font-yavimayan text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.75rem] 2xl:text-[7.5rem] font-bold tracking-[0.20em] sm:tracking-[0.23em] md:tracking-[0.25em] lg:tracking-[0.26em] leading-none select-none my-2 sm:my-3 transition-all duration-1000 delay-200 ease-out max-w-full ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
           >
             <ShinyText
               text="SYLVEN"
               color="#18181b"
               shineColor="#ffffff"
               speed={2.2}
-              shineWidth={55}
+              shineWidth={42}
               softness={0.8}
               trigger="loop"
               delay={0}
@@ -162,15 +143,14 @@ export default function HomePage() {
 
         {/* Bottom Scroll Cue */}
         <div
-          className={`flex flex-col items-center justify-center pt-2 pb-1 transition-all duration-1000 delay-500 ease-out shrink-0 ${
-            mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+          className={`flex flex-col items-center justify-center pt-2 pb-1 transition-all duration-1000 delay-500 ease-out shrink-0 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
         >
           <Link
             href="#manifesto"
             className="group flex flex-col items-center gap-1.5 text-stone-400 hover:text-stone-800 transition-colors duration-300 cursor-pointer"
           >
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.3em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
+            <span className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
               {t.hero.scrollPrompt}
             </span>
             <div className="w-5 h-8 rounded-full border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
@@ -181,38 +161,28 @@ export default function HomePage() {
       </section>
 
       {/* 2. MANIFESTO & PHILOSOPHY HEADLINE SECTION */}
-      <section id="manifesto" className="scroll-mt-20 pt-16 sm:pt-24 pb-8 sm:pb-16 relative overflow-hidden">
+      <section id="manifesto" className="scroll-mt-20 pt-8 sm:pt-14 pb-2 sm:pb-4 relative overflow-hidden">
         <Container size="lg">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Atelier Badge */}
+            {/* Headline (No Underline) */}
             <ScrollReveal direction="up" delay={0.1}>
-              <div className="inline-flex items-center gap-2 rounded-full border border-stone-300/80 bg-[#FAF9F6]/90 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase text-stone-700 shadow-xs backdrop-blur-md">
-                <Sparkles className="h-3.5 w-3.5 text-stone-800" />
-                <span>{t.manifesto.badge}</span>
-              </div>
-            </ScrollReveal>
-
-            {/* Headline */}
-            <ScrollReveal direction="up" delay={0.2}>
-              <h1 className="mt-8 text-3xl font-extrabold tracking-tight text-[#18181B] sm:text-6xl lg:text-7xl leading-[1.12]">
+              <h1 className="text-3xl font-extrabold tracking-tight text-[#18181B] sm:text-6xl lg:text-7xl leading-[1.12]">
                 {t.manifesto.titlePrefix}
-                <span className="underline decoration-stone-300 underline-offset-8">
-                  {t.manifesto.titleHighlight}
-                </span>
+                {t.manifesto.titleHighlight}
                 {t.manifesto.titleSuffix}
               </h1>
             </ScrollReveal>
 
             {/* Subhead */}
-            <ScrollReveal direction="up" delay={0.3}>
-              <p className="mt-6 text-base sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
+            <ScrollReveal direction="up" delay={0.2}>
+              <p className="mt-4 sm:mt-5 text-base sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
                 {t.manifesto.description}
               </p>
             </ScrollReveal>
 
             {/* CTAs */}
-            <ScrollReveal direction="up" delay={0.4}>
-              <div className="mt-10 sm:mt-12 flex flex-wrap items-center justify-center gap-4">
+            <ScrollReveal direction="up" delay={0.3}>
+              <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
                 <Link href="#showcase">
                   <Button
                     size="lg"
@@ -222,16 +192,6 @@ export default function HomePage() {
                     {t.manifesto.exploreBtn}
                   </Button>
                 </Link>
-
-                <Link href="#alchemy">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-stone-300 bg-white/70 text-stone-800 hover:bg-[#F5F2EB] px-7 py-3.5 rounded-full font-medium text-sm sm:text-base tracking-wide backdrop-blur-sm cursor-pointer"
-                  >
-                    {t.manifesto.philosophyBtn}
-                  </Button>
-                </Link>
               </div>
             </ScrollReveal>
           </div>
@@ -239,28 +199,25 @@ export default function HomePage() {
       </section>
 
       {/* 2. SHOWCASE COMPONENT: WEBGL FLEX CAROUSEL */}
-      <section id="showcase" className="scroll-mt-24 relative overflow-hidden">
+      <section id="showcase" className="scroll-mt-20 relative overflow-hidden">
         <Container size="full">
-          {/* Section Header with Scroll Reveal */}
-          <ScrollReveal direction="up" delay={0.1} className="text-center mb-10 sm:mb-14 px-4">
-            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
-              {t.showcase.badge}
-            </span>
-            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
+          {/* Section Header with Scroll Reveal (No Badge, Compact Spacing) */}
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-4 sm:mb-6 px-4">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
               {t.showcase.title}
             </h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
+            <p className="mt-2.5 max-w-xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
               {t.showcase.description}
             </p>
           </ScrollReveal>
 
-          {/* WebGL FlexCarousel Container with Unified Pure Background */}
+          {/* WebGL FlexCarousel Container with Proportional Compact Height */}
           <ScrollReveal direction="up" delay={0.2} duration={1.1}>
-            <div className="relative mx-auto w-full max-w-7xl h-[520px] sm:h-[620px] rounded-3xl overflow-hidden border border-stone-200/60 bg-[#FAF9F6]">
+            <div className="relative mx-auto w-full max-w-7xl h-[480px] sm:h-[530px] rounded-3xl overflow-hidden border border-stone-200/60 bg-[#FAF9F6]">
               <FlexCarousel
                 items={showcaseItems}
                 preset="straight"
-                cardHeight={0.56}
+                cardHeight={0.62}
                 gap={24}
                 radius={20}
                 fit="portrait"
@@ -280,18 +237,14 @@ export default function HomePage() {
       </section>
 
       {/* 3. ALCHEMY: BRAND PHILOSOPHY & CRAFTSMANSHIP */}
-      <section id="alchemy" className="scroll-mt-24 overflow-hidden">
+      <section id="alchemy" className="scroll-mt-20 overflow-hidden">
         <Container size="lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
-            {/* Left Narrative with Staggered Scroll Reveal */}
+            {/* Left Narrative with Staggered Scroll Reveal (Justified Alignment) */}
             <div className="lg:col-span-6 min-w-0 w-full flex flex-col justify-between py-1 space-y-6">
               <div>
                 <ScrollReveal direction="up" delay={0.1}>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-stone-300/80 bg-[#FAF9F6]/90 px-3.5 py-1 text-xs font-semibold tracking-widest uppercase text-stone-700 shadow-xs backdrop-blur-md">
-                    <Sparkles className="h-3.5 w-3.5 text-stone-800" />
-                    <span>{t.alchemy.badge}</span>
-                  </div>
-                  <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181B] tracking-tight leading-[1.15]">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181B] tracking-tight leading-[1.15]">
                     {t.alchemy.titleMain} <br />
                     <span className="text-stone-600 font-bold block mt-1">
                       {t.alchemy.titleItalic}
@@ -300,104 +253,35 @@ export default function HomePage() {
                 </ScrollReveal>
 
                 <ScrollReveal direction="up" delay={0.2} className="mt-4">
-                  <p className="text-sm sm:text-base text-stone-600 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-base text-stone-600 leading-relaxed font-normal text-justify">
                     {t.alchemy.description}
                   </p>
                 </ScrollReveal>
               </div>
 
-              {/* Three Pillars */}
-              <div className="space-y-3 pt-2">
-                <ScrollReveal direction="up" delay={0.3}>
-                  <SpotlightCard
-                    theme="light"
-                    spotlightColor="#18181b"
-                    intensity={0.15}
-                    spotlightSize={240}
-                    softness={0.7}
-                    shape="circle"
-                    borderGlow={0.6}
-                    proximity={80}
-                    smoothing={0.3}
-                    grain={0}
-                    ambient={false}
-                    flare
-                    className="!p-4 flex items-center gap-4 rounded-2xl border border-stone-200/90 transition-all hover:shadow-md cursor-default"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
-                      <Cpu className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold text-[#18181B]">
-                        {t.alchemy.pillars[0].title}
-                      </h4>
-                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        {t.alchemy.pillars[0].desc}
-                      </p>
-                    </div>
-                  </SpotlightCard>
-                </ScrollReveal>
-
-                <ScrollReveal direction="up" delay={0.4}>
-                  <SpotlightCard
-                    theme="light"
-                    spotlightColor="#18181b"
-                    intensity={0.15}
-                    spotlightSize={240}
-                    softness={0.7}
-                    shape="circle"
-                    borderGlow={0.6}
-                    proximity={80}
-                    smoothing={0.3}
-                    grain={0}
-                    ambient={false}
-                    flare
-                    className="!p-4 flex items-center gap-4 rounded-2xl border border-stone-200/90 transition-all hover:shadow-md cursor-default"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
-                      <Gem className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold text-[#18181B]">
-                        {t.alchemy.pillars[1].title}
-                      </h4>
-                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        {t.alchemy.pillars[1].desc}
-                      </p>
-                    </div>
-                  </SpotlightCard>
-                </ScrollReveal>
-
-                <ScrollReveal direction="up" delay={0.5}>
-                  <SpotlightCard
-                    theme="light"
-                    spotlightColor="#18181b"
-                    intensity={0.15}
-                    spotlightSize={240}
-                    softness={0.7}
-                    shape="circle"
-                    borderGlow={0.6}
-                    proximity={80}
-                    smoothing={0.3}
-                    grain={0}
-                    ambient={false}
-                    flare
-                    className="!p-4 flex items-center gap-4 rounded-2xl border border-stone-200/90 transition-all hover:shadow-md cursor-default"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#18181B] text-[#F5F2EB]">
-                      <ShieldCheck className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="text-sm font-bold text-[#18181B]">
-                        {t.alchemy.pillars[2].title}
-                      </h4>
-                      <p className="mt-0.5 text-xs text-stone-600 leading-relaxed">
-                        {t.alchemy.pillars[2].desc}
-                      </p>
-                    </div>
-                  </SpotlightCard>
-                </ScrollReveal>
-              </div>
+              {/* Three Pillars (Simplified Minimalist Layout - Simultaneous Reveal) */}
+              <ScrollReveal direction="up" delay={0.25}>
+                <div className="space-y-4 pt-4 border-t border-stone-200/70">
+                  {t.alchemy.pillars.map((pillar, idx) => {
+                    const Icon = idx === 0 ? Cpu : idx === 1 ? Gem : ShieldCheck;
+                    return (
+                      <div key={idx} className="flex items-start gap-3.5">
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-700 mt-0.5">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-sm sm:text-base font-semibold text-[#18181B] tracking-tight">
+                            {pillar.title}
+                          </h4>
+                          <p className="mt-1 text-xs sm:text-sm text-stone-600 leading-relaxed text-justify">
+                            {pillar.desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ScrollReveal>
             </div>
 
             {/* Right Display with SpotlightCard and Scroll Reveal */}
@@ -444,7 +328,7 @@ export default function HomePage() {
       <section id="collection" className="scroll-mt-24 overflow-hidden">
         <Container size="lg">
           <ScrollReveal direction="up" delay={0.1} className="text-center mb-14">
-            <span className="text-xs font-mono font-semibold uppercase tracking-widest text-stone-500">
+            <span className="text-xs font-sans font-medium uppercase tracking-widest text-stone-500">
               {t.collection.badge}
             </span>
             <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
@@ -507,11 +391,10 @@ export default function HomePage() {
 
       {/* Floating Back to Top SlingButton: Appears when scrolling to Component 2 */}
       <div
-        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 transition-all duration-500 ease-out ${
-          scrollY > 300
-            ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
-            : "opacity-0 translate-y-8 pointer-events-none scale-75"
-        }`}
+        className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-40 transition-all duration-500 ease-out ${scrollY > 300
+          ? "opacity-100 translate-y-0 pointer-events-auto scale-100"
+          : "opacity-0 translate-y-8 pointer-events-none scale-75"
+          }`}
       >
         <div className="relative group">
           <SlingButton

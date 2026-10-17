@@ -144,7 +144,7 @@ export function Header() {
           <div
             role="group"
             aria-label={t.nav.languageToggle}
-            className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-mono select-none"
+            className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-sans font-medium select-none"
           >
             {(["vi", "en"] as const).map((lang) => {
               const active = language === lang;
@@ -218,7 +218,7 @@ export function Header() {
                     {active ? (
                       <span className="w-8 h-[2.5px] bg-[#18181B] rounded-full" />
                     ) : (
-                      <span className="text-xs text-stone-400 font-mono tracking-widest">
+                      <span className="text-xs text-stone-400 font-sans">
                         →
                       </span>
                     )}
@@ -232,7 +232,7 @@ export function Header() {
                   <Globe className="w-3.5 h-3.5 text-stone-500" />
                   <span>{t.nav.languageToggle}</span>
                 </span>
-                <div className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-mono select-none">
+                <div className="relative inline-flex items-center rounded-full bg-stone-200/60 p-0.5 border border-stone-300/70 text-[10px] font-sans font-medium select-none">
                   {(["vi", "en"] as const).map((lang) => {
                     const active = language === lang;
                     return (
