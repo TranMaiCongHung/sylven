@@ -33,7 +33,7 @@ export function Footer() {
   ], [t]);
 
   return (
-    <footer className="border-t border-stone-200/80 bg-[#FAF9F6]">
+    <footer className="border-t border-stone-200/80 bg-white">
       <Container>
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -56,7 +56,7 @@ export function Footer() {
                   href={siteConfig.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
+                  className="rounded-none p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
                   aria-label="GitHub"
                 >
                   <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export function Footer() {
                   href={siteConfig.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-lg p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
+                  className="rounded-none p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
                   aria-label="LinkedIn"
                 >
                   <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -80,7 +80,7 @@ export function Footer() {
             {/* Links Columns */}
             {footerColumns.map((column) => (
               <div key={column.title} className="space-y-3">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-900">
+                <h4 className="font-oranienbaum text-xs font-semibold uppercase tracking-wider text-stone-900">
                   {column.title}
                 </h4>
                 <ul className="space-y-2 text-sm">

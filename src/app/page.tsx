@@ -5,13 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowDown,
-  Cpu,
-  Gem,
   ArrowRight,
-  ShieldCheck,
 } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Button, FlexCarousel, ShinyText, SlingButton, SpotlightCard } from "@/components/ui";
+import { Button, FlexCarousel, ShinyText, SlingButton } from "@/components/ui";
 import { ScrollReveal, BrandLogo } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
 import { productRepository, PRODUCTS_DATABASE } from "@/data";
@@ -33,42 +30,31 @@ export default function HomePage() {
 
   const showcaseItems = React.useMemo(() => [
     {
-      src: "/images/artworks/model_01.jpg",
-      alt: "Avant-Garde Architectural Suite",
-      title: "Avant-Garde Architectural Suite",
-      subtitle:
-        language === "vi"
-          ? "Titanium F136 đúc & Vi mạch bọc resin kết hợp cùng cấu trúc tạo hình cao cấp"
-          : "F136 Titanium cast & Resin-set circuitry integrated into architectural couture",
+      src: "https://cdn.accentuate.io/86966698145/1638979210096/181221-1-OUSHABA5688.jpg?v=1672951248997",
+      alt: "Sylven Atelier Sculpture I",
+      title: "Sylven Atelier Sculpture I",
     },
     {
-      src: "/images/artworks/model_02.jpg",
-      alt: "Gold Relic & Armor Circuit Suite",
-      title: "Gold Relic & Armor Circuit Suite",
-      subtitle:
-        language === "vi"
-          ? "Vàng PVD, Bạc 925 & Bộ vi xử lý kết nối phụ kiện ngón tay điêu khắc"
-          : "PVD Gold, 925 Silver & Microprocessor sculptural finger armor",
+      src: "https://cdn.accentuate.io/86966698145/1638541115814/181221-1-OUSHABA5386.jpg?v=1672951216466",
+      alt: "Sylven Atelier Sculpture II",
+      title: "Sylven Atelier Sculpture II",
     },
     {
-      src: "/images/artworks/model_03.jpg",
-      alt: "Chroma Monogram & Circuit Stud",
-      title: "Chroma Monogram & Circuit Stud",
-      subtitle:
-        language === "vi"
-          ? "Bông tai đinh vi mạch & Mặt dây chuyền vàng 18K khảm phiến silicon"
-          : "Microchip Stud Earrings & 18K Gold Monogram with Silicon Inlay",
+      src: "https://cdn.accentuate.io/86966698145/1674500251906/181221-1-OUSHABA6745.jpg?v=1674500251906",
+      alt: "Sylven Atelier Sculpture III",
+      title: "Sylven Atelier Sculpture III",
     },
     {
-      src: "/images/artworks/oushaba_sculpture.jpg",
-      alt: "Bespoke Tech Keepsake",
-      title: "Bespoke Tech Keepsake",
-      subtitle:
-        language === "vi"
-          ? "Vàng 18K & Titanium F136 tái sinh cổng dữ liệu số (Made-to-order)"
-          : "18K Gold & F136 Titanium Sentimental Keepsake (Made-to-order)",
+      src: "https://cdn.accentuate.io/86966698145/1674500163771/181221-1-OUSHABA6658.jpg?v=1674500163772",
+      alt: "Sylven Atelier Sculpture IV",
+      title: "Sylven Atelier Sculpture IV",
     },
-  ], [language]);
+    {
+      src: "https://cdn.accentuate.io/86966698145/1674500371509/181221-1-OUSHABA6520.jpg?v=1674500371509",
+      alt: "Sylven Atelier Sculpture V",
+      title: "Sylven Atelier Sculpture V",
+    },
+  ], []);
 
   React.useEffect(() => {
     // Trigger hero load fade-in
@@ -153,8 +139,8 @@ export default function HomePage() {
             <span className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
               {t.hero.scrollPrompt}
             </span>
-            <div className="w-5 h-8 rounded-full border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
-              <div className="w-1.5 h-2 rounded-full bg-stone-500 group-hover:bg-stone-800 animate-bounce transition-colors" />
+            <div className="w-5 h-8 rounded-none border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
+              <div className="w-1.5 h-2 rounded-none bg-stone-500 group-hover:bg-stone-800 animate-bounce transition-colors" />
             </div>
           </Link>
         </div>
@@ -166,27 +152,20 @@ export default function HomePage() {
           <div className="mx-auto max-w-4xl text-center">
             {/* Headline (No Underline) */}
             <ScrollReveal direction="up" delay={0.1}>
-              <h1 className="text-3xl font-extrabold tracking-tight text-[#18181B] sm:text-6xl lg:text-7xl leading-[1.12]">
+              <h1 className="font-oranienbaum text-3xl font-medium tracking-[0.03em] uppercase text-[#18181B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.18] text-balance">
                 {t.manifesto.titlePrefix}
                 {t.manifesto.titleHighlight}
                 {t.manifesto.titleSuffix}
               </h1>
             </ScrollReveal>
 
-            {/* Subhead */}
-            <ScrollReveal direction="up" delay={0.2}>
-              <p className="mt-4 sm:mt-5 text-base sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
-                {t.manifesto.description}
-              </p>
-            </ScrollReveal>
-
             {/* CTAs */}
-            <ScrollReveal direction="up" delay={0.3}>
+            <ScrollReveal direction="up" delay={0.2}>
               <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
                 <Link href="#showcase">
                   <Button
                     size="lg"
-                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-full shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide cursor-pointer"
+                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-none shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide cursor-pointer"
                     rightIcon={<ArrowDown className="h-4 w-4 animate-bounce" />}
                   >
                     {t.manifesto.exploreBtn}
@@ -200,26 +179,23 @@ export default function HomePage() {
 
       {/* 2. SHOWCASE COMPONENT: WEBGL FLEX CAROUSEL */}
       <section id="showcase" className="scroll-mt-20 relative overflow-hidden">
-        <Container size="full">
+        <Container size="full" className="px-2 sm:px-4">
           {/* Section Header with Scroll Reveal (No Badge, Compact Spacing) */}
-          <ScrollReveal direction="up" delay={0.1} className="text-center mb-4 sm:mb-6 px-4">
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-3 sm:mb-4 px-4">
+            <h2 className="font-oranienbaum text-3xl sm:text-5xl font-medium tracking-[0.03em] uppercase text-[#18181B] text-balance">
               {t.showcase.title}
             </h2>
-            <p className="mt-2.5 max-w-xl mx-auto text-sm sm:text-base text-stone-600 leading-relaxed">
-              {t.showcase.description}
-            </p>
           </ScrollReveal>
 
-          {/* WebGL FlexCarousel Container with Proportional Compact Height */}
+          {/* WebGL FlexCarousel Container with Reduced Padding and Balanced Proportions */}
           <ScrollReveal direction="up" delay={0.2} duration={1.1}>
-            <div className="relative mx-auto w-full max-w-7xl h-[480px] sm:h-[530px] rounded-3xl overflow-hidden border border-stone-200/60 bg-[#FAF9F6]">
+            <div className="relative mx-auto w-full max-w-7xl h-[385px] sm:h-[425px] rounded-none overflow-hidden border border-stone-200/60 bg-white">
               <FlexCarousel
                 items={showcaseItems}
                 preset="straight"
-                cardHeight={0.62}
-                gap={24}
-                radius={20}
+                cardHeight={0.74}
+                gap={20}
+                radius={0}
                 fit="portrait"
                 squeeze={0}
                 bend={0}
@@ -239,85 +215,47 @@ export default function HomePage() {
       {/* 3. ALCHEMY: BRAND PHILOSOPHY & CRAFTSMANSHIP */}
       <section id="alchemy" className="scroll-mt-20 overflow-hidden">
         <Container size="lg">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
-            {/* Left Narrative with Staggered Scroll Reveal (Justified Alignment) */}
-            <div className="lg:col-span-6 min-w-0 w-full flex flex-col justify-between py-1 space-y-6">
-              <div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center max-w-5xl mx-auto">
+            {/* Left Narrative with Staggered Scroll Reveal (Vertically & Horizontally Centered with Image) */}
+            <div className="lg:col-span-6 min-w-0 w-full flex justify-center items-center">
+              <div className="w-full max-w-[480px] flex flex-col justify-center space-y-6">
                 <ScrollReveal direction="up" delay={0.1}>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181B] tracking-tight leading-[1.15]">
-                    {t.alchemy.titleMain} <br />
-                    <span className="text-stone-600 font-bold block mt-1">
-                      {t.alchemy.titleItalic}
-                    </span>
+                  <h2 className="font-oranienbaum text-3xl sm:text-4xl lg:text-5xl font-medium tracking-[0.03em] uppercase text-[#18181B] leading-[1.15] text-balance">
+                    <span>{t.alchemy.titleMain}</span>
+                    {t.alchemy.titleItalic ? (
+                      <span className="block mt-1.5 font-medium">
+                        {t.alchemy.titleItalic}
+                      </span>
+                    ) : null}
                   </h2>
                 </ScrollReveal>
 
-                <ScrollReveal direction="up" delay={0.2} className="mt-4">
+                <ScrollReveal direction="up" delay={0.2}>
                   <p className="text-sm sm:text-base text-stone-600 leading-relaxed font-normal text-justify">
                     {t.alchemy.description}
                   </p>
                 </ScrollReveal>
               </div>
-
-              {/* Three Pillars (Simplified Minimalist Layout - Simultaneous Reveal) */}
-              <ScrollReveal direction="up" delay={0.25}>
-                <div className="space-y-4 pt-4 border-t border-stone-200/70">
-                  {t.alchemy.pillars.map((pillar, idx) => {
-                    const Icon = idx === 0 ? Cpu : idx === 1 ? Gem : ShieldCheck;
-                    return (
-                      <div key={idx} className="flex items-start gap-3.5">
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-stone-100 text-stone-700 mt-0.5">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <h4 className="text-sm sm:text-base font-semibold text-[#18181B] tracking-tight">
-                            {pillar.title}
-                          </h4>
-                          <p className="mt-1 text-xs sm:text-sm text-stone-600 leading-relaxed text-justify">
-                            {pillar.desc}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </ScrollReveal>
             </div>
 
-            {/* Right Display with SpotlightCard and Scroll Reveal */}
-            <div className="lg:col-span-6 min-w-0 w-full flex justify-center lg:justify-end h-full">
+            {/* Right Display: Pure Image (Centered on X & Y axes) */}
+            <div className="lg:col-span-6 min-w-0 w-full flex justify-center items-center">
               <ScrollReveal
                 direction="up"
                 delay={0.3}
                 duration={1}
-                className="w-full h-full flex flex-col justify-center items-center lg:items-end"
+                className="w-full flex justify-center"
               >
-                <SpotlightCard
-                  theme="light"
-                  spotlightColor="#18181b"
-                  intensity={0.15}
-                  spotlightSize={240}
-                  softness={0.7}
-                  shape="circle"
-                  borderGlow={0.6}
-                  proximity={80}
-                  smoothing={0.3}
-                  grain={0}
-                  ambient={false}
-                  flare
-                  className="w-full h-full min-h-[500px] max-w-[460px] !p-3 flex flex-col overflow-hidden shadow-xl border border-stone-200/80 rounded-3xl"
-                >
-                  <div className="relative w-full h-full min-h-[480px] rounded-2xl overflow-hidden bg-stone-100">
-                    <Image
-                      src="/images/artworks/model_alchemy.jpg"
-                      alt="Sylven Contemporary Jewelry - Titanium F136 & Circuitry Craft"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 460px"
-                      className="object-cover transition-transform duration-700 ease-out hover:scale-105"
-                      priority
-                    />
-                  </div>
-                </SpotlightCard>
+                <div className="relative w-full aspect-[4/5] sm:min-h-[500px] max-w-[460px] rounded-none overflow-hidden shadow-2xl group">
+                  <Image
+                    src="/images/artworks/model_alchemy.jpg"
+                    alt="Sylven Contemporary Jewelry - Titanium F136 & Circuitry Craft"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 460px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    priority
+                  />
+                </div>
               </ScrollReveal>
             </div>
           </div>
@@ -327,16 +265,10 @@ export default function HomePage() {
       {/* 4. CURATED ARTWORKS GRID WITH STAGGERED SCROLL REVEAL */}
       <section id="collection" className="scroll-mt-24 overflow-hidden">
         <Container size="lg">
-          <ScrollReveal direction="up" delay={0.1} className="text-center mb-14">
-            <span className="text-xs font-sans font-medium uppercase tracking-widest text-stone-500">
-              {t.collection.badge}
-            </span>
-            <h2 className="mt-3 text-3xl sm:text-5xl font-extrabold text-[#18181B] tracking-tight">
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-10 sm:mb-14">
+            <h2 className="font-oranienbaum text-3xl sm:text-5xl font-medium tracking-[0.03em] uppercase text-[#18181B] text-balance">
               {t.collection.title}
             </h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-stone-600">
-              {t.collection.description}
-            </p>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
@@ -352,7 +284,7 @@ export default function HomePage() {
                   className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1"
                 >
                   {/* Image Container with Smooth Hover Scale */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-[#ECE8E1]/50 border border-stone-200/70 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:border-stone-300">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-none bg-[#ECE8E1]/50 border border-stone-200/70 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:border-stone-300">
                     <Image
                       src={artwork.image}
                       alt={artwork.title}
@@ -364,7 +296,7 @@ export default function HomePage() {
 
                   {/* Minimalist Gallery Typography */}
                   <div className="mt-4 sm:mt-5 text-left">
-                    <h3 className="text-lg sm:text-xl font-semibold text-stone-900 tracking-tight transition-colors duration-300 group-hover:text-stone-700">
+                    <h3 className="font-oranienbaum text-lg sm:text-xl font-medium tracking-[0.03em] uppercase text-stone-900 transition-colors duration-300 group-hover:text-stone-700">
                       {artwork.title}
                     </h3>
                     <p className="mt-1 text-xs sm:text-sm text-stone-500 font-normal tracking-wide">
@@ -380,7 +312,7 @@ export default function HomePage() {
           <ScrollReveal direction="up" delay={0.3} className="mt-12 text-center">
             <Link
               href="/san-pham"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#18181B] text-[#FAF9F6] hover:bg-[#27272A] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-none bg-[#18181B] text-white hover:bg-[#27272A] text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg cursor-pointer"
             >
               <span>{t.collection.ctaBtn}</span>
               <ArrowRight className="w-4 h-4" />
@@ -399,9 +331,9 @@ export default function HomePage() {
         <div className="relative group">
           <SlingButton
             onSend={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            padColor="#FAF9F6"
+            padColor="#FFFFFF"
             iconColor="#18181B"
-            accentColor="#FAF9F6"
+            accentColor="#FFFFFF"
             wellColor="#27272A"
             bandColor="#52525B"
             size={52}

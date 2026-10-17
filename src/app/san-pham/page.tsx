@@ -4,7 +4,6 @@ import * as React from "react";
 import Image from "next/image";
 import {
   X,
-  Sparkles,
   Search,
   Film,
   ChevronDown,
@@ -138,28 +137,21 @@ export default function ProductsPage() {
   };
 
   return (
-    <div className="flex flex-col gap-10 sm:gap-14 pt-24 sm:pt-28 pb-32 w-full max-w-full overflow-hidden bg-[#FAF9F6]">
+    <div className="flex flex-col gap-10 sm:gap-14 pt-24 sm:pt-28 pb-32 w-full max-w-full overflow-hidden bg-white">
       {/* HEADER & ATELIER TITLE */}
       <section className="px-4">
         <Container size="lg">
-          <div className="flex flex-col items-center text-center space-y-3.5 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/80 border border-[#E5DFD5] text-stone-600 text-[11px] font-sans font-medium tracking-[0.18em] uppercase shadow-2xs">
-              <Sparkles className="w-3 h-3 text-stone-700" />
-              <span>Sylven Haute Joaillerie Archive</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-normal text-[#18181B] tracking-tight leading-tight">
+          <div className="flex flex-col items-center text-center max-w-5xl mx-auto pt-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-oranienbaum font-medium text-[#18181B] tracking-[0.03em] uppercase leading-tight text-balance">
               {t.productsPage.title}
             </h1>
-            <p className="text-sm sm:text-base text-stone-500 font-normal leading-relaxed max-w-xl font-sans">
-              {t.productsPage.subtitle}
-            </p>
           </div>
 
           {/* UNIFIED LUXURY FILTER BAR (MATCHING IMAGE 1 EXACTLY: FILTER | CATEGORIES | MATERIAL) */}
-          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 py-3.5 border-b border-[#E5DFD5] font-sans">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 py-3.5 border-b border-[#E5DFD5] font-lexend">
             {/* Left: FILTER | DANH MỤC ∨ | CHẤT LIỆU ∨ */}
             <div className="flex items-center gap-6 sm:gap-10 w-full sm:w-auto flex-wrap">
-              <span className="text-xs uppercase tracking-[0.22em] font-medium text-stone-900 select-none">
+              <span className="text-xs uppercase tracking-[0.22em] font-medium text-stone-900 select-none font-lexend">
                 FILTER
               </span>
 
@@ -171,7 +163,7 @@ export default function ProductsPage() {
                     setCategoryDropdownOpen(!categoryDropdownOpen);
                     setMaterialDropdownOpen(false);
                   }}
-                  className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-normal text-stone-800 hover:text-stone-950 transition-colors cursor-pointer py-1 group"
+                  className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-normal text-stone-800 hover:text-stone-950 transition-colors cursor-pointer py-1 group font-lexend"
                 >
                   <span className={selectedCategory !== "all" ? "font-semibold text-stone-950" : ""}>
                     {selectedCategory === "all"
@@ -194,7 +186,7 @@ export default function ProductsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 6 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-full mt-2.5 w-52 bg-[#FAF9F6] border border-[#E5DFD5] shadow-xl py-2 z-30"
+                      className="absolute left-0 top-full mt-2.5 w-52 bg-white border border-[#E5DFD5] shadow-xl py-2 z-30"
                     >
                       {categories.map((cat) => {
                         const isActive = selectedCategory === cat.key;
@@ -206,7 +198,7 @@ export default function ProductsPage() {
                               setSelectedCategory(cat.key);
                               setCategoryDropdownOpen(false);
                             }}
-                            className={`w-full text-left px-4 py-2.5 text-xs uppercase tracking-[0.16em] transition-colors flex items-center justify-between cursor-pointer ${
+                            className={`w-full text-left px-4 py-2.5 text-xs uppercase tracking-[0.16em] transition-colors flex items-center justify-between cursor-pointer font-lexend ${
                               isActive
                                 ? "text-stone-900 font-semibold bg-stone-100/70"
                                 : "text-stone-600 hover:text-stone-900 hover:bg-stone-50"
@@ -230,7 +222,7 @@ export default function ProductsPage() {
                     setMaterialDropdownOpen(!materialDropdownOpen);
                     setCategoryDropdownOpen(false);
                   }}
-                  className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-normal text-stone-800 hover:text-stone-950 transition-colors cursor-pointer py-1 group"
+                  className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-normal text-stone-800 hover:text-stone-950 transition-colors cursor-pointer py-1 group font-lexend"
                 >
                   <span className={selectedMaterial !== "all" ? "font-semibold text-stone-950" : ""}>
                     {selectedMaterial === "all"
@@ -253,7 +245,7 @@ export default function ProductsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 6 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-full mt-2.5 w-60 bg-[#FAF9F6] border border-[#E5DFD5] shadow-xl py-2 z-30"
+                      className="absolute left-0 top-full mt-2.5 w-60 bg-white border border-[#E5DFD5] shadow-xl py-2 z-30"
                     >
                       {materials.map((mat) => {
                         const isActive = selectedMaterial === mat.key;
@@ -265,7 +257,7 @@ export default function ProductsPage() {
                               setSelectedMaterial(mat.key);
                               setMaterialDropdownOpen(false);
                             }}
-                            className={`w-full text-left px-4 py-2.5 text-xs uppercase tracking-[0.16em] transition-colors flex items-center justify-between cursor-pointer ${
+                            className={`w-full text-left px-4 py-2.5 text-xs uppercase tracking-[0.16em] transition-colors flex items-center justify-between cursor-pointer font-lexend ${
                               isActive
                                 ? "text-stone-900 font-semibold bg-stone-100/70"
                                 : "text-stone-600 hover:text-stone-900 hover:bg-stone-50"
@@ -290,7 +282,7 @@ export default function ProductsPage() {
                     setSelectedMaterial("all");
                     setSearchQuery("");
                   }}
-                  className="text-[11px] uppercase tracking-[0.16em] text-stone-400 hover:text-stone-900 transition-colors cursor-pointer"
+                  className="text-[11px] uppercase tracking-[0.16em] text-stone-400 hover:text-stone-900 transition-colors cursor-pointer font-lexend"
                 >
                   {language === "vi" ? "[Xóa tất cả lọc]" : "[Reset all]"}
                 </button>
@@ -306,11 +298,11 @@ export default function ProductsPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={language === "vi" ? "TÌM KIẾM..." : "SEARCH..."}
-                  className="pl-6 pr-2 py-1 text-xs uppercase tracking-[0.18em] bg-transparent placeholder:text-stone-400 text-stone-900 focus:outline-hidden border-b border-transparent focus:border-stone-800 transition-colors w-36 sm:w-48 font-sans"
+                  className="pl-6 pr-2 py-1 text-xs uppercase tracking-[0.18em] bg-transparent placeholder:text-stone-400 text-stone-900 focus:outline-hidden border-b border-transparent focus:border-stone-800 transition-colors w-36 sm:w-48 font-lexend"
                 />
               </div>
 
-              <span className="text-xs uppercase tracking-[0.2em] text-stone-400 shrink-0 font-sans">
+              <span className="text-xs uppercase tracking-[0.2em] text-stone-400 shrink-0 font-lexend">
                 {products.length} {language === "vi" ? "TÁC PHẨM" : "ITEMS"}
               </span>
             </div>
@@ -325,14 +317,14 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 animate-pulse">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="space-y-4">
-                  <div className="aspect-[4/5] w-full rounded-2xl bg-stone-200/50" />
-                  <div className="h-4 bg-stone-200 rounded w-2/3" />
-                  <div className="h-3 bg-stone-100 rounded w-1/2" />
+                  <div className="aspect-[4/5] w-full rounded-none bg-stone-200/50" />
+                  <div className="h-4 bg-stone-200 rounded-none w-2/3" />
+                  <div className="h-3 bg-stone-100 rounded-none w-1/2" />
                 </div>
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="py-24 text-center text-stone-400 font-sans text-base">
+            <div className="py-24 text-center text-stone-400 font-lexend text-base">
               {t.productsPage.emptyCategory}
             </div>
           ) : (
@@ -345,7 +337,7 @@ export default function ProductsPage() {
                     className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1 min-w-0 w-full"
                   >
                     {/* Pure Image Container: No Background, No Badges */}
-                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-none">
                       {/* Default Angle */}
                       <Image
                         src={artwork.image}
@@ -367,10 +359,10 @@ export default function ProductsPage() {
 
                     {/* Clean Typography: Title & Subtitle Only */}
                     <div className="mt-3.5 sm:mt-4 text-left space-y-1">
-                      <h3 className="font-serif text-lg sm:text-xl font-normal text-stone-900 tracking-tight transition-colors duration-300 group-hover:text-stone-700">
+                      <h3 className="font-oranienbaum text-lg sm:text-xl font-medium text-stone-900 tracking-[0.03em] uppercase transition-colors duration-300 group-hover:text-stone-700">
                         {artwork.title}
                       </h3>
-                      <p className="text-xs sm:text-[13px] font-sans text-stone-500 font-normal tracking-normal line-clamp-1">
+                      <p className="text-xs sm:text-[13px] font-lexend text-stone-500 font-normal tracking-wide line-clamp-1">
                         {artwork.subtitle[language]}
                       </p>
                     </div>
@@ -382,10 +374,10 @@ export default function ProductsPage() {
               {totalPages > 1 && (
                 <nav
                   aria-label="Phân trang sản phẩm"
-                  className="mt-16 sm:mt-20 pt-8 border-t border-[#E5DFD5] flex flex-col sm:flex-row items-center justify-between gap-6 font-sans text-xs uppercase tracking-[0.2em]"
+                  className="mt-16 sm:mt-20 pt-8 border-t border-[#E5DFD5] flex flex-col sm:flex-row items-center justify-between gap-6 font-lexend text-xs uppercase tracking-[0.2em]"
                 >
                   {/* Info Range */}
-                  <span className="text-stone-400 text-[11px] tracking-[0.18em]">
+                  <span className="text-stone-400 text-[11px] tracking-[0.18em] font-lexend">
                     {language === "vi"
                       ? `Hiển thị ${(currentPage - 1) * ITEMS_PER_PAGE + 1}–${Math.min(
                           currentPage * ITEMS_PER_PAGE,
@@ -421,7 +413,7 @@ export default function ProductsPage() {
                             key={page}
                             type="button"
                             onClick={() => handlePageChange(page)}
-                            className={`min-w-6 py-1 text-center transition-colors cursor-pointer ${
+                            className={`min-w-6 py-1 text-center transition-colors cursor-pointer font-lexend ${
                               isActive
                                 ? "text-stone-950 font-semibold border-b-[1.5px] border-stone-950"
                                 : "text-stone-400 hover:text-stone-900"
@@ -464,21 +456,21 @@ export default function ProductsPage() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto md:overflow-hidden bg-[#FAF9F6] rounded-2xl border border-stone-200 shadow-2xl p-6 sm:p-8"
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto md:overflow-hidden bg-white rounded-none border border-stone-200 shadow-2xl p-6 sm:p-8"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={() => setSelectedArtwork(null)}
               aria-label={t.productsPage.closeModal}
-              className="absolute top-4 right-4 p-2 rounded-full text-stone-400 hover:text-stone-900 hover:bg-stone-100 transition-colors cursor-pointer z-20"
+              className="absolute top-4 right-4 p-2 rounded-none text-stone-400 hover:text-stone-900 hover:bg-stone-100 transition-colors cursor-pointer z-20"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
               {/* LEFT: MAIN IMAGE */}
-              <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden bg-[#F4F1EA] border border-stone-200 flex items-center justify-center">
+              <div className="relative aspect-[4/5] w-full rounded-none overflow-hidden bg-[#F4F1EA] border border-stone-200 flex items-center justify-center">
                 {showVideo && selectedArtwork.video ? (
                   <video
                     src={selectedArtwork.video}
@@ -500,38 +492,38 @@ export default function ProductsPage() {
                 )}
               </div>
 
-              {/* RIGHT: DETAILS (2 FONTS: SERIF FOR TITLE, SANS FOR CONTENT) */}
-              <div className="flex flex-col justify-center space-y-5 font-sans">
+              {/* RIGHT: DETAILS (2 FONTS: SERIF FOR TITLE, LEXEND FOR CONTENT) */}
+              <div className="flex flex-col justify-center space-y-5 font-lexend">
                 <div>
-                  <h2 className="font-serif text-2xl sm:text-3xl text-stone-900 font-normal tracking-tight">
+                  <h2 className="font-oranienbaum text-2xl sm:text-3xl text-stone-900 font-medium tracking-[0.03em] uppercase">
                     {selectedArtwork.title}
                   </h2>
-                  <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-sans">
+                  <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-lexend font-normal">
                     {selectedArtwork.description[language]}
                   </p>
                 </div>
 
                 {/* SPECS */}
-                <div className="border-t border-b border-stone-200/80 py-3.5 space-y-2.5 text-xs font-sans">
+                <div className="border-t border-b border-stone-200/80 py-3.5 space-y-2.5 text-xs font-lexend">
                   <div className="flex justify-between items-baseline gap-4">
-                    <span className="text-stone-500 shrink-0 font-normal">Chất liệu:</span>
-                    <span className="text-stone-900 font-medium text-right">
+                    <span className="text-stone-500 shrink-0 font-normal font-lexend">Chất liệu:</span>
+                    <span className="text-stone-900 font-medium text-right font-lexend">
                       {selectedArtwork.specs.material[language]}
                     </span>
                   </div>
 
                   {selectedArtwork.specs.gemstones && (
                     <div className="flex justify-between items-baseline gap-4 pt-2 border-t border-stone-100">
-                      <span className="text-stone-500 shrink-0 font-normal">Đá quý:</span>
-                      <span className="text-stone-900 font-medium text-right">
+                      <span className="text-stone-500 shrink-0 font-normal font-lexend">Đá quý:</span>
+                      <span className="text-stone-900 font-medium text-right font-lexend">
                         {selectedArtwork.specs.gemstones[language]}
                       </span>
                     </div>
                   )}
 
                   <div className="flex justify-between items-baseline gap-4 pt-2 border-t border-stone-100">
-                    <span className="text-stone-500 shrink-0 font-normal">Vi mạch:</span>
-                    <span className="text-stone-900 font-medium text-right line-clamp-1">
+                    <span className="text-stone-500 shrink-0 font-normal font-lexend">Vi mạch:</span>
+                    <span className="text-stone-900 font-medium text-right line-clamp-1 font-lexend">
                       {selectedArtwork.specs.silicon[language]}
                     </span>
                   </div>
@@ -539,7 +531,7 @@ export default function ProductsPage() {
 
                 {/* THUMBNAILS (GÓC CHỤP KHÁC) */}
                 <div>
-                  <span className="block text-xs text-stone-500 font-medium mb-2.5 font-sans">
+                  <span className="block text-xs text-stone-500 font-medium mb-2.5 font-lexend">
                     {language === "vi" ? "Góc chụp khác" : "Alternative Angles"} ({selectedArtwork.images.length})
                   </span>
 
@@ -554,7 +546,7 @@ export default function ProductsPage() {
                             setActiveImageIndex(i);
                             setShowVideo(false);
                           }}
-                          className={`relative w-14 h-14 rounded-lg overflow-hidden bg-[#F4F1EA] border transition-all cursor-pointer ${
+                          className={`relative w-14 h-14 rounded-none overflow-hidden bg-[#F4F1EA] border transition-all cursor-pointer ${
                             isActive
                               ? "border-stone-900 ring-2 ring-stone-900/20 scale-105"
                               : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
@@ -576,14 +568,14 @@ export default function ProductsPage() {
                       <button
                         type="button"
                         onClick={() => setShowVideo(true)}
-                        className={`relative w-14 h-14 rounded-lg overflow-hidden border transition-all cursor-pointer flex flex-col items-center justify-center bg-stone-900 text-amber-300 ${
+                        className={`relative w-14 h-14 rounded-none overflow-hidden border transition-all cursor-pointer flex flex-col items-center justify-center bg-stone-900 text-amber-300 ${
                           showVideo
                             ? "border-amber-400 ring-2 ring-amber-400/30 scale-105"
                             : "border-stone-400 opacity-70 hover:opacity-100"
                         }`}
                       >
                         <Film className="w-4 h-4 mb-0.5" />
-                        <span className="text-[9px] font-sans">Video</span>
+                        <span className="text-[9px] font-lexend">Video</span>
                       </button>
                     )}
                   </div>

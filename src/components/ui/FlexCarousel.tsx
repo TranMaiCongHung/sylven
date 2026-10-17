@@ -12,6 +12,30 @@ export interface FlexCarouselItem {
   subtitle?: string;
 }
 
+export const URL_TO_LOCAL_MAP: Record<string, string> = {
+  "https://cdn.accentuate.io/86966698145/1638979210096/181221-1-OUSHABA5688.jpg?v=1672951248997": "/images/hero/hero_accentuate_01.jpg",
+  "https://cdn.accentuate.io/86966698145/1638541115814/181221-1-OUSHABA5386.jpg?v=1672951216466": "/images/hero/hero_accentuate_02.jpg",
+  "https://cdn.accentuate.io/86966698145/1674500251906/181221-1-OUSHABA6745.jpg?v=1674500251906": "/images/hero/hero_accentuate_03.jpg",
+  "https://cdn.accentuate.io/86966698145/1674500163771/181221-1-OUSHABA6658.jpg?v=1674500163772": "/images/hero/hero_accentuate_04.jpg",
+  "https://cdn.accentuate.io/86966698145/1674500371509/181221-1-OUSHABA6520.jpg?v=1674500371509": "/images/hero/hero_accentuate_05.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-cs-brand-2-1450x1450.jpg": "/images/hero/hero_01.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/oush-pattern.mp4": "/images/hero/hero_02.mp4",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-cs-JN-1-08-3000x1688.png": "/images/hero/hero_03.png",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-cs-brand-1450x1450.jpg": "/images/hero/hero_04.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-brand-2-1450x1450.jpg": "/images/hero/hero_05.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-brand-1-1450x1450.jpg": "/images/hero/hero_06.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-cs-brand-3-1450x1450.jpg": "/images/hero/hero_07.jpg",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba-cs-JN-1z-1450x1450.png": "/images/hero/hero_08.png",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Comp-1_1.mp4": "/images/hero/hero_09.mp4",
+  "https://theclearing.co.uk/wp-content/uploads/2024/03/Oushaba_Bag-1500x844.jpg": "/images/hero/hero_10.jpg",
+  "https://www.oushaba.com/cdn/shop/files/181221-1_OUSHABA6349_2100x.jpg?v=1701959846": "/images/hero/hero_11.jpg",
+};
+
+export function resolveCarouselSrc(src: string): string {
+  if (!src) return src;
+  return URL_TO_LOCAL_MAP[src] || src;
+}
+
 const photo = (id: string) => `https://images.unsplash.com/${id}?w=1200&q=85&auto=format&fit=crop`;
 
 export const SCULPTURE_ITEMS: FlexCarouselItem[] = [
@@ -560,13 +584,18 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
     let instances: any[] = [];
 
     const loadSlot = (item: FlexCarouselItem, index: number) => {
+      const activeSrc = resolveCarouselSrc(item.src);
+      const isVideo = Boolean(
+        activeSrc && (activeSrc.endsWith(".mp4") || activeSrc.includes(".mp4"))
+      );
       const texture = new Texture(gl, {
-        generateMipmaps: true,
-        minFilter: gl.LINEAR_MIPMAP_LINEAR,
+        generateMipmaps: !isVideo,
+        minFilter: isVideo ? gl.LINEAR : gl.LINEAR_MIPMAP_LINEAR,
         magFilter: gl.LINEAR,
-        anisotropy,
+        anisotropy: isVideo ? 1 : anisotropy,
       });
-      const slot = {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const slot: any = {
         item,
         index,
         texture,
@@ -576,52 +605,100 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         ready: 0,
         color: [0.5, 0.5, 0.5],
         image: [1, 1],
+        isVideo,
+        video: null as HTMLVideoElement | null,
         dispose: () => {},
       };
-      const image = new window.Image();
-      image.crossOrigin = "anonymous";
-      image.decoding = "async";
-      image.onload = () => {
-        if (!alive || !slots.includes(slot)) return;
-        texture.image = image;
-        texture.update();
-        slot.image = [image.naturalWidth || 1, image.naturalHeight || 1];
-        slot.aspect = slot.image[0] / slot.image[1];
-        try {
-          const probe = document.createElement("canvas");
-          probe.width = 8;
-          probe.height = 8;
-          const ctx = probe.getContext("2d", { willReadFrequently: true });
-          if (ctx) {
-            ctx.drawImage(image, 0, 0, 8, 8);
-            const data = ctx.getImageData(0, 0, 8, 8).data;
-            const avg = [0, 0, 0];
-            for (let i = 0; i < data.length; i += 4) {
-              avg[0] += data[i];
-              avg[1] += data[i + 1];
-              avg[2] += data[i + 2];
+
+      if (isVideo) {
+        const video = document.createElement("video");
+        video.crossOrigin = "anonymous";
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.src = activeSrc;
+        slot.video = video;
+
+        let loadedOnce = false;
+        const onLoaded = () => {
+          if (loadedOnce || !alive || !slots.includes(slot)) return;
+          loadedOnce = true;
+          texture.image = video;
+          texture.update();
+          slot.image = [video.videoWidth || 1280, video.videoHeight || 720];
+          slot.aspect = slot.image[0] / slot.image[1];
+          slot.loaded = true;
+          dirty = true;
+          start();
+          video.play().catch(() => {});
+        };
+
+        video.addEventListener("loadeddata", onLoaded);
+        video.addEventListener("canplay", onLoaded);
+        video.addEventListener("error", () => {
+          if (!alive) return;
+          slot.failed = true;
+          dirty = true;
+          start();
+        });
+
+        video.load();
+
+        slot.dispose = () => {
+          video.pause();
+          video.removeAttribute("src");
+          video.load();
+          video.removeEventListener("loadeddata", onLoaded);
+          video.removeEventListener("canplay", onLoaded);
+          gl.deleteTexture(texture.texture);
+        };
+      } else {
+        const image = new window.Image();
+        image.crossOrigin = "anonymous";
+        image.decoding = "async";
+        image.onload = () => {
+          if (!alive || !slots.includes(slot)) return;
+          texture.image = image;
+          texture.update();
+          slot.image = [image.naturalWidth || 1, image.naturalHeight || 1];
+          slot.aspect = slot.image[0] / slot.image[1];
+          try {
+            const probe = document.createElement("canvas");
+            probe.width = 8;
+            probe.height = 8;
+            const ctx = probe.getContext("2d", { willReadFrequently: true });
+            if (ctx) {
+              ctx.drawImage(image, 0, 0, 8, 8);
+              const data = ctx.getImageData(0, 0, 8, 8).data;
+              const avg = [0, 0, 0];
+              for (let i = 0; i < data.length; i += 4) {
+                avg[0] += data[i];
+                avg[1] += data[i + 1];
+                avg[2] += data[i + 2];
+              }
+              slot.color = avg.map((v) => v / 64 / 255);
             }
-            slot.color = avg.map((v) => v / 64 / 255);
+          } catch {
+            slot.color = [0.5, 0.5, 0.5];
           }
-        } catch {
-          slot.color = [0.5, 0.5, 0.5];
-        }
-        slot.loaded = true;
-        dirty = true;
-        start();
-      };
-      image.onerror = () => {
-        if (!alive) return;
-        slot.failed = true;
-        dirty = true;
-        start();
-      };
-      image.src = item.src;
-      slot.dispose = () => {
-        image.onload = null;
-        image.onerror = null;
-        gl.deleteTexture(texture.texture);
-      };
+          slot.loaded = true;
+          dirty = true;
+          start();
+        };
+        image.onerror = () => {
+          if (!alive) return;
+          slot.failed = true;
+          dirty = true;
+          start();
+        };
+        image.src = activeSrc;
+        slot.dispose = () => {
+          image.onload = null;
+          image.onerror = null;
+          gl.deleteTexture(texture.texture);
+        };
+      }
       return slot;
     };
 
@@ -988,11 +1065,12 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         lift = nextLift;
         container.style.setProperty("--flex-carousel-lift", lift.toFixed(4));
       }
+      const captionOffset = s.captions ? 18 : 0;
+      const homeX = width / 2;
+      const homeY = height / 2 - captionOffset;
+      container.style.setProperty("--flex-carousel-center-y", `${homeY}px`);
 
       const effects = introEffects();
-
-      const homeX = width / 2;
-      const homeY = height / 2;
       const follow =
         s.followCursor &&
         pointer.over &&
@@ -1030,6 +1108,10 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         const slot = slots[i];
         if (slot.loaded && slot.ready < 1) {
           slot.ready = Math.min(1, slot.ready + dt / 0.45);
+          animating = true;
+        }
+        if (slot.isVideo && slot.loaded && slot.video && !slot.video.paused) {
+          slot.texture.update();
           animating = true;
         }
       }
@@ -1502,6 +1584,9 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         ["--flex-carousel-half" as string]: `${
           Math.min(Math.max(cardHeight, 0.05), 1) * 50
         }%`,
+        ["--flex-carousel-center-y" as string]: captions
+          ? "calc(50% - 18px)"
+          : "50%",
       }}
       role="region"
       aria-roledescription="carousel"
@@ -1513,7 +1598,8 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         type="button"
         onClick={handlePrev}
         aria-label="Previous artwork"
-        className="pointer-events-auto absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+        style={{ top: "var(--flex-carousel-center-y, 50%)" }}
+        className="pointer-events-auto absolute left-3 sm:left-6 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-none border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
       >
         <ChevronLeft className="w-5 h-5 text-stone-700" />
       </button>
@@ -1522,7 +1608,8 @@ export const FlexCarousel: React.FC<FlexCarouselProps> = ({
         type="button"
         onClick={handleNext}
         aria-label="Next artwork"
-        className="pointer-events-auto absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+        style={{ top: "var(--flex-carousel-center-y, 50%)" }}
+        className="pointer-events-auto absolute right-3 sm:right-6 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-none border border-stone-200/90 bg-white/85 hover:bg-white text-stone-800 shadow-lg shadow-stone-900/5 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
       >
         <ChevronRight className="w-5 h-5 text-stone-700" />
       </button>

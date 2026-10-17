@@ -46,7 +46,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-surface-50 overflow-x-hidden max-w-full">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Oranienbaum&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-white overflow-x-hidden max-w-full">
         <LanguageProvider>
           <Header />
           <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
