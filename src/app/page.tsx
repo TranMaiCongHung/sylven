@@ -8,8 +8,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Button, FlexCarousel, ShinyText, SlingButton } from "@/components/ui";
-import { ScrollReveal, BrandLogo } from "@/components/common";
+import { Button, FlexCarousel, SlingButton } from "@/components/ui";
+import { ScrollReveal } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
 import { productRepository, PRODUCTS_DATABASE } from "@/data";
 
@@ -80,74 +80,59 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="scroll-smooth flex flex-col gap-12 sm:gap-16 pb-24 w-full max-w-full overflow-hidden">
-      {/* 1. HERO BRAND INTRO: EXCLUSIVE FULL-VIEWPORT COMMANDING ENTRANCE */}
+    <div className="scroll-smooth flex flex-col pb-24 w-full max-w-full overflow-hidden">
+      {/* 1. HERO SECTION: FULL-LENGTH CINEMATIC HERO BACKGROUND (PRESERVES 100% ORIGINAL HEIGHT) */}
       <section
         id="top"
-        className="relative flex flex-col justify-between items-center h-[100svh] max-h-[100svh] w-full px-4 overflow-hidden pt-10 sm:pt-12 pb-4 sm:pb-6"
+        className="relative w-full bg-[#121214] overflow-hidden"
       >
-        {/* Ambient Subtle Luxury Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[420px] bg-stone-200/25 blur-3xl -z-10 pointer-events-none rounded-full" />
+        {/* Full-width image preserving natural 1400x1750 aspect ratio and full height */}
+        <div className="relative w-full">
+          <Image
+            src="/images/hero/hero_main_bg.jpg"
+            alt="Sylven Haute Joaillerie & Circuitry Synthesis"
+            width={1400}
+            height={1750}
+            priority
+            sizes="100vw"
+            className="w-full h-auto min-h-[100svh] sm:min-h-0 object-cover object-top block select-none pointer-events-none"
+          />
+          {/* Subtle contrast gradient for white typography pop at the bottom */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Center Stage: Logo + ShinyText Brand Name */}
-        <div className="flex-1 flex flex-col items-center justify-center text-center my-auto min-h-0 w-full px-2">
-          {/* Prominent Emblem Logo (Responsive Balanced Luxury Size) */}
-          <div
-            className={`relative group mb-2 sm:mb-4 transition-all duration-1000 ease-out ${mounted ? "opacity-100 scale-100" : "opacity-0 scale-90"
-              }`}
-          >
-            <BrandLogo className="w-48 h-27 sm:w-64 sm:h-36 md:w-80 md:h-45 lg:w-[390px] lg:h-[220px] xl:w-[450px] xl:h-[254px] 2xl:w-[500px] 2xl:h-[282px] max-w-[82vw] max-h-[30vh] drop-shadow-xl" />
-            <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-2xl -z-10" />
-          </div>
-
-          {/* Majestic SYLVEN with ShinyText Effect (Responsive Fluid Sizing) */}
-          <div
-            className={`font-yavimayan text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.75rem] 2xl:text-[7.5rem] font-bold tracking-[0.20em] sm:tracking-[0.23em] md:tracking-[0.25em] lg:tracking-[0.26em] leading-none select-none my-2 sm:my-3 transition-all duration-1000 delay-200 ease-out max-w-full ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-              }`}
-          >
-            <ShinyText
-              text="SYLVEN"
-              color="#18181b"
-              shineColor="#ffffff"
-              speed={2.2}
-              shineWidth={42}
-              softness={0.8}
-              trigger="loop"
-              delay={0}
-              angle={120}
-              bands={1}
-              glow={0}
-              direction="right"
-              easing="smooth"
-              yoyo={false}
-              followPointer={false}
-              pauseOnHover={false}
-              disabled={false}
-            />
+          {/* Bottom Left Ethos: "SEE THE EXTRAORDINARY IN LIFE" */}
+          <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 md:bottom-12 md:left-14 lg:bottom-14 lg:left-16 z-20 pointer-events-none select-none max-w-fit">
+            <div className="flex flex-col text-white gap-1 sm:gap-1.5">
+              <span className="font-lexend font-light text-sm sm:text-lg md:text-xl lg:text-2xl tracking-[0.14em] text-white/90 uppercase leading-none">
+                SEE THE
+              </span>
+              <span className="font-oranienbaum font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.06em] text-white uppercase leading-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+                EXTRAORDINARY
+              </span>
+              <span className="font-lexend font-light text-sm sm:text-lg md:text-xl lg:text-2xl tracking-[0.14em] text-white/90 uppercase leading-none">
+                IN LIFE
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Scroll Cue */}
+        {/* Hero Brand Name Overlay: Sits at bottom of initial 100svh screen on load, fades out on scroll */}
         <div
-          className={`flex flex-col items-center justify-center pt-2 pb-1 transition-all duration-1000 delay-500 ease-out shrink-0 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
+          style={{
+            opacity: Math.max(0, 1 - scrollY / 220),
+            transform: `translateY(${Math.min(50, scrollY * 0.25)}px)`,
+            display: scrollY > 260 ? "none" : "flex",
+          }}
+          className="fixed bottom-0 left-0 right-0 w-full justify-center items-end pb-1 sm:pb-2 px-2 sm:px-4 select-none pointer-events-none z-30"
         >
-          <Link
-            href="#manifesto"
-            className="group flex flex-col items-center gap-1.5 text-stone-400 hover:text-stone-800 transition-colors duration-300 cursor-pointer"
-          >
-            <span className="text-[10px] sm:text-xs font-sans uppercase tracking-[0.25em] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">
-              {t.hero.scrollPrompt}
-            </span>
-            <div className="w-5 h-8 rounded-none border border-stone-300/80 flex items-start justify-center p-1 group-hover:border-stone-500 transition-colors">
-              <div className="w-1.5 h-2 rounded-none bg-stone-500 group-hover:bg-stone-800 animate-bounce transition-colors" />
-            </div>
-          </Link>
+          <span className="font-yavimayan text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14.5vw] font-bold text-white tracking-[0.14em] sm:tracking-[0.18em] lg:tracking-[0.22em] leading-[0.80] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] text-center w-full block">
+            SYLVEN
+          </span>
         </div>
       </section>
 
       {/* 2. MANIFESTO & PHILOSOPHY HEADLINE SECTION */}
-      <section id="manifesto" className="scroll-mt-20 pt-8 sm:pt-14 pb-2 sm:pb-4 relative overflow-hidden">
+      <section id="manifesto" className="scroll-mt-20 pt-16 sm:pt-24 pb-10 sm:pb-14 lg:pb-16 relative overflow-hidden">
         <Container size="lg">
           <div className="mx-auto max-w-4xl text-center">
             {/* Headline (No Underline) */}
@@ -178,22 +163,22 @@ export default function HomePage() {
       </section>
 
       {/* 2. SHOWCASE COMPONENT: WEBGL FLEX CAROUSEL */}
-      <section id="showcase" className="scroll-mt-20 relative overflow-hidden">
+      <section id="showcase" className="scroll-mt-20 relative overflow-hidden pt-2 sm:pt-4 pb-4 sm:pb-6">
         <Container size="full" className="px-2 sm:px-4">
-          {/* Section Header with Scroll Reveal (No Badge, Compact Spacing) */}
-          <ScrollReveal direction="up" delay={0.1} className="text-center mb-3 sm:mb-4 px-4">
+          {/* Section Header with Scroll Reveal (No Badge, Compact Spacing Closer to Carousel) */}
+          <ScrollReveal direction="up" delay={0.1} className="text-center mb-0 sm:-mb-2 px-4">
             <h2 className="font-oranienbaum text-3xl sm:text-5xl font-medium tracking-[0.03em] uppercase text-[#18181B] text-balance">
               {t.showcase.title}
             </h2>
           </ScrollReveal>
 
-          {/* WebGL FlexCarousel Container with Reduced Padding and Balanced Proportions */}
+          {/* WebGL FlexCarousel Container with Borderless Luxury Presentation */}
           <ScrollReveal direction="up" delay={0.2} duration={1.1}>
-            <div className="relative mx-auto w-full max-w-7xl h-[385px] sm:h-[425px] rounded-none overflow-hidden border border-stone-200/60 bg-white">
+            <div className="relative mx-auto w-full max-w-7xl h-[385px] sm:h-[425px] rounded-none overflow-hidden bg-white">
               <FlexCarousel
                 items={showcaseItems}
                 preset="straight"
-                cardHeight={0.74}
+                cardHeight={0.78}
                 gap={20}
                 radius={0}
                 fit="portrait"
@@ -213,7 +198,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. ALCHEMY: BRAND PHILOSOPHY & CRAFTSMANSHIP */}
-      <section id="alchemy" className="scroll-mt-20 overflow-hidden">
+      <section id="alchemy" className="scroll-mt-20 py-8 sm:py-12 md:py-16 overflow-hidden">
         <Container size="lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center max-w-5xl mx-auto">
             {/* Left Narrative with Staggered Scroll Reveal (Vertically & Horizontally Centered with Image) */}
@@ -263,7 +248,7 @@ export default function HomePage() {
       </section>
 
       {/* 4. CURATED ARTWORKS GRID WITH STAGGERED SCROLL REVEAL */}
-      <section id="collection" className="scroll-mt-24 overflow-hidden">
+      <section id="collection" className="scroll-mt-24 pt-6 sm:pt-8 pb-16 sm:pb-24 overflow-hidden">
         <Container size="lg">
           <ScrollReveal direction="up" delay={0.1} className="text-center mb-10 sm:mb-14">
             <h2 className="font-oranienbaum text-3xl sm:text-5xl font-medium tracking-[0.03em] uppercase text-[#18181B] text-balance">

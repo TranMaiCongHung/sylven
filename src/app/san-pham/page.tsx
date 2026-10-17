@@ -2,14 +2,14 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
-  X,
   Search,
-  Film,
   ChevronDown,
   Check,
 } from "lucide-react";
 import { Container } from "@/components/layout";
+import { Breadcrumbs } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
 import { productRepository } from "@/data";
 import type { Product, ProductCategory, ProductMaterial } from "@/types/product";
@@ -24,9 +24,6 @@ export default function ProductsPage() {
   const categoryDropdownRef = React.useRef<HTMLDivElement>(null);
   const materialDropdownRef = React.useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [selectedArtwork, setSelectedArtwork] = React.useState<Product | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = React.useState(0);
-  const [showVideo, setShowVideo] = React.useState(false);
 
   // Pagination: maximum 12 products per page
   const ITEMS_PER_PAGE = 12;
@@ -94,12 +91,6 @@ export default function ProductsPage() {
     };
   }, [selectedCategory, selectedMaterial, searchQuery]);
 
-  // Reset active image index when artwork changes
-  React.useEffect(() => {
-    setActiveImageIndex(0);
-    setShowVideo(false);
-  }, [selectedArtwork]);
-
   const categories = React.useMemo(
     () => [
       { key: "all" as const, label: t.productsPage.categories.all },
@@ -142,7 +133,16 @@ export default function ProductsPage() {
       <section className="px-4">
         <Container size="lg">
           <div className="flex flex-col items-center text-center max-w-5xl mx-auto pt-2">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-oranienbaum font-medium text-[#18181B] tracking-[0.03em] uppercase leading-tight text-balance">
+            {/* BREADCRUMB TREE (MATCHING IMAGE 1: HOME / CREATIONS) */}
+            <Breadcrumbs
+              items={[
+                { label: "HOME", href: "/" },
+                { label: "CREATIONS", isActiveCollection: true },
+              ]}
+              className="mb-4 sm:mb-6"
+            />
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-oranienbaum font-medium text-[#18181B] tracking-[0.03em] uppercase leading-tight text-balance">
               {t.productsPage.title}
             </h1>
           </div>
@@ -331,9 +331,9 @@ export default function ProductsPage() {
             <>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
                 {paginatedProducts.map((artwork, idx) => (
-                  <div
+                  <Link
                     key={artwork.id}
-                    onClick={() => setSelectedArtwork(artwork)}
+                    href={`/san-pham/${artwork.slug}`}
                     className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1 min-w-0 w-full"
                   >
                     {/* Pure Image Container: No Background, No Badges */}
@@ -366,7 +366,7 @@ export default function ProductsPage() {
                         {artwork.subtitle[language]}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
@@ -445,146 +445,6 @@ export default function ProductsPage() {
           )}
         </Container>
       </section>
-
-      {/* PRODUCT DETAIL MODAL (CLEAN, 2 FONTS ONLY, NO UNREQUESTED CERTS/FOOTERS) */}
-      {selectedArtwork && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/70 backdrop-blur-sm animate-in fade-in duration-200"
-          onClick={() => setSelectedArtwork(null)}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto md:overflow-hidden bg-white rounded-none border border-stone-200 shadow-2xl p-6 sm:p-8"
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setSelectedArtwork(null)}
-              aria-label={t.productsPage.closeModal}
-              className="absolute top-4 right-4 p-2 rounded-none text-stone-400 hover:text-stone-900 hover:bg-stone-100 transition-colors cursor-pointer z-20"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
-              {/* LEFT: MAIN IMAGE */}
-              <div className="relative aspect-[4/5] w-full rounded-none overflow-hidden bg-[#F4F1EA] border border-stone-200 flex items-center justify-center">
-                {showVideo && selectedArtwork.video ? (
-                  <video
-                    src={selectedArtwork.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    controls
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <Image
-                    src={selectedArtwork.images[activeImageIndex] || selectedArtwork.image}
-                    alt={selectedArtwork.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain p-4 transition-opacity duration-200"
-                  />
-                )}
-              </div>
-
-              {/* RIGHT: DETAILS (2 FONTS: SERIF FOR TITLE, LEXEND FOR CONTENT) */}
-              <div className="flex flex-col justify-center space-y-5 font-lexend">
-                <div>
-                  <h2 className="font-oranienbaum text-2xl sm:text-3xl text-stone-900 font-medium tracking-[0.03em] uppercase">
-                    {selectedArtwork.title}
-                  </h2>
-                  <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-lexend font-normal">
-                    {selectedArtwork.description[language]}
-                  </p>
-                </div>
-
-                {/* SPECS */}
-                <div className="border-t border-b border-stone-200/80 py-3.5 space-y-2.5 text-xs font-lexend">
-                  <div className="flex justify-between items-baseline gap-4">
-                    <span className="text-stone-500 shrink-0 font-normal font-lexend">Chất liệu:</span>
-                    <span className="text-stone-900 font-medium text-right font-lexend">
-                      {selectedArtwork.specs.material[language]}
-                    </span>
-                  </div>
-
-                  {selectedArtwork.specs.gemstones && (
-                    <div className="flex justify-between items-baseline gap-4 pt-2 border-t border-stone-100">
-                      <span className="text-stone-500 shrink-0 font-normal font-lexend">Đá quý:</span>
-                      <span className="text-stone-900 font-medium text-right font-lexend">
-                        {selectedArtwork.specs.gemstones[language]}
-                      </span>
-                    </div>
-                  )}
-
-                  <div className="flex justify-between items-baseline gap-4 pt-2 border-t border-stone-100">
-                    <span className="text-stone-500 shrink-0 font-normal font-lexend">Vi mạch:</span>
-                    <span className="text-stone-900 font-medium text-right line-clamp-1 font-lexend">
-                      {selectedArtwork.specs.silicon[language]}
-                    </span>
-                  </div>
-                </div>
-
-                {/* THUMBNAILS (GÓC CHỤP KHÁC) */}
-                <div>
-                  <span className="block text-xs text-stone-500 font-medium mb-2.5 font-lexend">
-                    {language === "vi" ? "Góc chụp khác" : "Alternative Angles"} ({selectedArtwork.images.length})
-                  </span>
-
-                  <div className="flex items-center gap-2.5 flex-wrap">
-                    {selectedArtwork.images.map((imgUrl, i) => {
-                      const isActive = !showVideo && activeImageIndex === i;
-                      return (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => {
-                            setActiveImageIndex(i);
-                            setShowVideo(false);
-                          }}
-                          className={`relative w-14 h-14 rounded-none overflow-hidden bg-[#F4F1EA] border transition-all cursor-pointer ${
-                            isActive
-                              ? "border-stone-900 ring-2 ring-stone-900/20 scale-105"
-                              : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
-                          }`}
-                        >
-                          <Image
-                            src={imgUrl}
-                            alt={`Góc chụp ${i + 1}`}
-                            fill
-                            sizes="56px"
-                            className="object-contain p-1"
-                          />
-                        </button>
-                      );
-                    })}
-
-                    {/* Optional Video Button */}
-                    {selectedArtwork.video && (
-                      <button
-                        type="button"
-                        onClick={() => setShowVideo(true)}
-                        className={`relative w-14 h-14 rounded-none overflow-hidden border transition-all cursor-pointer flex flex-col items-center justify-center bg-stone-900 text-amber-300 ${
-                          showVideo
-                            ? "border-amber-400 ring-2 ring-amber-400/30 scale-105"
-                            : "border-stone-400 opacity-70 hover:opacity-100"
-                        }`}
-                      >
-                        <Film className="w-4 h-4 mb-0.5" />
-                        <span className="text-[9px] font-lexend">Video</span>
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

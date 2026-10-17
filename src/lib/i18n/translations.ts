@@ -161,7 +161,7 @@ export const translations: Record<Language, TranslationSchema> = {
 
     // Products Page & Modals
     productsPage: {
-      title: "Tuyển Tập Tác Phẩm Đương Đại",
+      title: "CONTEMPORARY CREATIONS CATALOG",
       subtitle: "Chế tác tinh xảo từ Bạc 925, Titanium F136 Y Sinh & Linh Kiện Vi Mạch Tái Sinh",
       allCount: "tác phẩm",
       showingCount: "Hiển thị",

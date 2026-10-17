@@ -82,6 +82,18 @@ export interface Product {
   /** Trạng thái phát hành */
   status: "published" | "draft";
 
+  /** Giá sản phẩm cụ thể bằng số (VND) dựa trên bảng giá PDF */
+  price: number;
+
+  /** Giá đã định dạng hiển thị (vd: "1.490.000₫") */
+  formattedPrice: string;
+
+  /** Đoạn văn tự sự thủ công atelier song ngữ */
+  story?: {
+    vi: string[];
+    en: string[];
+  };
+
   createdAt?: string;
 }
 
@@ -90,6 +102,35 @@ export interface ProductFilterOptions {
   material?: ProductMaterial | "all";
   search?: string;
   featuredOnly?: boolean;
+  minPrice?: number;
+  maxPrice?: number;
+  sortBy?: "newest" | "price_asc" | "price_desc" | "title";
   limit?: number;
   offset?: number;
+}
+
+export interface PriceMatrixCategoryRange {
+  min: number;
+  max: number;
+  formattedRange: string;
+}
+
+export interface MaterialPriceTier {
+  id: string;
+  name: string;
+  collection: "Silver Collection" | "F136 Titanium Collection" | "Gold 18K";
+  necklace: PriceMatrixCategoryRange;
+  bracelet: PriceMatrixCategoryRange;
+  earrings: PriceMatrixCategoryRange;
+  ring: PriceMatrixCategoryRange;
+}
+
+export interface ProductPriceRecord {
+  id: string;
+  slug: string;
+  title: string;
+  category: ProductCategory;
+  material: ProductMaterial;
+  price: number;
+  formattedPrice: string;
 }

@@ -16,7 +16,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-1",
     itemNumber: 1,
     slug: "constellation-titanium-circuit-necklace-01",
-    title: "Constellation Titanium Circuit Necklace",
+    title: "Constellation Necklace",
     category: "necklaces",
     material: "titanium",
     images: [
@@ -59,6 +59,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1490000,
+    formattedPrice: "1.490.000₫",
     createdAt: "2026-01-10",
   },
 
@@ -66,7 +68,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-2",
     itemNumber: 2,
     slug: "ascent-architectural-titanium-necklace-02",
-    title: "Ascent Architectural Titanium Necklace",
+    title: "Ascent Necklace",
     category: "necklaces",
     material: "titanium",
     images: [
@@ -105,6 +107,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1550000,
+    formattedPrice: "1.550.000₫",
     createdAt: "2026-01-14",
   },
 
@@ -112,7 +116,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-3",
     itemNumber: 3,
     slug: "silver-code-necklace-ruby-pearl-03",
-    title: "Silver Code Necklace with Ruby & Pearl",
+    title: "Code Necklace",
     category: "necklaces",
     material: "silver",
     images: [
@@ -154,6 +158,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1390000,
+    formattedPrice: "1.390.000₫",
     createdAt: "2026-01-20",
   },
 
@@ -161,7 +167,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-4",
     itemNumber: 4,
     slug: "memento-gold-circuit-necklace-04",
-    title: "Memento Gold Circuit Necklace",
+    title: "Memento Necklace",
     category: "necklaces",
     material: "gold",
     images: [
@@ -198,6 +204,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 2390000,
+    formattedPrice: "2.390.000₫",
     createdAt: "2026-02-01",
   },
 
@@ -205,7 +213,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-5",
     itemNumber: 5,
     slug: "mini-silver-code-necklace-blue-jade-05",
-    title: "Mini Silver Code Necklace with Blue Jade",
+    title: "Mini Code Necklace",
     category: "necklaces",
     material: "silver",
     images: [
@@ -242,6 +250,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-05",
     },
     status: "published",
+    price: 1190000,
+    formattedPrice: "1.190.000₫",
     createdAt: "2026-02-05",
   },
 
@@ -249,7 +259,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-6",
     itemNumber: 6,
     slug: "silver-constellation-circuit-necklace-06",
-    title: "Silver Constellation Circuit Necklace",
+    title: "Silver Constellation",
     category: "necklaces",
     material: "silver",
     images: [
@@ -283,6 +293,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-06",
     },
     status: "published",
+    price: 1450000,
+    formattedPrice: "1.450.000₫",
     createdAt: "2026-02-12",
   },
 
@@ -290,7 +302,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-7",
     itemNumber: 7,
     slug: "usb-relic-gold-necklace-07",
-    title: "USB Relic 18K Gold Necklace",
+    title: "USB Relic Necklace",
     category: "necklaces",
     material: "gold",
     images: [
@@ -326,6 +338,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 2250000,
+    formattedPrice: "2.250.000₫",
     createdAt: "2026-02-18",
   },
 
@@ -333,7 +347,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-8",
     itemNumber: 8,
     slug: "silver-ascent-necklace-pearl-08",
-    title: "Silver Ascent Necklace with Baroque Pearl",
+    title: "Baroque Ascent",
     category: "necklaces",
     material: "silver",
     images: [
@@ -371,6 +385,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-08",
     },
     status: "published",
+    price: 1290000,
+    formattedPrice: "1.290.000₫",
     createdAt: "2026-02-22",
   },
 
@@ -378,7 +394,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-9",
     itemNumber: 9,
     slug: "voyage-modern-titanium-bronze-necklace-09",
-    title: "Voyage Modern Titanium & Bronze Necklace",
+    title: "Voyage Necklace",
     category: "necklaces",
     material: "titanium",
     images: [
@@ -412,6 +428,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-09",
     },
     status: "published",
+    price: 1350000,
+    formattedPrice: "1.350.000₫",
     createdAt: "2026-02-26",
   },
 
@@ -422,7 +440,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "bracelets-1",
     itemNumber: 1,
     slug: "vestige-silver-circuit-bracelet-01",
-    title: "Vestige Silver Circuit Bracelet",
+    title: "Vestige Bracelet",
     category: "bracelets",
     material: "silver",
     images: [
@@ -459,6 +477,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 950000,
+    formattedPrice: "950.000₫",
     createdAt: "2026-01-18",
   },
 
@@ -466,7 +486,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "bracelets-2",
     itemNumber: 2,
     slug: "vestige-gold-architectural-cuff-bracelet-02",
-    title: "Vestige Gold Architectural Cuff Bracelet",
+    title: "Vestige Cuff",
     category: "bracelets",
     material: "gold",
     images: [
@@ -502,6 +522,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isHeroShowcase: true,
     },
     status: "published",
+    price: 1690000,
+    formattedPrice: "1.690.000₫",
     createdAt: "2026-02-08",
   },
 
@@ -509,7 +531,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "bracelets-3",
     itemNumber: 3,
     slug: "orbit-gold-micro-orbit-bracelet-03",
-    title: "Orbit Gold Micro-Orbit Bracelet",
+    title: "Orbit Bracelet",
     category: "bracelets",
     material: "gold",
     images: [
@@ -543,6 +565,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-BR-03",
     },
     status: "published",
+    price: 1850000,
+    formattedPrice: "1.850.000₫",
     createdAt: "2026-02-20",
   },
 
@@ -553,7 +577,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-1",
     itemNumber: 1,
     slug: "silver-circuit-studs-emeralds-01",
-    title: "Silver Circuit Studs with Emeralds",
+    title: "Circuit Studs",
     category: "earrings",
     material: "silver",
     images: [
@@ -595,6 +619,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 690000,
+    formattedPrice: "690.000₫",
     createdAt: "2026-01-12",
   },
 
@@ -602,7 +628,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-2",
     itemNumber: 2,
     slug: "futurist-titanium-geometric-earrings-02",
-    title: "Futurist Titanium Geometric Earrings",
+    title: "Futurist Earrings",
     category: "earrings",
     material: "titanium",
     images: [
@@ -638,6 +664,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isHeroShowcase: true,
     },
     status: "published",
+    price: 750000,
+    formattedPrice: "750.000₫",
     createdAt: "2026-01-22",
   },
 
@@ -645,7 +673,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-3",
     itemNumber: 3,
     slug: "connection-salvaged-silver-drop-earrings-03",
-    title: "Connection Salvaged Silver Drop Earrings",
+    title: "Connection Drops",
     category: "earrings",
     material: "silver",
     images: [
@@ -677,6 +705,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-03",
     },
     status: "published",
+    price: 720000,
+    formattedPrice: "720.000₫",
     createdAt: "2026-02-02",
   },
 
@@ -684,7 +714,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-4",
     itemNumber: 4,
     slug: "digital-odyssey-white-gold-sapphire-earrings-04",
-    title: "Digital Odyssey White Gold & Sapphire Earrings",
+    title: "Sapphire Odyssey",
     category: "earrings",
     material: "gold",
     images: [
@@ -726,6 +756,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1290000,
+    formattedPrice: "1.290.000₫",
     createdAt: "2026-02-09",
   },
 
@@ -733,7 +765,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-5",
     itemNumber: 5,
     slug: "alliance-gold-silver-duality-earrings-05",
-    title: "Alliance Gold & Silver Duality Earrings",
+    title: "Alliance Duality",
     category: "earrings",
     material: "gold",
     images: [
@@ -765,6 +797,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-05",
     },
     status: "published",
+    price: 1350000,
+    formattedPrice: "1.350.000₫",
     createdAt: "2026-02-15",
   },
 
@@ -772,7 +806,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-6",
     itemNumber: 6,
     slug: "digital-odyssey-silver-aquamarine-earrings-06",
-    title: "Digital Odyssey Silver Aquamarine Earrings",
+    title: "Aquamarine Odyssey",
     category: "earrings",
     material: "silver",
     images: [
@@ -813,6 +847,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 650000,
+    formattedPrice: "650.000₫",
     createdAt: "2026-02-19",
   },
 
@@ -820,7 +856,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-7",
     itemNumber: 7,
     slug: "fossil-silver-emerald-circuit-earrings-07",
-    title: "Fossil Silver & Emerald Circuit Earrings",
+    title: "Emerald Fossil",
     category: "earrings",
     material: "silver",
     images: [
@@ -857,6 +893,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-07",
     },
     status: "published",
+    price: 680000,
+    formattedPrice: "680.000₫",
     createdAt: "2026-02-23",
   },
 
@@ -864,7 +902,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-8",
     itemNumber: 8,
     slug: "digital-odyssey-white-gold-emerald-wire-08",
-    title: "Digital Odyssey White Gold & Emerald Wire Earrings",
+    title: "Wire Odyssey",
     category: "earrings",
     material: "gold",
     images: [
@@ -900,6 +938,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-08",
     },
     status: "published",
+    price: 1320000,
+    formattedPrice: "1.320.000₫",
     createdAt: "2026-02-25",
   },
 
@@ -907,7 +947,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-9",
     itemNumber: 9,
     slug: "alliance-gold-hoops-charger-plugs-09",
-    title: "Alliance Gold Hoops with Charger Plugs",
+    title: "Alliance Hoops",
     category: "earrings",
     material: "gold",
     images: [
@@ -940,6 +980,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-09",
     },
     status: "published",
+    price: 1380000,
+    formattedPrice: "1.380.000₫",
     createdAt: "2026-03-01",
   },
 
@@ -947,7 +989,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-10",
     itemNumber: 10,
     slug: "fossil-gold-circuitboard-emerald-earrings-10",
-    title: "Fossil Gold Circuitboard & Emerald Earrings",
+    title: "Circuit Fossil",
     category: "earrings",
     material: "gold",
     images: [
@@ -989,6 +1031,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1250000,
+    formattedPrice: "1.250.000₫",
     createdAt: "2026-03-05",
   },
 
@@ -999,7 +1043,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-1",
     itemNumber: 1,
     slug: "architectural-titanium-relief-ring-01",
-    title: "Architectural Titanium Relief Ring",
+    title: "Relief Ring",
     category: "rings",
     material: "titanium",
     images: [
@@ -1035,6 +1079,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 890000,
+    formattedPrice: "890.000₫",
     createdAt: "2026-01-16",
   },
 
@@ -1042,7 +1088,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-2",
     itemNumber: 2,
     slug: "cyber-relic-silver-statement-ring-02",
-    title: "Cyber Relic Silver Statement Ring",
+    title: "Cyber Relic Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1078,6 +1124,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCurated: true,
     },
     status: "published",
+    price: 850000,
+    formattedPrice: "850.000₫",
     createdAt: "2026-01-25",
   },
 
@@ -1085,7 +1133,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-3",
     itemNumber: 3,
     slug: "diamond-cable-optical-gold-ring-03",
-    title: "Diamond Cable Optical 18K Gold Ring",
+    title: "Diamond Cable Ring",
     category: "rings",
     material: "gold",
     images: [
@@ -1128,6 +1176,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 1490000,
+    formattedPrice: "1.490.000₫",
     createdAt: "2026-01-28",
   },
 
@@ -1135,7 +1185,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-4",
     itemNumber: 4,
     slug: "fragments-gold-sculptural-ring-04",
-    title: "Fragments Gold Sculptural Band Ring",
+    title: "Fragments Band",
     category: "rings",
     material: "gold",
     images: [
@@ -1168,6 +1218,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-04",
     },
     status: "published",
+    price: 1450000,
+    formattedPrice: "1.450.000₫",
     createdAt: "2026-02-04",
   },
 
@@ -1175,7 +1227,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-5",
     itemNumber: 5,
     slug: "f136-titanium-modern-monolith-ring-05",
-    title: "F136 Titanium Modern Monolith Ring",
+    title: "Monolith Ring",
     category: "rings",
     material: "titanium",
     images: [
@@ -1210,6 +1262,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 820000,
+    formattedPrice: "820.000₫",
     createdAt: "2026-02-10",
   },
 
@@ -1217,7 +1271,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-6",
     itemNumber: 6,
     slug: "circuit-gold-ring-natural-emerald-06",
-    title: "Circuit Gold Ring with Natural Emerald",
+    title: "Circuit Emerald Ring",
     category: "rings",
     material: "gold",
     images: [
@@ -1257,6 +1311,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCurated: true,
     },
     status: "published",
+    price: 1550000,
+    formattedPrice: "1.550.000₫",
     createdAt: "2026-02-14",
   },
 
@@ -1264,7 +1320,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-7",
     itemNumber: 7,
     slug: "silver-circuit-inlaid-band-ring-07",
-    title: "Silver Circuit Inlaid Band Ring",
+    title: "Circuit Inlaid Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1298,6 +1354,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-07",
     },
     status: "published",
+    price: 720000,
+    formattedPrice: "720.000₫",
     createdAt: "2026-02-17",
   },
 
@@ -1305,7 +1363,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-8",
     itemNumber: 8,
     slug: "silver-optical-cable-woven-ring-08",
-    title: "Silver Optical Cable Woven Ring",
+    title: "Optical Woven Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1338,6 +1396,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-08",
     },
     status: "published",
+    price: 690000,
+    formattedPrice: "690.000₫",
     createdAt: "2026-02-21",
   },
 
@@ -1345,7 +1405,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-9",
     itemNumber: 9,
     slug: "circuit-white-gold-ring-emerald-09",
-    title: "Circuit White Gold Ring with Emerald",
+    title: "White Emerald Ring",
     category: "rings",
     material: "gold",
     images: [
@@ -1381,6 +1441,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-09",
     },
     status: "published",
+    price: 1420000,
+    formattedPrice: "1.420.000₫",
     createdAt: "2026-02-24",
   },
 
@@ -1388,7 +1450,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-10",
     itemNumber: 10,
     slug: "sapphire-bud-silver-micro-relic-ring-10",
-    title: "Sapphire Bud Silver Micro-Relic Ring",
+    title: "Sapphire Bud Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1426,6 +1488,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-10",
     },
     status: "published",
+    price: 790000,
+    formattedPrice: "790.000₫",
     createdAt: "2026-02-28",
   },
 
@@ -1433,7 +1497,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-11",
     itemNumber: 11,
     slug: "fragments-white-gold-architectural-ring-11",
-    title: "Fragments White Gold Architectural Ring",
+    title: "Fragments Architecture",
     category: "rings",
     material: "gold",
     images: [
@@ -1467,6 +1531,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-11",
     },
     status: "published",
+    price: 1520000,
+    formattedPrice: "1.520.000₫",
     createdAt: "2026-03-02",
   },
 
@@ -1474,7 +1540,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-12",
     itemNumber: 12,
     slug: "wide-silver-fragments-statement-ring-12",
-    title: "Wide Silver Fragments Statement Ring",
+    title: "Wide Fragments Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1513,6 +1579,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 860000,
+    formattedPrice: "860.000₫",
     createdAt: "2026-03-04",
   },
 
@@ -1520,7 +1588,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-13",
     itemNumber: 13,
     slug: "slim-silver-fragments-stackable-ring-13",
-    title: "Slim Silver Fragments Stackable Ring",
+    title: "Slim Fragments Ring",
     category: "rings",
     material: "silver",
     images: [
@@ -1555,6 +1623,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-13",
     },
     status: "published",
+    price: 620000,
+    formattedPrice: "620.000₫",
     createdAt: "2026-03-06",
   },
 
@@ -1562,7 +1632,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-14",
     itemNumber: 14,
     slug: "titanium-f136-minimalist-tech-ring-14",
-    title: "Titanium F136 Minimalist Tech Ring",
+    title: "Minimalist Tech Ring",
     category: "rings",
     material: "titanium",
     images: [
@@ -1597,6 +1667,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
+    price: 780000,
+    formattedPrice: "780.000₫",
     createdAt: "2026-03-08",
   },
 ];

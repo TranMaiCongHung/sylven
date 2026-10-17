@@ -17,7 +17,8 @@ interface NavItem {
 export function Header() {
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [scrollY, setScrollY] = React.useState(0);
+  const [isOverHero, setIsOverHero] = React.useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = React.useState(false);
   const langDropdownRef = React.useRef<HTMLDivElement>(null);
@@ -27,17 +28,33 @@ export function Header() {
     const handleScroll = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
-        setIsScrolled(window.scrollY > 80);
+        const currentScroll = window.scrollY;
+        setScrollY(currentScroll);
+
+        if (pathname === "/") {
+          const heroEl = document.getElementById("top");
+          if (heroEl) {
+            const rect = heroEl.getBoundingClientRect();
+            // Header is 72px tall. While hero bottom is below 72px, header is within the hero background.
+            setIsOverHero(rect.bottom > 72);
+          } else {
+            setIsOverHero(currentScroll < 800);
+          }
+        } else {
+          setIsOverHero(false);
+        }
       });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [pathname]);
 
   // Close menus on route change
   React.useEffect(() => {
@@ -86,10 +103,10 @@ export function Header() {
     }
   };
 
-  // Rule: On landing page ("/"), header does not appear initially at top; it appears only after scroll.
-  // On other pages (like "/san-pham"), header is visible from the start.
+  // Header remains transparent with white text while within the hero background range.
+  // When scrolled past the background or on other pages, it transitions to solid luxury navbar with dark text.
   const isLandingPage = pathname === "/";
-  const isHeaderVisible = !isLandingPage || isScrolled;
+  const isTransparent = isLandingPage && isOverHero;
 
   const languages = [
     { code: "vi" as const, label: "Tiếng Việt", short: "VI", flag: "🇻🇳" },
@@ -98,24 +115,23 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full z-50 select-none transition-[transform,opacity] duration-300 ease-out ${
-        isHeaderVisible
-          ? "translate-y-0 opacity-100 pointer-events-auto"
-          : "-translate-y-full opacity-0 pointer-events-none"
-      } ${
-        isScrolled
-          ? "bg-white/92 backdrop-blur-md border-b border-stone-200/80 shadow-xs"
-          : "bg-white/80 backdrop-blur-sm border-b border-stone-200/40"
+      className={`fixed top-0 left-0 right-0 w-full z-50 select-none transition-all duration-300 ease-out ${
+        isTransparent
+          ? "bg-transparent border-b border-transparent shadow-none"
+          : "bg-white/92 backdrop-blur-md border-b border-stone-200/80 shadow-xs"
       }`}
       style={{ height: "72px" }}
-      aria-hidden={!isHeaderVisible}
     >
       <div className="mx-auto w-full max-w-7xl h-full px-4 sm:px-8 flex items-center justify-between">
-        {/* LEFT: Brand Logo + Brand Name "SYLVEN" (clicking returns to landing page) */}
+        {/* LEFT: Brand Logo + Brand Name "SYLVEN" (hidden on initial view so it doesn't duplicate bottom text, fades in as user scrolls) */}
         <Link
           href="/"
           onClick={handleBrandClick}
-          className="flex items-center gap-2.5 sm:gap-3 group focus:outline-hidden"
+          className={`flex items-center gap-2.5 sm:gap-3 group focus:outline-hidden transition-all duration-300 ${
+            isLandingPage && scrollY < 200
+              ? "opacity-0 pointer-events-none -translate-x-2"
+              : "opacity-100 pointer-events-auto translate-x-0"
+          }`}
           aria-label="Sylven Atelier - Landing Page"
         >
           <div className="relative flex items-center justify-center">
@@ -125,7 +141,13 @@ export function Header() {
             />
             <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-md -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <span className="font-yavimayan text-xl sm:text-2xl font-bold tracking-[0.22em] text-[#18181B] whitespace-nowrap transition-colors group-hover:text-stone-700">
+          <span
+            className={`font-yavimayan text-xl sm:text-2xl font-bold tracking-[0.22em] whitespace-nowrap transition-colors ${
+              isTransparent
+                ? "text-white group-hover:text-stone-200 drop-shadow-sm"
+                : "text-[#18181B] group-hover:text-stone-700"
+            }`}
+          >
             SYLVEN
           </span>
         </Link>
@@ -147,7 +169,9 @@ export function Header() {
                 >
                   <span
                     className={`text-sm lg:text-[15px] font-medium tracking-[0.08em] transition-colors duration-200 ${
-                      active
+                      isTransparent
+                        ? "text-white/90 hover:text-white drop-shadow-sm font-medium"
+                        : active
                         ? "text-[#18181B] font-semibold"
                         : "text-stone-500 hover:text-stone-900"
                     }`}
@@ -160,10 +184,16 @@ export function Header() {
                     <motion.span
                       layoutId="headerNavUnderline"
                       transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                      className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] bg-[#18181B] rounded-none shadow-xs"
+                      className={`absolute -bottom-0.5 left-0 right-0 h-[2.5px] rounded-none shadow-xs ${
+                        isTransparent ? "bg-white" : "bg-[#18181B]"
+                      }`}
                     />
                   ) : (
-                    <span className="absolute -bottom-0.5 left-0 right-0 h-[1.5px] bg-stone-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-none" />
+                    <span
+                      className={`absolute -bottom-0.5 left-0 right-0 h-[1.5px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-none ${
+                        isTransparent ? "bg-white/80" : "bg-stone-300"
+                      }`}
+                    />
                   )}
                 </Link>
               );
@@ -177,19 +207,27 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-none bg-white/70 hover:bg-white border border-stone-200/90 hover:border-stone-300 text-stone-800 text-xs font-sans font-medium transition-all duration-200 cursor-pointer shadow-2xs group focus:outline-hidden"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-sans font-medium transition-all duration-200 cursor-pointer shadow-2xs group focus:outline-hidden ${
+                  isTransparent
+                    ? "bg-black/25 hover:bg-black/40 text-white border border-white/30 backdrop-blur-sm"
+                    : "bg-white/70 hover:bg-white border border-stone-200/90 hover:border-stone-300 text-stone-800"
+                }`}
                 aria-haspopup="listbox"
                 aria-expanded={langDropdownOpen}
                 aria-label={t.nav.languageToggle}
               >
-                <Globe className="w-3.5 h-3.5 text-stone-500 group-hover:text-stone-800 transition-colors" />
+                <Globe
+                  className={`w-3.5 h-3.5 transition-colors ${
+                    isTransparent ? "text-white/80 group-hover:text-white" : "text-stone-500 group-hover:text-stone-800"
+                  }`}
+                />
                 <span className="uppercase tracking-wider font-semibold text-[11px]">
                   {language}
                 </span>
                 <ChevronDown
-                  className={`w-3 h-3 text-stone-500 transition-transform duration-200 ${
-                    langDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-3 h-3 transition-transform duration-200 ${
+                    isTransparent ? "text-white/80" : "text-stone-500"
+                  } ${langDropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
@@ -248,7 +286,11 @@ export function Header() {
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu điều hướng"}
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-none border border-stone-300/80 bg-white/70 text-stone-800 hover:bg-white transition-colors cursor-pointer"
+              className={`md:hidden flex items-center justify-center w-10 h-10 rounded-none transition-colors cursor-pointer ${
+                isTransparent
+                  ? "border border-white/30 bg-black/25 text-white hover:bg-black/40 backdrop-blur-sm"
+                  : "border border-stone-300/80 bg-white/70 text-stone-800 hover:bg-white"
+              }`}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

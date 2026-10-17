@@ -56,6 +56,25 @@ export const productRepository = {
       );
     }
 
+    // Lọc theo khoảng giá (Min Price / Max Price)
+    if (options.minPrice !== undefined) {
+      items = items.filter((item) => item.price >= options.minPrice!);
+    }
+    if (options.maxPrice !== undefined) {
+      items = items.filter((item) => item.price <= options.maxPrice!);
+    }
+
+    // Sắp xếp (theo giá tăng dần, giá giảm dần, mới nhất, tiêu đề)
+    if (options.sortBy) {
+      if (options.sortBy === "price_asc") {
+        items.sort((a, b) => a.price - b.price);
+      } else if (options.sortBy === "price_desc") {
+        items.sort((a, b) => b.price - a.price);
+      } else if (options.sortBy === "title") {
+        items.sort((a, b) => a.title.localeCompare(b.title));
+      }
+    }
+
     // Phân trang
     if (options.offset !== undefined || options.limit !== undefined) {
       const offset = options.offset || 0;
@@ -160,4 +179,54 @@ export const productRepository = {
 
     return { total, byCategory, byMaterial };
   },
+
+  /**
+   * Truy xuất giá sản phẩm nhanh chóng theo ID hoặc Slug (O(1))
+   */
+  async getProductPrice(idOrSlug: string) {
+    await simulateLatency(5);
+    const found = PRODUCTS_DATABASE.find(
+      (item) => item.id === idOrSlug || item.slug === idOrSlug
+    );
+    if (!found) return null;
+    return {
+      id: found.id,
+      slug: found.slug,
+      title: found.title,
+      price: found.price,
+      formattedPrice: found.formattedPrice,
+    };
+  },
+
+  /**
+   * Cập nhật giá sản phẩm trong database
+   */
+  async updateProductPrice(idOrSlug: string, newPrice: number): Promise<Product | null> {
+    await simulateLatency(10);
+    const product = PRODUCTS_DATABASE.find(
+      (item) => item.id === idOrSlug || item.slug === idOrSlug
+    );
+    if (!product) return null;
+
+    product.price = newPrice;
+    product.formattedPrice = newPrice.toLocaleString("vi-VN") + "₫";
+    return product;
+  },
+
+  /**
+   * Lấy toàn bộ danh sách giá rút gọn để hiển thị bảng tra cứu
+   */
+  async getAllProductPrices() {
+    await simulateLatency(5);
+    return PRODUCTS_DATABASE.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      material: p.material,
+      price: p.price,
+      formattedPrice: p.formattedPrice,
+    }));
+  },
 };
+
