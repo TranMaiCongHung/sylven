@@ -46,6 +46,7 @@ export const productRepository = {
           item.title.toLowerCase().includes(q) ||
           item.id.toLowerCase().includes(q) ||
           item.material.toLowerCase().includes(q) ||
+          (item.collection && item.collection.toLowerCase().includes(q)) ||
           item.category.toLowerCase().includes(q) ||
           item.subtitle.vi.toLowerCase().includes(q) ||
           item.subtitle.en.toLowerCase().includes(q) ||

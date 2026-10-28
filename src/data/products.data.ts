@@ -2,12 +2,13 @@ import type { Product } from "@/types/product";
 
 /**
  * SYLVEN MOCK DATABASE - PRODUCT REPOSITORY SEED DATA
- * Toàn bộ sản phẩm đều đảm bảo 3 trường cốt lõi không thể thiếu:
- * 1. category ("necklaces" | "bracelets" | "earrings" | "rings")
- * 2. material ("titanium" | "silver" | "gold")
- * 3. images (mảng nhiều hình ảnh góc chụp cho mỗi sản phẩm)
+ * Toàn bộ 36 sản phẩm phân định theo 3 bộ sưu tập chính (3 Collections theo Catalog & Final Report):
+ * 1. Silver Collection (Bạc 925, Bạc 999, Bạc 925 mạ vàng, Bạc 999 mạ vàng) - material: "silver"
+ * 2. F136 Titanium Collection (Titanium ASTM F136, Titanium F136 mạ vàng) - material: "titanium"
+ * 3. Gold 18K (Vàng 18K / Au750) - material: "gold"
+ * 
+ * Bảng giá niêm yết chuẩn xác theo Catalog 28 cấu hình / 84 SKU và Báo cáo SYLVEN.
  */
-
 export const PRODUCTS_DATABASE: Product[] = [
   // ==========================================
   // VÒNG CỔ (NECKLACES) - 9 SẢN PHẨM
@@ -19,6 +20,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Constellation Necklace",
     category: "necklaces",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-ConstellationNecklaceshort-03_1280x1280_crop_bottom.jpg?v=1674844024",
       "https://www.oushaba.com/cdn/shop/products/Oushaba_1_2_223822_finalcopy_1280x1280_crop_center.jpg?v=1679402964",
@@ -59,8 +61,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1490000,
-    formattedPrice: "1.490.000₫",
+    price: 1690000,
+    formattedPrice: "1.690.000₫",
     createdAt: "2026-01-10",
   },
 
@@ -71,6 +73,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Ascent Necklace",
     category: "necklaces",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-05_1280x1280_crop_bottom.jpg?v=1676294499",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-06_1280x1280_crop_bottom.jpg?v=1676294499",
@@ -107,8 +110,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1550000,
-    formattedPrice: "1.550.000₫",
+    price: 1790000,
+    formattedPrice: "1.790.000₫",
     createdAt: "2026-01-14",
   },
 
@@ -119,10 +122,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Code Necklace",
     category: "necklaces",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-01_1280x1280_crop_bottom.jpg?v=1671395547",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-04_1280x1280_crop_center.jpg?v=1674841343",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-02_1280x1280_crop_bottom.jpg?v=1674841343",
+      "/images/catalog/catalog_01.png"
     ],
     get image() {
       return this.images[0];
@@ -158,8 +163,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1390000,
-    formattedPrice: "1.390.000₫",
+    price: 2730000,
+    formattedPrice: "2.730.000₫",
     createdAt: "2026-01-20",
   },
 
@@ -170,9 +175,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Memento Necklace",
     category: "necklaces",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-03_1280x1280_crop_bottom.jpg?v=1671395481",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-02_1280x1280_crop_bottom.jpg?v=1674841237",
+      "/images/catalog/report_page_9.png",
+      "/images/catalog/catalog_25.png"
     ],
     get image() {
       return this.images[0];
@@ -204,8 +212,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 2390000,
-    formattedPrice: "2.390.000₫",
+    price: 23290000,
+    formattedPrice: "23.290.000₫",
     createdAt: "2026-02-01",
   },
 
@@ -216,6 +224,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Mini Code Necklace",
     category: "necklaces",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-02_1280x1280_crop_bottom.jpg?v=1674841251",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-01_1280x1280_crop_bottom.jpg?v=1674841251",
@@ -250,8 +259,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-05",
     },
     status: "published",
-    price: 1190000,
-    formattedPrice: "1.190.000₫",
+    price: 2490000,
+    formattedPrice: "2.490.000₫",
     createdAt: "2026-02-05",
   },
 
@@ -262,6 +271,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Silver Constellation",
     category: "necklaces",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-01_1280x1280_crop_bottom.jpg?v=1671395562",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-03_1280x1280_crop_center.jpg?v=1674841350",
@@ -293,8 +303,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-06",
     },
     status: "published",
-    price: 1450000,
-    formattedPrice: "1.450.000₫",
+    price: 2730000,
+    formattedPrice: "2.730.000₫",
     createdAt: "2026-02-12",
   },
 
@@ -304,10 +314,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     slug: "usb-relic-gold-necklace-07",
     title: "USB Relic Necklace",
     category: "necklaces",
-    material: "gold",
+    material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-04_1280x1280_crop_bottom.jpg?v=1671395640",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-05_1280x1280_crop_bottom.jpg?v=1676293067",
+      "/images/catalog/catalog_09.png"
     ],
     get image() {
       return this.images[0];
@@ -316,7 +328,7 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng PVD 18K • Cổng Dữ Liệu Tái Sinh",
+      vi: "Bạc 925 Mạ Vàng PVD 18K • Cổng Dữ Liệu Tái Sinh",
       en: "18K PVD Gold • Reclaimed Data Port Interface",
     },
     description: {
@@ -325,7 +337,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     },
     specs: {
       material: {
-        vi: "Vàng PVD 18K & Lõi Bạc 925",
+        vi: "Bạc 925 mạ vàng PVD 18K (Gold-plated Silver 925)",
         en: "18K PVD Gold over 925 Silver core",
       },
       silicon: {
@@ -338,8 +350,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 2250000,
-    formattedPrice: "2.250.000₫",
+    price: 2830000,
+    formattedPrice: "2.830.000₫",
     createdAt: "2026-02-18",
   },
 
@@ -350,6 +362,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Baroque Ascent",
     category: "necklaces",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-01_1280x1280_crop_center.jpg?v=1674835686",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-04_1280x1280_crop_center.jpg?v=1674841320",
@@ -385,8 +398,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-08",
     },
     status: "published",
-    price: 1290000,
-    formattedPrice: "1.290.000₫",
+    price: 2790000,
+    formattedPrice: "2.790.000₫",
     createdAt: "2026-02-22",
   },
 
@@ -397,10 +410,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Voyage Necklace",
     category: "necklaces",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_221686_rt2_1280x1280_crop_bottom.jpg?v=1676294326",
       "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_225026_rt1_1280x1280_crop_center.jpg?v=1676294326",
       "https://www.oushaba.com/cdn/shop/products/Necklaces-Voyagenecklacebronzechain-02_1280x1280_crop_bottom.jpg?v=1676294326",
+      "/images/catalog/catalog_17.png"
     ],
     get image() {
       return this.images[0];
@@ -428,8 +443,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-NC-09",
     },
     status: "published",
-    price: 1350000,
-    formattedPrice: "1.350.000₫",
+    price: 1690000,
+    formattedPrice: "1.690.000₫",
     createdAt: "2026-02-26",
   },
 
@@ -443,9 +458,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Vestige Bracelet",
     category: "bracelets",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-01_1280x1280_crop_center.jpg?v=1671395302",
       "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-03_1280x1280_crop_center.jpg?v=1674841407",
+      "/images/catalog/catalog_02.png"
     ],
     get image() {
       return this.images[0];
@@ -477,8 +494,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 950000,
-    formattedPrice: "950.000₫",
+    price: 2440000,
+    formattedPrice: "2.440.000₫",
     createdAt: "2026-01-18",
   },
 
@@ -488,10 +505,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     slug: "vestige-gold-architectural-cuff-bracelet-02",
     title: "Vestige Cuff",
     category: "bracelets",
-    material: "gold",
+    material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Bracelets-Vestigebraceletgold-02_1080x1080_crop_left.jpg?v=1671400620",
       "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224801_rt1copy2_1280x1280_crop_center.jpg?v=1676292659",
+      "/images/catalog/catalog_10.png"
     ],
     get image() {
       return this.images[0];
@@ -500,7 +519,7 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Cấu Trúc Điêu Khắc & Vi Xử Lý Tái Sinh",
+      vi: "Bạc 925 Mạ Vàng • Cấu Trúc 4 Dây Điêu Khắc & Vi Xử Lý",
       en: "18K Gold • Sculptural Architecture & Upcycled Microprocessor",
     },
     description: {
@@ -509,7 +528,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     },
     specs: {
       material: {
-        vi: "Vàng 18K (750) 24.8g",
+        vi: "Bạc 925 mạ vàng 18K (Gold-plated Silver 925) kết hợp 4 dải dây kỹ thuật",
         en: "18K Yellow Gold (Au750) 24.8g",
       },
       silicon: {
@@ -522,8 +541,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isHeroShowcase: true,
     },
     status: "published",
-    price: 1690000,
-    formattedPrice: "1.690.000₫",
+    price: 2910000,
+    formattedPrice: "2.910.000₫",
     createdAt: "2026-02-08",
   },
 
@@ -534,10 +553,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Orbit Bracelet",
     category: "bracelets",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-05_1080x1080_crop_bottom.jpg?v=1678927843",
       "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-04_1280x1280_crop_center.jpg?v=1678287848",
       "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-03_1280x1280_crop_center.jpg?v=1674841268",
+      "/images/catalog/report_page_6.png",
+      "/images/catalog/catalog_26.png"
     ],
     get image() {
       return this.images[0];
@@ -565,8 +587,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-BR-03",
     },
     status: "published",
-    price: 1850000,
-    formattedPrice: "1.850.000₫",
+    price: 65210000,
+    formattedPrice: "65.210.000₫",
     createdAt: "2026-02-20",
   },
 
@@ -580,10 +602,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Circuit Studs",
     category: "earrings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_01_1280x1280_crop_center.jpg?v=1674842277",
       "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_04_1280x1280_crop_center.jpg?v=1674842277",
       "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_02_1280x1280_crop_center.jpg?v=1674842277",
+      "/images/catalog/catalog_03.png"
     ],
     get image() {
       return this.images[0];
@@ -619,8 +643,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 690000,
-    formattedPrice: "690.000₫",
+    price: 1480000,
+    formattedPrice: "1.480.000₫",
     createdAt: "2026-01-12",
   },
 
@@ -631,9 +655,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Futurist Earrings",
     category: "earrings",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.10.55_1280x1280_crop_center.png?v=1701879155",
       "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.12.13_1280x1280_crop_center.png?v=1701879155",
+      "/images/catalog/catalog_19.png"
     ],
     get image() {
       return this.images[0];
@@ -664,8 +690,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isHeroShowcase: true,
     },
     status: "published",
-    price: 750000,
-    formattedPrice: "750.000₫",
+    price: 1200000,
+    formattedPrice: "1.200.000₫",
     createdAt: "2026-01-22",
   },
 
@@ -676,8 +702,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Connection Drops",
     category: "earrings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/connectionsalvagedearrings_1280x1280_crop_center.png?v=1701880224",
+      "/images/catalog/catalog_03.png"
     ],
     get image() {
       return this.images[0];
@@ -705,8 +733,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-03",
     },
     status: "published",
-    price: 720000,
-    formattedPrice: "720.000₫",
+    price: 1480000,
+    formattedPrice: "1.480.000₫",
     createdAt: "2026-02-02",
   },
 
@@ -717,6 +745,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Sapphire Odyssey",
     category: "earrings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegolddiamondsapphire-04_1280x1280_crop_center.jpg?v=1671395979",
       "https://www.oushaba.com/cdn/shop/products/Cropped1_1280x1280_crop_top.png?v=1676293969",
@@ -756,8 +785,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1290000,
-    formattedPrice: "1.290.000₫",
+    price: 8400000,
+    formattedPrice: "8.400.000₫",
     createdAt: "2026-02-09",
   },
 
@@ -768,8 +797,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Alliance Duality",
     category: "earrings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/files/alliancegoldsilverearrings_1280x1280_crop_center.png?v=1701880486",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03_1280x1280_crop_center.jpg?v=1671395947",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04_1280x1280_crop_top.jpg?v=1671395947"
     ],
     get image() {
       return this.images[0];
@@ -797,8 +829,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-05",
     },
     status: "published",
-    price: 1350000,
-    formattedPrice: "1.350.000₫",
+    price: 7800000,
+    formattedPrice: "7.800.000₫",
     createdAt: "2026-02-15",
   },
 
@@ -809,9 +841,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Aquamarine Odyssey",
     category: "earrings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-01_1280x1280_crop_center.jpg?v=1671396032",
       "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-03_1280x1280_crop_center.jpg?v=1671396034",
+      "/images/catalog/catalog_07.png"
     ],
     get image() {
       return this.images[0];
@@ -847,8 +881,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 650000,
-    formattedPrice: "650.000₫",
+    price: 1500000,
+    formattedPrice: "1.500.000₫",
     createdAt: "2026-02-19",
   },
 
@@ -859,6 +893,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Emerald Fossil",
     category: "earrings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-01_1280x1280_crop_center.jpg?v=1671396009",
       "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-03_1280x1280_crop_center.jpg?v=1671396011",
@@ -893,8 +928,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-07",
     },
     status: "published",
-    price: 680000,
-    formattedPrice: "680.000₫",
+    price: 1480000,
+    formattedPrice: "1.480.000₫",
     createdAt: "2026-02-23",
   },
 
@@ -905,8 +940,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Wire Odyssey",
     category: "earrings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-04_1280x1280_crop_center.jpg?v=1671395993",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-02_1280x1280_crop_center.jpg?v=1671395993",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-03_1280x1280_crop_center.jpg?v=1671395993"
     ],
     get image() {
       return this.images[0];
@@ -938,8 +976,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-08",
     },
     status: "published",
-    price: 1320000,
-    formattedPrice: "1.320.000₫",
+    price: 8400000,
+    formattedPrice: "8.400.000₫",
     createdAt: "2026-02-25",
   },
 
@@ -950,9 +988,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Alliance Hoops",
     category: "earrings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03_1280x1280_crop_center.jpg?v=1671395947",
       "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04_1280x1280_crop_top.jpg?v=1671395947",
+      "/images/catalog/report_page_7.png",
+      "/images/catalog/catalog_27.png"
     ],
     get image() {
       return this.images[0];
@@ -980,8 +1021,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-ER-09",
     },
     status: "published",
-    price: 1380000,
-    formattedPrice: "1.380.000₫",
+    price: 8400000,
+    formattedPrice: "8.400.000₫",
     createdAt: "2026-03-01",
   },
 
@@ -991,11 +1032,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     slug: "fossil-gold-circuitboard-emerald-earrings-10",
     title: "Circuit Fossil",
     category: "earrings",
-    material: "gold",
+    material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/GoldFossilEarrings_1280x1280_crop_center.png?v=1701884844",
       "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-05_1280x1280_crop_center.jpg?v=1674841965",
       "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-03_1280x1280_crop_center.jpg?v=1679403622",
+      "/images/catalog/catalog_11.png"
     ],
     get image() {
       return this.images[0];
@@ -1004,7 +1047,7 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Ngọc Lục Bảo & Bo Mạch Điêu Khắc",
+      vi: "Bạc 925 Mạ Vàng • Ngọc Lục Bảo & Bo Mạch Điêu Khắc",
       en: "18K Gold • Emeralds & Sculpted Circuitboard",
     },
     description: {
@@ -1013,7 +1056,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     },
     specs: {
       material: {
-        vi: "Vàng vàng 18K (Au750) 10.2g",
+        vi: "Bạc 925 mạ vàng (Gold-plated Silver 925)",
         en: "18K Yellow Gold (Au750) 10.2g",
       },
       gemstones: {
@@ -1031,8 +1074,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1250000,
-    formattedPrice: "1.250.000₫",
+    price: 1580000,
+    formattedPrice: "1.580.000₫",
     createdAt: "2026-03-05",
   },
 
@@ -1046,8 +1089,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Relief Ring",
     category: "rings",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230922_rt1_sm_1280x1280_crop_center.jpg?v=1701884242",
+      "/images/catalog/catalog_20.png"
     ],
     get image() {
       return this.images[0];
@@ -1079,8 +1124,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 890000,
-    formattedPrice: "890.000₫",
+    price: 1560000,
+    formattedPrice: "1.560.000₫",
     createdAt: "2026-01-16",
   },
 
@@ -1091,9 +1136,11 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Cyber Relic Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_222010_rt2_1280x1280_crop_center.jpg?v=1678927278",
       "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224995_rt1_1280x1280_crop_bottom.jpg?v=1678284657",
+      "/images/catalog/catalog_04.png"
     ],
     get image() {
       return this.images[0];
@@ -1124,8 +1171,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCurated: true,
     },
     status: "published",
-    price: 850000,
-    formattedPrice: "850.000₫",
+    price: 2110000,
+    formattedPrice: "2.110.000₫",
     createdAt: "2026-01-25",
   },
 
@@ -1136,6 +1183,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Diamond Cable Ring",
     category: "rings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-03_1280x1280_crop_center.jpg?v=1674843261",
       "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-02_1280x1280_crop_center.jpg?v=1676292946",
@@ -1176,8 +1224,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 1490000,
-    formattedPrice: "1.490.000₫",
+    price: 50910000,
+    formattedPrice: "50.910.000₫",
     createdAt: "2026-01-28",
   },
 
@@ -1188,6 +1236,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Fragments Band",
     category: "rings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-02_1280x1280_crop_center.jpg?v=1671395822",
       "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-03_1280x1280_crop_center.jpg?v=1671395822",
@@ -1218,8 +1267,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-04",
     },
     status: "published",
-    price: 1450000,
-    formattedPrice: "1.450.000₫",
+    price: 49240000,
+    formattedPrice: "49.240.000₫",
     createdAt: "2026-02-04",
   },
 
@@ -1230,8 +1279,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Monolith Ring",
     category: "rings",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230875_rt1_sm_1280x1280_crop_center.jpg?v=1701883390",
+      "/images/catalog/catalog_20.png"
     ],
     get image() {
       return this.images[0];
@@ -1262,8 +1313,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 820000,
-    formattedPrice: "820.000₫",
+    price: 1560000,
+    formattedPrice: "1.560.000₫",
     createdAt: "2026-02-10",
   },
 
@@ -1274,9 +1325,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Circuit Emerald Ring",
     category: "rings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-05_1280x1280_crop_center.jpg?v=1674842556",
       "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-06_1280x1280_crop_center.jpg?v=1674842556",
+      "/images/catalog/report_page_8.png",
+      "/images/catalog/catalog_28.png"
     ],
     get image() {
       return this.images[0];
@@ -1311,8 +1365,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCurated: true,
     },
     status: "published",
-    price: 1550000,
-    formattedPrice: "1.550.000₫",
+    price: 50910000,
+    formattedPrice: "50.910.000₫",
     createdAt: "2026-02-14",
   },
 
@@ -1323,6 +1377,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Circuit Inlaid Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-01_3b186c49-8a0e-4a40-94e2-2f67df088c32_1280x1280_crop_center.jpg?v=1671395879",
       "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-04_814060b6-b36e-4fe4-a482-4e55087afddd_1280x1280_crop_center.jpg?v=1674841333",
@@ -1354,8 +1409,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-07",
     },
     status: "published",
-    price: 720000,
-    formattedPrice: "720.000₫",
+    price: 2110000,
+    formattedPrice: "2.110.000₫",
     createdAt: "2026-02-17",
   },
 
@@ -1366,6 +1421,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Optical Woven Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-03_1280x1280_crop_center.jpg?v=1671395869",
       "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-02_1280x1280_crop_center.jpg?v=1671395869",
@@ -1396,8 +1452,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-08",
     },
     status: "published",
-    price: 690000,
-    formattedPrice: "690.000₫",
+    price: 2080000,
+    formattedPrice: "2.080.000₫",
     createdAt: "2026-02-21",
   },
 
@@ -1408,8 +1464,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "White Emerald Ring",
     category: "rings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-04_1280x1280_crop_center.jpg?v=1674842549",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-03_1280x1280_crop_center.jpg?v=1674842549"
     ],
     get image() {
       return this.images[0];
@@ -1441,8 +1499,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-09",
     },
     status: "published",
-    price: 1420000,
-    formattedPrice: "1.420.000₫",
+    price: 50910000,
+    formattedPrice: "50.910.000₫",
     createdAt: "2026-02-24",
   },
 
@@ -1453,6 +1511,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Sapphire Bud Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-02_1280x1280_crop_center.jpg?v=1674841314",
       "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-04_1280x1280_crop_center.jpg?v=1674841314",
@@ -1488,8 +1547,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-10",
     },
     status: "published",
-    price: 790000,
-    formattedPrice: "790.000₫",
+    price: 2200000,
+    formattedPrice: "2.200.000₫",
     createdAt: "2026-02-28",
   },
 
@@ -1500,6 +1559,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Fragments Architecture",
     category: "rings",
     material: "gold",
+    collection: "Gold 18K",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-02_1280x1280_crop_center.jpg?v=1671395841",
       "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-04_1280x1280_crop_center.jpg?v=1674841466",
@@ -1531,8 +1591,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-11",
     },
     status: "published",
-    price: 1520000,
-    formattedPrice: "1.520.000₫",
+    price: 52580000,
+    formattedPrice: "52.580.000₫",
     createdAt: "2026-03-02",
   },
 
@@ -1543,6 +1603,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Wide Fragments Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-03_1280x1280_crop_center.jpg?v=1674841365",
       "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-05_1280x1280_crop_center.jpg?v=1674841365",
@@ -1579,8 +1640,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 860000,
-    formattedPrice: "860.000₫",
+    price: 2260000,
+    formattedPrice: "2.260.000₫",
     createdAt: "2026-03-04",
   },
 
@@ -1591,6 +1652,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Slim Fragments Ring",
     category: "rings",
     material: "silver",
+    collection: "Silver Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-01_1280x1280_crop_center.jpg?v=1671395891",
       "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-03_1280x1280_crop_center.jpg?v=1674841374",
@@ -1623,8 +1685,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       certificate: "SLV-2026-RG-13",
     },
     status: "published",
-    price: 620000,
-    formattedPrice: "620.000₫",
+    price: 1890000,
+    formattedPrice: "1.890.000₫",
     createdAt: "2026-03-06",
   },
 
@@ -1635,8 +1697,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     title: "Minimalist Tech Ring",
     category: "rings",
     material: "titanium",
+    collection: "F136 Titanium Collection",
     images: [
       "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230894_rt1_sm_1280x1280_crop_center.jpg?v=1701883048",
+      "/images/catalog/catalog_20.png"
     ],
     get image() {
       return this.images[0];
@@ -1667,8 +1731,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       isCarousel: true,
     },
     status: "published",
-    price: 780000,
-    formattedPrice: "780.000₫",
+    price: 1520000,
+    formattedPrice: "1.520.000₫",
     createdAt: "2026-03-08",
   },
 ];
