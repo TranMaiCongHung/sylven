@@ -6,6 +6,8 @@ export type ProductCategory = "necklaces" | "bracelets" | "earrings" | "rings";
 
 export type ProductMaterial = "titanium" | "silver" | "gold";
 
+export type ProductCollection = "Silver Collection" | "F136 Titanium Collection" | "Gold 18K";
+
 export interface LocalizedText {
   vi: string;
   en: string;
@@ -51,6 +53,12 @@ export interface Product {
    * titanium | silver | gold
    */
   material: ProductMaterial;
+
+  /**
+   * BỘ SƯU TẬP (3 Collections theo Catalog & Final Report)
+   * "Silver Collection" | "F136 Titanium Collection" | "Gold 18K"
+   */
+  collection?: ProductCollection;
 
   /** 
    * DANH SÁCH HÌNH ẢNH (Bắt buộc - Nhiều hình ảnh cho 1 sản phẩm)
@@ -131,6 +139,7 @@ export interface ProductPriceRecord {
   title: string;
   category: ProductCategory;
   material: ProductMaterial;
+  collection?: ProductCollection;
   price: number;
   formattedPrice: string;
 }

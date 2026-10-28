@@ -104,10 +104,10 @@ export default function ProductsPage() {
 
   const materials = React.useMemo(
     () => [
-      { key: "all" as const, label: t.productsPage.materialsFilter?.all || "Tất cả chất liệu" },
-      { key: "titanium" as const, label: "Titanium ASTM F136" },
-      { key: "silver" as const, label: "Bạc 925 Tái Sinh" },
-      { key: "gold" as const, label: "Vàng 18K (Au750)" },
+      { key: "all" as const, label: t.productsPage.materialsFilter?.all || "Tất cả bộ sưu tập" },
+      { key: "silver" as const, label: t.productsPage.materialsFilter?.silver || "Silver Collection" },
+      { key: "titanium" as const, label: t.productsPage.materialsFilter?.titanium || "F136 Titanium Collection" },
+      { key: "gold" as const, label: t.productsPage.materialsFilter?.gold || "Gold 18K" },
     ],
     [t.productsPage.materialsFilter]
   );

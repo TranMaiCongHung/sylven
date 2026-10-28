@@ -62,21 +62,21 @@ export const CATEGORIES_DATA: CategoryMeta[] = [
 
 export const MATERIALS_DATA: MaterialMeta[] = [
   {
-    key: "titanium",
-    label: { vi: "Titanium ASTM F136 Y Sinh", en: "ASTM F136 Biocompatible Titanium" },
-    shortLabel: { vi: "Titanium F136", en: "Titanium" },
-    badgeColor: "bg-slate-100 text-slate-800 border-slate-300",
-  },
-  {
     key: "silver",
-    label: { vi: "Bạc 925 Tái Sinh Cao Cấp", en: "925 Recycled Sterling Silver" },
-    shortLabel: { vi: "Bạc 925", en: "Silver 925" },
+    label: { vi: "Silver Collection (Bạc 925 / 999 & Bạc Mạ Vàng)", en: "Silver Collection (925 / 999 Silver & Gold-plated)" },
+    shortLabel: { vi: "Silver Collection", en: "Silver Collection" },
     badgeColor: "bg-stone-100 text-stone-800 border-stone-300",
   },
   {
+    key: "titanium",
+    label: { vi: "F136 Titanium Collection (ASTM F136)", en: "F136 Titanium Collection (ASTM F136)" },
+    shortLabel: { vi: "F136 Titanium", en: "F136 Titanium" },
+    badgeColor: "bg-slate-100 text-slate-800 border-slate-300",
+  },
+  {
     key: "gold",
-    label: { vi: "Vàng 18K (Au750) & PVD Gold", en: "18K Gold (Au750) & PVD Gold" },
-    shortLabel: { vi: "Vàng 18K", en: "18K Gold" },
+    label: { vi: "Gold 18K (Vàng 18K Au750)", en: "Gold 18K (18K Gold Au750)" },
+    shortLabel: { vi: "Gold 18K", en: "Gold 18K" },
     badgeColor: "bg-amber-50 text-amber-900 border-amber-300",
   },
 ];
