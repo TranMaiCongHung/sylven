@@ -9,6 +9,7 @@ export interface TranslationSchema {
   nav: {
     home: string;
     products: string;
+    about: string;
     languageToggle: string;
   };
   hero: {
@@ -74,11 +75,26 @@ export interface TranslationSchema {
     inquirySuccess: string;
     closeModal: string;
   };
+  aboutPage: {
+    breadcrumb: string;
+    title: string;
+    p1: string;
+    p2: string;
+    p3: string;
+    p4: string;
+    p5Prefix: string;
+    p5Link: string;
+    p6Prefix: string;
+    p6Collection: string;
+    p6Link: string;
+    p6Suffix: string;
+  };
   footer: {
     description: string;
     rights: string;
     columns: {
       explore: string;
+      about: string;
       artworks: string;
       manifesto: string;
       alchemy: string;
@@ -97,6 +113,7 @@ export const translations: Record<Language, TranslationSchema> = {
     nav: {
       home: "Trang chủ",
       products: "Sản phẩm",
+      about: "About",
       languageToggle: "Chuyển đổi ngôn ngữ",
     },
 
@@ -192,14 +209,29 @@ export const translations: Record<Language, TranslationSchema> = {
         "Yêu cầu đã được gửi tới Sylven Curator. Chúng tôi sẽ liên hệ với quý khách trong vòng 24 giờ làm việc.",
       closeModal: "Đóng chi tiết tác phẩm",
     },
+    aboutPage: {
+      breadcrumb: "ABOUT",
+      title: "We are SYLVEN",
+      p1: "Mang tinh thần nghệ thuật và tiên phong, chúng tôi hiện diện tại đỉnh cao của nghệ thuật, thiết kế, sự sang trọng và tính bền vững. Lấy kinh tế tuần hoàn làm trọng tâm, chúng tôi thổi hồn sức sống mới vào những vật liệu từng bị lãng quên.",
+      p2: "Được thành lập vào năm 2027 tại TP. Hồ Chí Minh, Việt Nam bởi ba người đam mê và sưu tầm nghệ thuật, tên gọi SYLVEN tượng trưng cho sự hòa quyện giữa các ý tưởng, ảnh hưởng văn hóa và sự cộng hưởng sáng tạo.",
+      p3: "Các bộ sưu tập của chúng tôi nâng tầm vật liệu tái sinh, đồng thời tôn vinh và duy trì kỹ nghệ thủ công chuẩn mực. Được chế tác tinh xảo, nguồn gốc đạo đức và mang giá trị xã hội sâu sắc. Mỗi bộ sưu tập đều được tạo ra để lan tỏa những điều tốt đẹp. Từng tác phẩm chúng tôi tạo ra sẽ chạm đến cuộc sống của bạn và mang lại giá trị cho cộng đồng.",
+      p4: "Được sinh ra để mang lại niềm vui cho thế giới, chúng tôi đang tái định hình và kiến tạo một tương lai tươi đẹp, giàu ý nghĩa hơn. Nhìn thấy cơ hội nơi người khác thấy sự bỏ đi. Nhìn thấy điều phi thường nơi người khác không thấy. Cùng nhau, chúng tôi phá vỡ mọi giới hạn và theo đuổi đam mê – sẻ chia niềm vui về một cuộc đời mới và mục đích mới vì lợi ích của tất cả chúng ta.",
+      p5Prefix: "Tìm hiểu về hành trình bền vững và quy chuẩn đạo đức của chúng tôi ",
+      p5Link: "tại đây.",
+      p6Prefix: "Khám phá bộ sưu tập đầu tay ",
+      p6Collection: "CONNECTION SALVAGED ",
+      p6Link: "tại đây",
+      p6Suffix: " hoặc đặt lịch hẹn riêng tại studio của chúng tôi ở TP. Hồ Chí Minh, Việt Nam.",
+    },
 
     // Footer
     footer: {
       description:
-        "SYLVEN – Thương hiệu trang sức đương đại định hướng thiết kế, tái sinh linh kiện điện tử thành những tạo tác đeo được tinh tế từ Bạc 925 và Titanium F136. An toàn cho da, thẩm mỹ vị lai và minh bạch nguồn gốc.",
+        "SYLVEN – Thương hiệu trang sức đương đại định hướng thiết kế, chuyển hóa linh kiện công nghệ tái sinh thành những tác phẩm nghệ thuật độc bản. Chế tác tinh xảo, tuần hoàn và tôn vinh vẻ đẹp vượt thời gian.",
       rights: "Bản quyền thuộc về Nhóm 02 - ĐH Tôn Đức Thắng.",
       columns: {
         explore: "Khám Phá",
+        about: "Về Sylven",
         artworks: "Thiết kế tiêu biểu",
         manifesto: "Tuyên ngôn thương hiệu",
         alchemy: "Triết lý & Quy trình",
@@ -207,7 +239,7 @@ export const translations: Record<Language, TranslationSchema> = {
         legal: "Tiêu Chuẩn & Minh Bạch",
         privacy: "Chính sách bảo mật",
         terms: "Điều khoản dịch vụ",
-        certification: "Tiêu chuẩn Titanium F136 & Bạc",
+        certification: "Tiêu chuẩn Chế tác & Đạo đức",
       },
     },
   },
@@ -217,6 +249,7 @@ export const translations: Record<Language, TranslationSchema> = {
     nav: {
       home: "Home",
       products: "Creations",
+      about: "About",
       languageToggle: "Switch language",
     },
 
@@ -312,14 +345,29 @@ export const translations: Record<Language, TranslationSchema> = {
         "Your inquiry has been delivered to the Sylven Curator. We will contact you within 24 business hours.",
       closeModal: "Close artwork details",
     },
+    aboutPage: {
+      breadcrumb: "ABOUT",
+      title: "We are SYLVEN",
+      p1: "Artistic and avant-garde, we exist at the apex of art and design, luxury and sustainability. With circularity at our heart, we're breathing new life into forgotten materials.",
+      p2: "Launched in 2027 in Ho Chi Minh City, Vietnam by a trio of art lovers and collectors, our name SYLVEN is used symbolically to represent a mixing of ideas, influences and collaborations.",
+      p3: "Our collections elevate recycled materials while championing and sustaining global artisanal crafts. Beautifully crafted, ethically sourced and socially valuable. Each collection is designed to do good. The pieces we create will touch your life and benefit many others.",
+      p4: "Created to bring joy to the world, we're repurposing, redesigning and reshaping a beautiful, more meaningful tomorrow. Seeing opportunity where others see waste. Seeing the extraordinary where others do not. Together we push boundaries and follow our passions – sharing the joy of new life and renewed purpose for the benefit of us all.",
+      p5Prefix: "Read about our sustainability journey and ethical practices ",
+      p5Link: "here.",
+      p6Prefix: "Discover our debut collection ",
+      p6Collection: "CONNECTION SALVAGED ",
+      p6Link: "here",
+      p6Suffix: " or by private appointment at our studio in Ho Chi Minh City, Vietnam.",
+    },
 
     // Footer
     footer: {
       description:
-        "SYLVEN – A design-led contemporary jewelry brand transforming screened electronic components into wearable statements in 925 Silver and ASTM F136 Titanium. Skin-safe, futuristic, and fully traceable.",
+        "SYLVEN – A design-led contemporary jewelry atelier transforming reclaimed technological artifacts into wearable artistic expressions. Thoughtfully crafted, circular by design, and timelessly modern.",
       rights: "All rights reserved. Ton Duc Thang University Group 02.",
       columns: {
         explore: "Explore",
+        about: "About",
         artworks: "Hero Creations",
         manifesto: "Brand Manifesto",
         alchemy: "Craft Philosophy",
@@ -327,7 +375,7 @@ export const translations: Record<Language, TranslationSchema> = {
         legal: "Standards & Transparency",
         privacy: "Privacy Policy",
         terms: "Terms of Service",
-        certification: "ASTM F136 & Silver Standards",
+        certification: "Artisanal & Ethical Standards",
       },
     },
   },

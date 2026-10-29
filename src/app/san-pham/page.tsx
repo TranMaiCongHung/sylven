@@ -104,12 +104,12 @@ export default function ProductsPage() {
 
   const materials = React.useMemo(
     () => [
-      { key: "all" as const, label: t.productsPage.materialsFilter?.all || "Tất cả bộ sưu tập" },
-      { key: "silver" as const, label: t.productsPage.materialsFilter?.silver || "Silver Collection" },
-      { key: "titanium" as const, label: t.productsPage.materialsFilter?.titanium || "F136 Titanium Collection" },
+      { key: "all" as const, label: t.productsPage.materialsFilter?.all || (language === "vi" ? "Tất cả bộ sưu tập" : "All Collections") },
+      { key: "silver" as const, label: t.productsPage.materialsFilter?.silver || "Silver" },
+      { key: "titanium" as const, label: t.productsPage.materialsFilter?.titanium || "F136 Titanium" },
       { key: "gold" as const, label: t.productsPage.materialsFilter?.gold || "Gold 18K" },
     ],
-    [t.productsPage.materialsFilter]
+    [t.productsPage.materialsFilter, language]
   );
 
   // Pagination calculation (Max 12 products per page)
@@ -132,16 +132,17 @@ export default function ProductsPage() {
       {/* HEADER & ATELIER TITLE */}
       <section className="px-4">
         <Container size="lg">
-          <div className="flex flex-col items-center text-center max-w-5xl mx-auto pt-2">
-            {/* BREADCRUMB TREE (MATCHING IMAGE 1: HOME / CREATIONS) */}
+          {/* BREADCRUMB TREE: ALIGNED TO THE LEFT */}
+          <div className="w-full flex justify-start mb-6 sm:mb-8">
             <Breadcrumbs
               items={[
                 { label: "HOME", href: "/" },
                 { label: "CREATIONS", isActiveCollection: true },
               ]}
-              className="mb-4 sm:mb-6"
             />
+          </div>
 
+          <div className="flex flex-col items-center text-center max-w-5xl mx-auto pt-2">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-oranienbaum font-medium text-[#18181B] tracking-[0.03em] uppercase leading-tight text-balance">
               {t.productsPage.title}
             </h1>
@@ -151,7 +152,7 @@ export default function ProductsPage() {
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 py-3.5 border-b border-[#E5DFD5] font-lexend">
             {/* Left: FILTER | DANH MỤC ∨ | CHẤT LIỆU ∨ */}
             <div className="flex items-center gap-6 sm:gap-10 w-full sm:w-auto flex-wrap">
-              <span className="text-xs uppercase tracking-[0.22em] font-medium text-stone-900 select-none font-lexend">
+              <span className="text-xs uppercase tracking-[0.22em] font-normal text-stone-400 select-none font-lexend">
                 FILTER
               </span>
 
@@ -225,8 +226,7 @@ export default function ProductsPage() {
                   className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-normal text-stone-800 hover:text-stone-950 transition-colors cursor-pointer py-1 group font-lexend"
                 >
                   <span className={selectedMaterial !== "all" ? "font-semibold text-stone-950" : ""}>
-                    {selectedMaterial === "all"
-                      ? (language === "vi" ? "CHẤT LIỆU" : "MATERIAL")
+                    {selectedMaterial === "all" ? (language === "vi" ? "BỘ SƯU TẬP" : "COLLECTIONS")
                       : materials.find((m) => m.key === selectedMaterial)?.label.toUpperCase()}
                   </span>
                   <ChevronDown
@@ -310,18 +310,32 @@ export default function ProductsPage() {
         </Container>
       </section>
 
-      {/* PRODUCTS GALLERY GRID */}
-      <section id="gallery" className="px-4 scroll-mt-28">
-        <Container size="lg">
+      {/* PRODUCTS GALLERY GRID (OUSHABA ASYMMETRICAL 2-COLUMN STAGGERED LAYOUT) */}
+      <section id="gallery" className="px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <Container size="lg" className="max-w-[1360px]">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 animate-pulse">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="space-y-4">
-                  <div className="aspect-[4/5] w-full rounded-none bg-stone-200/50" />
-                  <div className="h-4 bg-stone-200 rounded-none w-2/3" />
-                  <div className="h-3 bg-stone-100 rounded-none w-1/2" />
-                </div>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-20 lg:gap-x-28 xl:gap-x-36 gap-y-16 sm:gap-y-24 md:gap-y-28 lg:gap-y-36 items-start animate-pulse">
+              {[0, 1, 2, 3].map((idx) => {
+                const isTall = Math.floor(idx / 2) % 2 === 0 ? idx % 2 === 0 : idx % 2 === 1;
+                const isLeft = idx % 2 === 0;
+                return (
+                  <div
+                    key={idx}
+                    className={`w-full flex flex-col ${
+                      isLeft ? "sm:items-start sm:pr-2 md:pr-6" : "sm:items-end sm:pl-2 md:pl-6"
+                    }`}
+                  >
+                    <div className="w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] lg:max-w-[380px] space-y-4">
+                      <div
+                        className="w-full rounded-none bg-stone-200/50"
+                        style={{ aspectRatio: isTall ? "3 / 4.2" : "1 / 1" }}
+                      />
+                      <div className="h-4 bg-stone-200 rounded-none w-1/2" />
+                      <div className="h-3 bg-stone-100 rounded-none w-1/3" />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ) : products.length === 0 ? (
             <div className="py-24 text-center text-stone-400 font-lexend text-base">
@@ -329,45 +343,66 @@ export default function ProductsPage() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                {paginatedProducts.map((artwork, idx) => (
-                  <Link
-                    key={artwork.id}
-                    href={`/san-pham/${artwork.slug}`}
-                    className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1 min-w-0 w-full"
-                  >
-                    {/* Pure Image Container: No Background, No Badges */}
-                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-none">
-                      {/* Default Angle */}
-                      <Image
-                        src={artwork.image}
-                        alt={artwork.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        priority={idx < 3}
-                        className="object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
-                      />
-                      {/* Hover Crossfade Angle */}
-                      <Image
-                        src={artwork.hoverImage}
-                        alt={`${artwork.title} - angle`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover object-center opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
-                      />
-                    </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 sm:gap-x-12 md:gap-x-20 lg:gap-x-28 xl:gap-x-36 gap-y-16 sm:gap-y-24 md:gap-y-28 lg:gap-y-36 items-start">
+                {paginatedProducts.map((artwork, idx) => {
+                  // Bố cục so le Oushaba: Trong cùng 1 hàng, 1 ảnh DỌC và 1 ảnh NGANG/VUÔNG
+                  // Row 0: Left = Dọc (aspect 3/4.2), Right = Vuông (aspect 1/1)
+                  // Row 1: Left = Vuông, Right = Dọc
+                  const row = Math.floor(idx / 2);
+                  const col = idx % 2;
+                  const isTall = (row + col) % 2 === 0;
+                  const isLeft = col === 0;
 
-                    {/* Clean Typography: Title & Subtitle Only */}
-                    <div className="mt-3.5 sm:mt-4 text-left space-y-1">
-                      <h3 className="font-oranienbaum text-lg sm:text-xl font-medium text-stone-900 tracking-[0.03em] uppercase transition-colors duration-300 group-hover:text-stone-700">
-                        {artwork.title}
-                      </h3>
-                      <p className="text-xs sm:text-[13px] font-lexend text-stone-500 font-normal tracking-wide line-clamp-1">
-                        {artwork.subtitle[language]}
-                      </p>
+                  return (
+                    <div
+                      key={artwork.id}
+                      className={`w-full flex flex-col ${
+                        isLeft ? "sm:items-start sm:pr-2 md:pr-6" : "sm:items-end sm:pl-2 md:pl-6"
+                      }`}
+                    >
+                      <Link
+                        href={`/san-pham/${artwork.slug}`}
+                        className="group block cursor-pointer transition-transform duration-500 hover:-translate-y-1 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] lg:max-w-[380px]"
+                      >
+                        {/* Pure Image Container: Preserves authentic length and height (aspect ratio) with studio backdrop */}
+                        <div
+                          className="relative w-full overflow-hidden rounded-none bg-transparent"
+                          style={{
+                            aspectRatio: isTall ? "3 / 4.2" : "1 / 1",
+                          }}
+                        >
+                          {/* Default Angle */}
+                          <Image
+                            src={artwork.image}
+                            alt={artwork.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 380px"
+                            priority={idx < 4}
+                            className="object-cover object-center transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-0"
+                          />
+                          {/* Hover Crossfade Angle */}
+                          <Image
+                            src={artwork.hoverImage}
+                            alt={`${artwork.title} - angle`}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 380px"
+                            className="object-cover object-center opacity-0 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+                          />
+                        </div>
+
+                        {/* Clean Typography: Title & Subtitle Only (Refined, Concise, Like Reference Image) */}
+                        <div className="mt-3.5 sm:mt-4 text-left space-y-1">
+                          <h3 className="font-lexend text-sm sm:text-[14.5px] font-normal text-stone-900 tracking-[0.01em] transition-colors duration-200 group-hover:text-stone-600">
+                            {artwork.title}
+                          </h3>
+                          <p className="text-xs sm:text-[12.5px] font-lexend text-stone-500 font-normal tracking-normal line-clamp-2 leading-relaxed">
+                            {artwork.subtitle[language]}
+                          </p>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Minimalist Luxury Pagination (Max 12 products per page) */}

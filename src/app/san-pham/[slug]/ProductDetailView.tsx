@@ -19,6 +19,7 @@ import {
 import { Container } from "@/components/layout";
 import { Breadcrumbs } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCart } from "@/context/CartContext";
 import type { Product } from "@/types/product";
 
 interface ProductDetailViewProps {
@@ -27,6 +28,7 @@ interface ProductDetailViewProps {
 
 export function ProductDetailView({ product }: ProductDetailViewProps) {
   const { language } = useLanguage();
+  const { addItem, openBag } = useCart();
   const [activeImageIndex, setActiveImageIndex] = React.useState(0);
   const [isZoomed, setIsZoomed] = React.useState(false);
   const [showVideo, setShowVideo] = React.useState(false);
@@ -34,6 +36,7 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
   const [isEnquiryOpen, setIsEnquiryOpen] = React.useState(false);
   const [enquirySent, setEnquirySent] = React.useState(false);
   const [addedToCart, setAddedToCart] = React.useState(false);
+  const [quantity, setQuantity] = React.useState(1);
 
   // Form states for enquiry
   const [customerName, setCustomerName] = React.useState("");
@@ -55,7 +58,19 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
 
   const handleAddToCart = () => {
     setAddedToCart(true);
-    setTimeout(() => setAddedToCart(false), 3000);
+    addItem({
+      productId: product.id,
+      slug: product.slug,
+      title: product.title,
+      subtitle: product.subtitle[language],
+      image: product.image,
+      price: product.price,
+      formattedPrice: product.formattedPrice,
+      variant: "(Standard)",
+      quantity: quantity,
+    });
+    openBag();
+    setTimeout(() => setAddedToCart(false), 2500);
   };
 
   const handleSendEnquiry = (e: React.FormEvent) => {
@@ -271,8 +286,36 @@ export function ProductDetailView({ product }: ProductDetailViewProps) {
                 </p>
               </div>
 
-              {/* Action Buttons (Deep Navy #001A35, Sharp Corners, Matching Image 2) */}
-              <div className="mt-8 sm:mt-10 space-y-3 font-lexend">
+              {/* Quantity Selector: Refined, balanced quiet-luxury bar */}
+              <div className="mt-8 flex items-center justify-between py-3 border-y border-[#EBE7DF] text-xs font-lexend">
+                <span className="uppercase tracking-[0.2em] text-stone-500 font-light select-none">
+                  {language === "vi" ? "SỐ LƯỢNG" : "QUANTITY"}
+                </span>
+                <div className="flex items-center border border-stone-300 bg-white">
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                    aria-label="Giảm số lượng"
+                    className="w-9 h-8 flex items-center justify-center text-stone-500 hover:text-stone-950 hover:bg-stone-50 transition-colors text-sm font-light select-none cursor-pointer"
+                  >
+                    −
+                  </button>
+                  <span className="w-9 text-center text-xs font-normal text-stone-900 font-lexend select-none">
+                    {quantity}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setQuantity((q) => q + 1)}
+                    aria-label="Tăng số lượng"
+                    className="w-9 h-8 flex items-center justify-center text-stone-500 hover:text-stone-950 hover:bg-stone-50 transition-colors text-sm font-light select-none cursor-pointer"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+              {/* Action Buttons: 100% Full-Width, Perfectly Symmetrical (Deep Navy #001A35) */}
+              <div className="mt-3.5 space-y-3 font-lexend">
                 {/* ADD TO CART */}
                 <button
                   type="button"

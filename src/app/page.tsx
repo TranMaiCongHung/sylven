@@ -62,8 +62,17 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, []);
 
+    const [heroHeight, setHeroHeight] = React.useState(1200);
+
   React.useEffect(() => {
     let rafId: number;
+    const updateMetrics = () => {
+      const heroEl = document.getElementById("top");
+      if (heroEl) {
+        setHeroHeight(heroEl.offsetHeight);
+      }
+    };
+
     const handleScroll = () => {
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
@@ -71,10 +80,13 @@ export default function HomePage() {
       });
     };
 
+    updateMetrics();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateMetrics, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateMetrics);
       cancelAnimationFrame(rafId);
     };
   }, []);
@@ -116,19 +128,27 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero Brand Name Overlay: Sits at bottom of initial 100svh screen on load, fades out on scroll */}
-        <div
-          style={{
-            opacity: Math.max(0, 1 - scrollY / 220),
-            transform: `translateY(${Math.min(50, scrollY * 0.25)}px)`,
-            display: scrollY > 260 ? "none" : "flex",
-          }}
-          className="fixed bottom-0 left-0 right-0 w-full justify-center items-end pb-1 sm:pb-2 px-2 sm:px-4 select-none pointer-events-none z-30"
-        >
-          <span className="font-yavimayan text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14.5vw] font-bold text-white tracking-[0.14em] sm:tracking-[0.18em] lg:tracking-[0.22em] leading-[0.80] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] text-center w-full block">
-            SYLVEN
-          </span>
-        </div>
+        {/* Hero Brand Name Overlay: Biến mất ở khoảng 40% ảnh background */}
+        {(() => {
+          const fadeThreshold = Math.max(200, heroHeight * 0.4);
+          const sylvenOpacity = Math.max(0, 1 - scrollY / fadeThreshold);
+          const isSylvenHidden = scrollY >= fadeThreshold;
+
+          return (
+            <div
+              style={{
+                opacity: sylvenOpacity,
+                transform: `translateY(${Math.min(60, (scrollY / fadeThreshold) * 40)}px)`,
+                display: isSylvenHidden ? "none" : "flex",
+              }}
+              className="fixed bottom-0 left-0 right-0 w-full justify-center items-end pb-1 sm:pb-2 px-2 sm:px-4 select-none pointer-events-none z-30"
+            >
+              <span className="font-yavimayan text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14.5vw] font-bold text-white tracking-[0.14em] sm:tracking-[0.18em] lg:tracking-[0.22em] leading-[0.80] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] text-center w-full block">
+                SYLVEN
+              </span>
+            </div>
+          );
+        })()}
       </section>
 
       {/* 2. MANIFESTO & PHILOSOPHY HEADLINE SECTION */}
@@ -281,10 +301,10 @@ export default function HomePage() {
 
                   {/* Minimalist Gallery Typography */}
                   <div className="mt-4 sm:mt-5 text-left">
-                    <h3 className="font-oranienbaum text-lg sm:text-xl font-medium tracking-[0.03em] uppercase text-stone-900 transition-colors duration-300 group-hover:text-stone-700">
+                    <h3 className="font-lexend text-sm sm:text-[15px] font-normal tracking-[0.01em] text-stone-900 transition-colors duration-300 group-hover:text-stone-700">
                       {artwork.title}
                     </h3>
-                    <p className="mt-1 text-xs sm:text-sm text-stone-500 font-normal tracking-wide">
+                    <p className="mt-1 text-xs text-stone-500 font-normal tracking-normal line-clamp-1">
                       {artwork.subtitle}
                     </p>
                   </div>

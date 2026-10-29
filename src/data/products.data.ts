@@ -22,9 +22,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-ConstellationNecklaceshort-03_1280x1280_crop_bottom.jpg?v=1674844024",
-      "https://www.oushaba.com/cdn/shop/products/Oushaba_1_2_223822_finalcopy_1280x1280_crop_center.jpg?v=1679402964",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-ConstellationNecklaceshort-05_1280x1280_crop_center.jpg?v=1679402964",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-ConstellationNecklaceshort-03.jpg?v=1674844024",
+      "https://www.oushaba.com/cdn/shop/products/Oushaba_1_2_223822_finalcopy.jpg?v=1679402964",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-ConstellationNecklaceshort-05.jpg?v=1679402964",
     ],
     get image() {
       return this.images[0];
@@ -33,8 +33,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "ASTM F136 Titanium • Vi Mạch Bọc Resin Ngọc",
-      en: "ASTM F136 Titanium • Resin-Shielded Circuitry",
+      vi: "Cấu trúc thiên văn & Điêu khắc vi mạch",
+      en: "Celestial Circuitry & Mineral Architecture",
     },
     description: {
       vi: "Thiết kế dây chuyền định hình cấu trúc chòm sao vi mạch, đúc từ Titanium y sinh F136 siêu nhẹ chống dị ứng, phong ấn phẳng mịn dưới lớp resin ngọc cấp trang sức bảo vệ da tuyệt đối.",
@@ -75,10 +75,10 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-05_1280x1280_crop_bottom.jpg?v=1676294499",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-06_1280x1280_crop_bottom.jpg?v=1676294499",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklacelong-03_1280x1280_crop_center.jpg?v=1674840998",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-04_1280x1280_crop_center.jpg?v=1674840970",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-05.jpg?v=1676294499",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-06.jpg?v=1676294499",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklacelong-03.jpg?v=1674840998",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Ascentnecklaceshort-04.jpg?v=1674840970",
     ],
     get image() {
       return this.images[0];
@@ -87,8 +87,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Titanium F136 • Mắt Xích Hình Học Vị Lai",
-      en: "F136 Titanium • Geometric Futurist Links",
+      vi: "Module vị lai & Cấu trúc chuyển động",
+      en: "Futurist Modularity & Dynamic Articulation",
     },
     description: {
       vi: "Bộ dây chuyền Ascent với hệ khớp xích Titanium F136 phay CNC chuẩn vi mô, kết nối các module vi mạch silicon theo phương đứng đầy khí chất điêu khắc đương đại.",
@@ -124,10 +124,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-01_1280x1280_crop_bottom.jpg?v=1671395547",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-04_1280x1280_crop_center.jpg?v=1674841343",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-02_1280x1280_crop_bottom.jpg?v=1674841343",
-      "/images/catalog/catalog_01.png"
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-01.jpg?v=1671395547",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-04.jpg?v=1674841343",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silvercodenecklacewithrubyandpearl-02.jpg?v=1674841343",
     ],
     get image() {
       return this.images[0];
@@ -136,8 +135,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Ngọc Trai Baroque & Hồng Ngọc",
-      en: "925 Silver • Baroque Pearl & Ruby",
+      vi: "Ánh sắc tự nhiên & Cấu trúc mật mã",
+      en: "Organic Luster & Cryptographic Architecture",
     },
     description: {
       vi: "Bản giao hưởng giữa vẻ đẹp tự nhiên của ngọc trai nước ngọt, sắc đỏ kiêu sa của hồng ngọc và cấu trúc mạch mã hóa trên nền phôi Bạc 925 hoàn thiện thủ công.",
@@ -177,10 +176,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-03_1280x1280_crop_bottom.jpg?v=1671395481",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-02_1280x1280_crop_bottom.jpg?v=1674841237",
-      "/images/catalog/report_page_9.png",
-      "/images/catalog/catalog_25.png"
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-03.jpg?v=1671395481",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-02.jpg?v=1674841237",
     ],
     get image() {
       return this.images[0];
@@ -189,8 +186,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K (Au750) • Kỷ Vật Vi Mạch Cá Nhân",
-      en: "18K Gold (Au750) • Sentimental Tech Keepsake",
+      vi: "Kỷ vật công nghệ & Dấu ấn thời gian",
+      en: "Sentimental Tech Keepsake & Timeless Relic",
     },
     description: {
       vi: "Tác phẩm mặt dây chuyền vàng 18K chạm trổ tinh xảo, gìn giữ mảnh vi mạch như một di vật số vượt thời gian. Dành cho những ai muốn lưu giữ kỷ niệm công nghệ cá nhân.",
@@ -226,8 +223,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-02_1280x1280_crop_bottom.jpg?v=1674841251",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-01_1280x1280_crop_bottom.jpg?v=1674841251",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-02.jpg?v=1674841251",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Minisilvercodenecklacewithbluejade-01.jpg?v=1674841251",
     ],
     get image() {
       return this.images[0];
@@ -236,8 +233,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Ngọc Bích Lam & Vi Phiến Silicon",
-      en: "925 Silver • Blue Jade & Silicon Die",
+      vi: "Sắc lam thanh khiết & Vi phiến silicon",
+      en: "Serene Mineral Tone & Screened Silicon Die",
     },
     description: {
       vi: "Dây chuyền dáng thanh mảnh Mini Code kết hợp đá ngọc bích lam dịu mát cùng mẩu vi phiến bán dẫn quang khắc trên khung Bạc 925 đánh bóng gương.",
@@ -273,9 +270,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-01_1280x1280_crop_bottom.jpg?v=1671395562",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-03_1280x1280_crop_center.jpg?v=1674841350",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-02_1280x1280_crop_center.jpg?v=1674841350",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-01.jpg?v=1671395562",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-03.jpg?v=1674841350",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Silverconstellationnecklace_-02.jpg?v=1674841350",
     ],
     get image() {
       return this.images[0];
@@ -284,8 +281,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Đồ Họa Mạch Tích Hợp Chòm Sao",
-      en: "925 Silver • Constellation Integrated Circuitry",
+      vi: "Sơ đồ mạch tích hợp & Dấu vết tinh tú",
+      en: "Integrated Circuitry Map & Stellar Traces",
     },
     description: {
       vi: "Mặt dây chuyền tròn tinh tế mô phỏng bản đồ chòm sao qua các đường mạch đồng mạ vàng chạy trên phiến silicon, lồng trong khung Bạc 925 chạm khắc hình học.",
@@ -312,14 +309,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "necklaces-7",
     itemNumber: 7,
     slug: "usb-relic-gold-necklace-07",
-    title: "USB Relic Necklace",
+    title: "USB Relic",
     category: "necklaces",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-04_1280x1280_crop_bottom.jpg?v=1671395640",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-05_1280x1280_crop_bottom.jpg?v=1676293067",
-      "/images/catalog/catalog_09.png"
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-04.jpg?v=1671395640",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-USBnecklacegold-05.jpg?v=1676293067",
     ],
     get image() {
       return this.images[0];
@@ -328,8 +324,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 Mạ Vàng PVD 18K • Cổng Dữ Liệu Tái Sinh",
-      en: "18K PVD Gold • Reclaimed Data Port Interface",
+      vi: "Giao thức dữ liệu tái sinh & Khối hình vị lai",
+      en: "Reclaimed Data Interface & Futuristic Monolith",
     },
     description: {
       vi: "Cổng kết nối USB biểu tượng của kỷ nguyên số được đúc lại bằng vàng 18K, biến một chuẩn kết nối quen thuộc thành tuyên ngôn thẩm mỹ thời thượng.",
@@ -364,9 +360,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-01_1280x1280_crop_center.jpg?v=1674835686",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-04_1280x1280_crop_center.jpg?v=1674841320",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-02_1280x1280_crop_bottom.jpg?v=1674841320",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-01.jpg?v=1674835686",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-04.jpg?v=1674841320",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-SilverAscentnecklacewithpearl-02.jpg?v=1674841320",
     ],
     get image() {
       return this.images[0];
@@ -375,8 +371,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Ngọc Trai Nước Ngọt & Cấu Trúc Vi Mạch",
-      en: "925 Silver • Freshwater Pearl & Circuit Geometry",
+      vi: "Bất đối xứng tự nhiên & Đường dẫn vi mạch",
+      en: "Natural Asymmetry & Linear Circuit Traces",
     },
     description: {
       vi: "Sự đối lập lôi cuốn giữa viên ngọc trai tự nhiên mềm mại và cấu trúc bo mạch góc cạnh làm từ Bạc 925 cao cấp.",
@@ -412,10 +408,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_221686_rt2_1280x1280_crop_bottom.jpg?v=1676294326",
-      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_225026_rt1_1280x1280_crop_center.jpg?v=1676294326",
-      "https://www.oushaba.com/cdn/shop/products/Necklaces-Voyagenecklacebronzechain-02_1280x1280_crop_bottom.jpg?v=1676294326",
-      "/images/catalog/catalog_17.png"
+      "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_221686_rt2.jpg?v=1676294326",
+      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_225026_rt1.jpg?v=1676294326",
+      "https://www.oushaba.com/cdn/shop/products/Necklaces-Voyagenecklacebronzechain-02.jpg?v=1676294326",
     ],
     get image() {
       return this.images[0];
@@ -424,8 +419,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Titanium F136 • Dây Xích Đồng Điêu Khắc & Vi Mạch",
-      en: "F136 Titanium • Sculpted Bronze Chain & Circuitry",
+      vi: "Dòng chảy kiến trúc & Hình học đan cài",
+      en: "Architectural Fluidity & Interlocking Geometry",
     },
     description: {
       vi: "Chuỗi vòng cổ Voyage phá cách kết hợp Titanium F136, mắt xích đồng cổ điển và bộ khung vi mạch công nghệ cao, thể hiện tinh thần khám phá không giới hạn.",
@@ -460,9 +455,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-01_1280x1280_crop_center.jpg?v=1671395302",
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-03_1280x1280_crop_center.jpg?v=1674841407",
-      "/images/catalog/catalog_02.png"
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-01.jpg?v=1671395302",
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-vestigebraceletsilver-03.jpg?v=1674841407",
     ],
     get image() {
       return this.images[0];
@@ -471,8 +465,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Vi Mạch Bọc Resin & Khớp Nối Công Thái Học",
-      en: "925 Silver • Resin-Sealed Circuit & Ergonomic Hinge",
+      vi: "Vi cảnh đóng băng & Khớp nối công thái học",
+      en: "Sealed Micro-Landscape & Ergonomic Articulation",
     },
     description: {
       vi: "Chiếc vòng tay Vestige bằng Bạc 925 nguyên khối ôm trọn cổ tay, đính dải vi mạch bán dẫn được xử lý bề mặt phẳng mịn mang lại cảm giác đeo êm ái hàng ngày.",
@@ -508,9 +502,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-Vestigebraceletgold-02_1080x1080_crop_left.jpg?v=1671400620",
-      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224801_rt1copy2_1280x1280_crop_center.jpg?v=1676292659",
-      "/images/catalog/catalog_10.png"
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-Vestigebraceletgold-02.jpg?v=1671400620",
+      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224801_rt1copy2.jpg?v=1676292659",
     ],
     get image() {
       return this.images[0];
@@ -519,8 +512,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 Mạ Vàng • Cấu Trúc 4 Dây Điêu Khắc & Vi Xử Lý",
-      en: "18K Gold • Sculptural Architecture & Upcycled Microprocessor",
+      vi: "Kiến trúc điêu khắc & Lõi điện toán tuần hoàn",
+      en: "Sculptural Architecture & Upcycled Computing Core",
     },
     description: {
       vi: "Kiệt tác vòng tay dạng cuff đúc từ vàng 18K sang trọng với hoa văn bo mạch cắt laser chuẩn xác, khẳng định đẳng cấp nghệ thuật chế tác đương đại.",
@@ -555,11 +548,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-05_1080x1080_crop_bottom.jpg?v=1678927843",
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-04_1280x1280_crop_center.jpg?v=1678287848",
-      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-03_1280x1280_crop_center.jpg?v=1674841268",
-      "/images/catalog/report_page_6.png",
-      "/images/catalog/catalog_26.png"
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-05.jpg?v=1678927843",
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-04.jpg?v=1678287848",
+      "https://www.oushaba.com/cdn/shop/products/Bracelets-Orbitbraceletgold-03.jpg?v=1674841268",
     ],
     get image() {
       return this.images[0];
@@ -568,8 +559,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Quỹ Đạo Chuyển Động & Tinh Thể Bán Dẫn",
-      en: "18K Gold • Kinetic Orbital Links & Semiconductor Elements",
+      vi: "Quỹ đạo động lực & Tinh thể bán dẫn",
+      en: "Kinetic Trajectory & Semiconductor Elements",
     },
     description: {
       vi: "Cấu trúc vòng Orbit xoay chuyển nhịp nhàng quanh cổ tay với các module tròn khảm vi mạch bán dẫn bọc kính sapphire bảo vệ tối đa.",
@@ -604,10 +595,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_01_1280x1280_crop_center.jpg?v=1674842277",
-      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_04_1280x1280_crop_center.jpg?v=1674842277",
-      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_02_1280x1280_crop_center.jpg?v=1674842277",
-      "/images/catalog/catalog_03.png"
+      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_01.jpg?v=1674842277",
+      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_04.jpg?v=1674842277",
+      "https://www.oushaba.com/cdn/shop/products/Silvercufflinkswithcircuitboardandcabochonemeralds_02.jpg?v=1674842277",
     ],
     get image() {
       return this.images[0];
@@ -616,8 +606,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Ngọc Lục Bảo Cabochon & Bo Mạch",
-      en: "925 Silver • Cabochon Emeralds & Circuitry",
+      vi: "Giao thoa tối giản & Điểm nhấn sắc lục",
+      en: "Minimalist Synthesis & Deep Green Accents",
     },
     description: {
       vi: "Khuyên tai đinh tán chế tác từ Bạc 925 đính ngọc lục bảo cabochon xanh mướt, kết hợp cùng họa tiết bo mạch điện tử vi mô tạo vẻ đẹp thanh lịch bí ẩn.",
@@ -657,9 +647,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.10.55_1280x1280_crop_center.png?v=1701879155",
-      "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.12.13_1280x1280_crop_center.png?v=1701879155",
-      "/images/catalog/catalog_19.png"
+      "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.10.55.png?v=1701879155",
+      "https://www.oushaba.com/cdn/shop/files/Screenshot2023-12-06at16.12.13.png?v=1701879155",
     ],
     get image() {
       return this.images[0];
@@ -668,8 +657,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Titanium ASTM F136 • Dáng Hình Học Siêu Nhẹ",
-      en: "ASTM F136 Titanium • Ultra-Light Geometric Forms",
+      vi: "Kiến tạo không gian & Trọng lượng thanh thoát",
+      en: "Featherlight Silhouette & Clean Spatial Form",
     },
     description: {
       vi: "Thiết kế hoa tai Titanium F136 siêu nhẹ chống kích ứng tuyệt đối, tạo hình kiến trúc tối giản vị lai mang lại sự thoải mái khi đeo cả ngày dài.",
@@ -704,8 +693,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/connectionsalvagedearrings_1280x1280_crop_center.png?v=1701880224",
-      "/images/catalog/catalog_03.png"
+      "https://www.oushaba.com/cdn/shop/files/connectionsalvagedearrings.png?v=1701880224",
     ],
     get image() {
       return this.images[0];
@@ -714,8 +702,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Hoa Tai Dáng Thả & Cổng Kết Nối Tái Sinh",
-      en: "925 Silver • Drop Silhouette & Salvaged Connectors",
+      vi: "Chiều buông thanh lịch & Cổng kết nối tái sinh",
+      en: "Graceful Verticality & Salvaged Connectors",
     },
     description: {
       vi: "Dáng hoa tai thả mềm mại chuyển động theo từng bước đi, kết hợp các cổng kết nối micro mạ bạc tái sinh qua bàn tay chế tác kim hoàn thủ công.",
@@ -747,9 +735,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegolddiamondsapphire-04_1280x1280_crop_center.jpg?v=1671395979",
-      "https://www.oushaba.com/cdn/shop/products/Cropped1_1280x1280_crop_top.png?v=1676293969",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegolddiamondsapphire-02_1280x1280_crop_center.jpg?v=1676293969",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegolddiamondsapphire-04.jpg?v=1671395979",
+      "https://www.oushaba.com/cdn/shop/products/Cropped1.png?v=1676293969",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegolddiamondsapphire-02.jpg?v=1676293969",
     ],
     get image() {
       return this.images[0];
@@ -758,8 +746,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng Trắng 18K • Kim Cương & Sapphire Hoàng Gia",
-      en: "18K White Gold • Diamonds & Royal Blue Sapphire",
+      vi: "Sắc xanh thăm thẳm & Bản vẽ kỹ nghệ chuẩn xác",
+      en: "Deep Celestial Hue & Precision Blueprints",
     },
     description: {
       vi: "Sắc xanh hoàng gia của đá Sapphire hòa quyện cùng khung vàng trắng 18k thanh khiết. Mỗi đường cắt đều được tính toán theo tỷ lệ vàng của các bản thiết kế kiến trúc vi xử lý.",
@@ -799,9 +787,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/alliancegoldsilverearrings_1280x1280_crop_center.png?v=1701880486",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03_1280x1280_crop_center.jpg?v=1671395947",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04_1280x1280_crop_top.jpg?v=1671395947"
+      "https://www.oushaba.com/cdn/shop/files/alliancegoldsilverearrings.png?v=1701880486",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03.jpg?v=1671395947",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04.jpg?v=1671395947"
     ],
     get image() {
       return this.images[0];
@@ -810,8 +798,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K & Bạc 925 • Sự Giao Thoa Kim Loại Quý",
-      en: "18K Gold & 925 Silver • Precious Metal Duality",
+      vi: "Sắc thái đối ứng & Hòa sắc nhịp nhàng",
+      en: "Complementary Finishes & Interlocking Harmony",
     },
     description: {
       vi: "Sự kết hợp táo bạo giữa sắc ấm của vàng 18K và vẻ lạnh lùng thanh khiết của Bạc 925, đan xen cùng các chi tiết vi mạch điện tử tái sinh.",
@@ -843,9 +831,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-01_1280x1280_crop_center.jpg?v=1671396032",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-03_1280x1280_crop_center.jpg?v=1671396034",
-      "/images/catalog/catalog_07.png"
+      "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-01.jpg?v=1671396032",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-DigitalOdysseySilveraquamarineearrings-03.jpg?v=1671396034",
     ],
     get image() {
       return this.images[0];
@@ -854,8 +841,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc Tái Sinh • Aquamarine Giọt Nước & Bo Mạch",
-      en: "Reclaimed Silver • Pear Aquamarine & Circuitry",
+      vi: "Độ trong suốt băng giá & Lưới ăng-ten vi mô",
+      en: "Glacial Transparency & Microscopic Satellite Grid",
     },
     description: {
       vi: "Viên đá Aquamarine nước biển xanh biếc thả dáng mềm mại bên dưới cấu trúc bo mạch mạng lưới vi mô. Toát lên vẻ đẹp kiêu sa và thanh lịch đỉnh cao của trường phái điêu khắc số.",
@@ -895,8 +882,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-01_1280x1280_crop_center.jpg?v=1671396009",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-03_1280x1280_crop_center.jpg?v=1671396011",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-01.jpg?v=1671396009",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossilearringssilverandemeralds-03.jpg?v=1671396011",
     ],
     get image() {
       return this.images[0];
@@ -905,8 +892,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Ngọc Lục Bảo & Hóa Thạch Vi Mạch",
-      en: "925 Silver • Natural Emeralds & Circuit Fossil",
+      vi: "Khảo cổ học vị lai & Hóa thạch bo mạch",
+      en: "Archaeological Synthesis & Preserved Logic Board",
     },
     description: {
       vi: "Tựa như hóa thạch thời đại số, đôi khuyên tai lồng ghép các đường vân vi mạch cùng ngọc lục bảo thiên nhiên vào phôi Bạc 925 điêu khắc thô mộc mà tinh xảo.",
@@ -942,9 +929,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-04_1280x1280_crop_center.jpg?v=1671395993",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-02_1280x1280_crop_center.jpg?v=1671395993",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-03_1280x1280_crop_center.jpg?v=1671395993"
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-04.jpg?v=1671395993",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-02.jpg?v=1671395993",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Digitalodysseywhitegoldemeraldwire-03.jpg?v=1671395993"
     ],
     get image() {
       return this.images[0];
@@ -953,8 +940,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Vàng Trắng 18K • Ngọc Lục Bảo Dây Quang",
-      en: "18K White Gold • Emerald & Optical Wire Motif",
+      vi: "Dòng sợi quang học & Điểm xuyết tinh thể",
+      en: "Dynamic Filament Flow & Vivid Gem Accents",
     },
     description: {
       vi: "Thiết kế dây treo thanh thoát từ vàng trắng 18k nâng đỡ viên ngọc lục bảo lung linh, đan xen cùng sợi cáp quang kim loại siêu nhỏ.",
@@ -985,15 +972,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "earrings-9",
     itemNumber: 9,
     slug: "alliance-gold-hoops-charger-plugs-09",
-    title: "Alliance Hoops",
+    title: "Gold Alliance Earrings",
     category: "earrings",
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03_1280x1280_crop_center.jpg?v=1671395947",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04_1280x1280_crop_top.jpg?v=1671395947",
-      "/images/catalog/report_page_7.png",
-      "/images/catalog/catalog_27.png"
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-03.jpg?v=1671395947",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Alliance_yellowgoldandsilverhoopswithchargerplugs_-04.jpg?v=1671395947",
     ],
     get image() {
       return this.images[0];
@@ -1002,8 +987,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng Vàng 18K & Bạc • Khuyên Tròn Cổng Sạc Kỷ Vật",
-      en: "18K Yellow Gold & Silver • Charger Plug Hoop Motif",
+      vi: "Đối xứng điêu khắc & Cổng dữ liệu tái sinh",
+      en: "Sculptural Symmetry & Reclaimed Data Interface",
     },
     description: {
       vi: "Khuyên tai tròn độc đáo mô phỏng đầu cắm sạc công nghệ từ vàng 18K và Bạc 925, biểu trưng cho sự kết nối năng lượng và ký ức số bất tận.",
@@ -1035,10 +1020,9 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/GoldFossilEarrings_1280x1280_crop_center.png?v=1701884844",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-05_1280x1280_crop_center.jpg?v=1674841965",
-      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-03_1280x1280_crop_center.jpg?v=1679403622",
-      "/images/catalog/catalog_11.png"
+      "https://www.oushaba.com/cdn/shop/files/GoldFossilEarrings.png?v=1701884844",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-05.jpg?v=1674841965",
+      "https://www.oushaba.com/cdn/shop/products/Earrings-Fossil_Circuitboard_emerald_yellowgoldandsilverearrings_-03.jpg?v=1679403622",
     ],
     get image() {
       return this.images[0];
@@ -1086,13 +1070,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-1",
     itemNumber: 1,
     slug: "architectural-titanium-relief-ring-01",
-    title: "Relief Ring",
+    title: "Gold Remnants Ring",
     category: "rings",
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230922_rt1_sm_1280x1280_crop_center.jpg?v=1701884242",
-      "/images/catalog/catalog_20.png"
+      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230922_rt1_sm.jpg?v=1701884242",
     ],
     get image() {
       return this.images[0];
@@ -1101,8 +1084,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "ASTM F136 Titanium • Chạm Khắc Kiến Trúc Vi Mạch",
-      en: "ASTM F136 Titanium • Architectural Circuit Relief",
+      vi: "Dấu ấn ký ức & Phù điêu vi mạch",
+      en: "Memory Imprints & Screened Micro-Relief",
     },
     description: {
       vi: "Nhẫn Titanium ASTM F136 nguyên khối tiện CNC chuẩn xác, chạm khắc các đường vi mạch nổi như sơ đồ thành phố công nghệ tương lai.",
@@ -1138,9 +1121,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_222010_rt2_1280x1280_crop_center.jpg?v=1678927278",
-      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224995_rt1_1280x1280_crop_bottom.jpg?v=1678284657",
-      "/images/catalog/catalog_04.png"
+      "https://www.oushaba.com/cdn/shop/products/Oushaba2_29_8_222010_rt2.jpg?v=1678927278",
+      "https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224995_rt1.jpg?v=1678284657",
     ],
     get image() {
       return this.images[0];
@@ -1149,8 +1131,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Vi Mạch Bọc Resin Ngọc Dáng Vuông",
-      en: "925 Silver • Resin-Sealed Square Microchip",
+      vi: "Địa hình điêu khắc & Sắc xanh trầm mặc",
+      en: "Sculpted Topography & Rich Forest Hues",
     },
     description: {
       vi: "Nhẫn bản lớn Statement từ Bạc 925 với mặt vuông phẳng mịn phong ấn mảnh chip vi xử lý độc bản, tạo điểm nhấn cá tính mạnh mẽ.",
@@ -1180,13 +1162,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-3",
     itemNumber: 3,
     slug: "diamond-cable-optical-gold-ring-03",
-    title: "Diamond Cable Ring",
+    title: "Cable Ring",
     category: "rings",
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-03_1280x1280_crop_center.jpg?v=1674843261",
-      "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-02_1280x1280_crop_center.jpg?v=1676292946",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-03.jpg?v=1674843261",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Diamondcablering-02.jpg?v=1676292946",
     ],
     video:
       "https://www.oushaba.com/cdn/shop/videos/c/vp/3646cda551744946bcab9770313a596c/3646cda551744946bcab9770313a596c.HD-720p-4.5Mbps-12018984.mp4?v=0",
@@ -1197,8 +1179,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Kim Cương Thiên Nhiên & Cáp Quang Học",
-      en: "18K Gold • Natural Diamonds & Optical Cable Motif",
+      vi: "Bảo tồn vi phiến & Khung viền nguyên khối",
+      en: "Encapsulated Silicon & Monolithic Frame",
     },
     description: {
       vi: "Kiệt tác nhẫn đúc vàng 18K mô phỏng đường cáp truyền dữ liệu quang học nạm kim cương tấm lấp lánh, kèm video chuyển động 360 độ chân thực.",
@@ -1238,8 +1220,8 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-02_1280x1280_crop_center.jpg?v=1671395822",
-      "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-03_1280x1280_crop_center.jpg?v=1671395822",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-02.jpg?v=1671395822",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Fragmentsringingold-03.jpg?v=1671395822",
     ],
     get image() {
       return this.images[0];
@@ -1248,8 +1230,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Mảnh Ghép Vi Mạch Cấu Trúc Điêu Khắc",
-      en: "18K Gold • Sculptural Circuit Fragments",
+      vi: "Cấu trúc đan sợi dữ liệu & Điểm sáng tinh tế",
+      en: "Braided Data Texture & Brilliant Light Points",
     },
     description: {
       vi: "Chiếc nhẫn Fragments tôn vinh vẻ đẹp của những mảnh vỡ linh kiện công nghệ, tái định hình thành dải băng vàng 18K nguyên khối lượn sóng.",
@@ -1281,8 +1263,7 @@ export const PRODUCTS_DATABASE: Product[] = [
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230875_rt1_sm_1280x1280_crop_center.jpg?v=1701883390",
-      "/images/catalog/catalog_20.png"
+      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230875_rt1_sm.jpg?v=1701883390",
     ],
     get image() {
       return this.images[0];
@@ -1291,8 +1272,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Titanium F136 • Dáng Vuông Nguyên Khối Vị Lai",
-      en: "F136 Titanium • Futurist Monolith Silhouette",
+      vi: "Phù điêu xúc giác & Mặt vát kiến trúc",
+      en: "Tactile Micro-Relief & Architectural Facets",
     },
     description: {
       vi: "Nhẫn Monolith từ phôi Titanium F136 xước mờ satin, chống trầy xước và ăn mòn vượt trội, tối giản và mạnh mẽ.",
@@ -1322,15 +1303,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-6",
     itemNumber: 6,
     slug: "circuit-gold-ring-natural-emerald-06",
-    title: "Circuit Emerald Ring",
+    title: "Emerald Circuit Ring",
     category: "rings",
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-05_1280x1280_crop_center.jpg?v=1674842556",
-      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-06_1280x1280_crop_center.jpg?v=1674842556",
-      "/images/catalog/report_page_8.png",
-      "/images/catalog/catalog_28.png"
+      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-05.jpg?v=1674842556",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithgoldandemerald-06.jpg?v=1674842556",
     ],
     get image() {
       return this.images[0];
@@ -1339,8 +1318,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng 18K • Ngọc Lục Bảo & Bo Mạch Xanh Lục",
-      en: "18K Gold • Natural Emerald & Green PCB Matrix",
+      vi: "Hình học thực vật & Hóa thạch vi mạch",
+      en: "Botanical Geometry & Preserved Circuitry",
     },
     description: {
       vi: "Sự kết hợp hoàn mỹ giữa ngọc lục bảo thiên nhiên và sắc xanh đặc trưng của bo mạch vi tính trong lòng ổ nhẫn vàng 18K cao cấp.",
@@ -1374,14 +1353,14 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-7",
     itemNumber: 7,
     slug: "silver-circuit-inlaid-band-ring-07",
-    title: "Circuit Inlaid Ring",
+    title: "Inlaid Ring",
     category: "rings",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-01_3b186c49-8a0e-4a40-94e2-2f67df088c32_1280x1280_crop_center.jpg?v=1671395879",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-04_814060b6-b36e-4fe4-a482-4e55087afddd_1280x1280_crop_center.jpg?v=1674841333",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-02_7169cd21-93bb-4c6a-9a1f-6d558e549ed9_1280x1280_crop_center.jpg?v=1674841333",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-01_3b186c49-8a0e-4a40-94e2-2f67df088c32.jpg?v=1671395879",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-04_814060b6-b36e-4fe4-a482-4e55087afddd.jpg?v=1674841333",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silvercircuitring-02_7169cd21-93bb-4c6a-9a1f-6d558e549ed9.jpg?v=1674841333",
     ],
     get image() {
       return this.images[0];
@@ -1390,8 +1369,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Đai Nhẫn Khảm Vi Mạch Chạy Vòng",
-      en: "925 Silver • Continuous 360 Circuit Inlay",
+      vi: "Khối tích mạnh mẽ & Đường nét tối giản",
+      en: "Bold Brutalist Volume & Minimalist Contour",
     },
     description: {
       vi: "Đai nhẫn cưới/nhẫn đeo cặp Bạc 925 với đường vi mạch khảm liên tục 360 độ quanh thân nhẫn, an toàn tuyệt đối và bền bỉ với thời gian.",
@@ -1418,13 +1397,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-8",
     itemNumber: 8,
     slug: "silver-optical-cable-woven-ring-08",
-    title: "Optical Woven Ring",
+    title: "Woven Ring",
     category: "rings",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-03_1280x1280_crop_center.jpg?v=1671395869",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-02_1280x1280_crop_center.jpg?v=1671395869",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-03.jpg?v=1671395869",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silvercablering-02.jpg?v=1671395869",
     ],
     get image() {
       return this.images[0];
@@ -1433,8 +1412,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Cấu Trúc Bện Cáp Dữ Liệu Tinh Xảo",
-      en: "925 Silver • Woven Data Cable Construction",
+      vi: "Đai khảm tuần hoàn 360 & Họa tiết vi mạch",
+      en: "Continuous 360 Inlay & Subtle Circuit Motif",
     },
     description: {
       vi: "Từng sợi bạc 925 mảnh mai được đan bện mô phỏng dây cáp mạng dữ liệu cao tốc, kết hợp kỹ nghệ kim hoàn truyền thống và thẩm mỹ công nghệ.",
@@ -1461,13 +1440,13 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-9",
     itemNumber: 9,
     slug: "circuit-white-gold-ring-emerald-09",
-    title: "White Emerald Ring",
+    title: "Emerald Ring",
     category: "rings",
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-04_1280x1280_crop_center.jpg?v=1674842549",
-      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-03_1280x1280_crop_center.jpg?v=1674842549"
+      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-04.jpg?v=1674842549",
+      "https://www.oushaba.com/cdn/shop/products/Rings-Circuitringwithwhitegoldandemerald-03.jpg?v=1674842549"
     ],
     get image() {
       return this.images[0];
@@ -1476,8 +1455,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Vàng Trắng 18K • Ngọc Lục Bảo & Bo Mạch Băng Giá",
-      en: "18K White Gold • Emerald & Icy Circuit Trace",
+      vi: "Kỹ nghệ bện thủ công & Đường dẫn liên kết",
+      en: "Textile-Inspired Weave & Interconnected Pathways",
     },
     description: {
       vi: "Vẻ đẹp băng giá thanh nhã của vàng trắng 18k nâng đỡ viên ngọc lục bảo sâu thẳm, nổi bật trên nền các chân tiếp xúc mạch đồng mạ bạc vi mô.",
@@ -1508,14 +1487,14 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-10",
     itemNumber: 10,
     slug: "sapphire-bud-silver-micro-relic-ring-10",
-    title: "Sapphire Bud Ring",
+    title: "Sapphire Ring",
     category: "rings",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-02_1280x1280_crop_center.jpg?v=1674841314",
-      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-04_1280x1280_crop_center.jpg?v=1674841314",
-      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-01_1280x1280_crop_center.jpg?v=1674841314",
+      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-02.jpg?v=1674841314",
+      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-04.jpg?v=1674841314",
+      "https://www.oushaba.com/cdn/shop/products/Rings-sapphirebudring-01.jpg?v=1674841314",
     ],
     get image() {
       return this.images[0];
@@ -1524,8 +1503,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 • Nụ Sapphire Tự Nhiên & Mảnh Chip",
-      en: "925 Silver • Natural Sapphire Bud & Microchip Die",
+      vi: "Hình học tư duy & Tâm điểm tỏa sáng",
+      en: "Crisp Logic Geometry & Luminous Focal Point",
     },
     description: {
       vi: "Thiết kế chấu nhẫn ôm lấy viên đá Sapphire như một nụ hoa đang hé nở giữa khu rừng kim loại số, đúc từ Bạc 925 thanh khiết.",
@@ -1556,14 +1535,14 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-11",
     itemNumber: 11,
     slug: "fragments-white-gold-architectural-ring-11",
-    title: "Fragments Architecture",
+    title: "Fragments Ring",
     category: "rings",
     material: "gold",
     collection: "Gold 18K",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-02_1280x1280_crop_center.jpg?v=1671395841",
-      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-04_1280x1280_crop_center.jpg?v=1674841466",
-      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-03_1280x1280_crop_center.jpg?v=1674841466",
+      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-02.jpg?v=1671395841",
+      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-04.jpg?v=1674841466",
+      "https://www.oushaba.com/cdn/shop/products/Rings-fragmentsringinwhitegold-03.jpg?v=1674841466",
     ],
     get image() {
       return this.images[0];
@@ -1572,8 +1551,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Vàng Trắng 18K • Mảnh Ghép Khối Hình Học Kiến Trúc",
-      en: "18K White Gold • Architectural Geometry Fragments",
+      vi: "Chấu kẹp dạng nụ & Cấu trúc silicon mở",
+      en: "Subtle Bud Setting & Exposed Silicon Geometry",
     },
     description: {
       vi: "Nhẫn Fragments phiên bản vàng trắng 18k mang phong cách kiến trúc phi đối xứng avant-garde, đính mảnh vi mạch tuyển chọn.",
@@ -1600,15 +1579,15 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-12",
     itemNumber: 12,
     slug: "wide-silver-fragments-statement-ring-12",
-    title: "Wide Fragments Ring",
+    title: "Wide Band",
     category: "rings",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-03_1280x1280_crop_center.jpg?v=1674841365",
-      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-05_1280x1280_crop_center.jpg?v=1674841365",
-      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-02_1280x1280_crop_center.jpg?v=1674841365",
-      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-01_1280x1280_crop_center.jpg?v=1674841365",
+      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-03.jpg?v=1674841365",
+      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-05.jpg?v=1674841365",
+      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-02.jpg?v=1674841365",
+      "https://www.oushaba.com/cdn/shop/products/Rings-SilverFragmentsRing_wider_-01.jpg?v=1674841365",
     ],
     get image() {
       return this.images[0];
@@ -1617,8 +1596,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 Bản Rộng • Điêu Khắc Mảnh Vỡ Công Nghệ",
-      en: "925 Silver Wide Band • Tech Fragments Sculpture",
+      vi: "Bản thiết kế giải cấu trúc & Tuyến tính không gian",
+      en: "Deconstructed Blueprint & Clean Spatial Lines",
     },
     description: {
       vi: "Bản nhẫn rộng 12mm đầy quyền lực đúc từ Bạc 925, khảm các mẩu vi mạch nhiều sắc độ được gia công chống trầy và bóng gương hoàn hảo.",
@@ -1649,15 +1628,15 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-13",
     itemNumber: 13,
     slug: "slim-silver-fragments-stackable-ring-13",
-    title: "Slim Fragments Ring",
+    title: "Slim Band",
     category: "rings",
     material: "silver",
     collection: "Silver Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-01_1280x1280_crop_center.jpg?v=1671395891",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-03_1280x1280_crop_center.jpg?v=1674841374",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-02_1280x1280_crop_center.jpg?v=1674841374",
-      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-06_1280x1280_crop_bottom.jpg?v=1671395894",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-01.jpg?v=1671395891",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-03.jpg?v=1674841374",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-02.jpg?v=1674841374",
+      "https://www.oushaba.com/cdn/shop/products/Rings-silverfragmentsring_thin_-06.jpg?v=1671395894",
     ],
     get image() {
       return this.images[0];
@@ -1666,8 +1645,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[1] || this.images[0];
     },
     subtitle: {
-      vi: "Bạc 925 Bản Mảnh • Dễ Dàng Đeo Xếp Tầng (Stackable)",
-      en: "925 Silver Slim Band • Stackable Daily Essential",
+      vi: "Bản rộng ấn tượng & Điêu khắc hiện vật công nghệ",
+      en: "Substantial Profile & Reclaimed Tech Artifacts",
     },
     description: {
       vi: "Thiết kế nhẫn mảnh thanh nhã cho phép đeo đơn lẻ hoặc xếp tầng nhiều chiếc cùng nhau, mỗi chiếc mang một mảnh vi mạch độc nhất vô nhị.",
@@ -1694,13 +1673,12 @@ export const PRODUCTS_DATABASE: Product[] = [
     id: "rings-14",
     itemNumber: 14,
     slug: "titanium-f136-minimalist-tech-ring-14",
-    title: "Minimalist Tech Ring",
+    title: "Tech Ring",
     category: "rings",
     material: "titanium",
     collection: "F136 Titanium Collection",
     images: [
-      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230894_rt1_sm_1280x1280_crop_center.jpg?v=1701883048",
-      "/images/catalog/catalog_20.png"
+      "https://www.oushaba.com/cdn/shop/files/Oushaba_21_11_230894_rt1_sm.jpg?v=1701883048",
     ],
     get image() {
       return this.images[0];
@@ -1709,8 +1687,8 @@ export const PRODUCTS_DATABASE: Product[] = [
       return this.images[0];
     },
     subtitle: {
-      vi: "Titanium ASTM F136 • Phong Cách Tối Giản Vượt Thời Gian",
-      en: "ASTM F136 Titanium • Timeless Minimalist Tech",
+      vi: "Tỷ lệ thanh nhã & Xếp tầng linh hoạt hàng ngày",
+      en: "Refined Proportions & Effortless Everyday Stack",
     },
     description: {
       vi: "Đỉnh cao của sự tinh gọn: Nhẫn Titanium y sinh ASTM F136 siêu nhẹ, viền bo công thái học êm ái với điểm xuyết vi mạch công nghệ kín đáo.",

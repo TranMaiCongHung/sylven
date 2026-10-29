@@ -72,6 +72,15 @@ export interface Product {
   /** Ảnh hover (alias tiện lợi tương thích UI cũ) */
   hoverImage: string;
 
+  /** Chiều rộng ảnh gốc */
+  width?: number;
+
+  /** Chiều cao ảnh gốc */
+  height?: number;
+
+  /** Tỉ lệ khung hình (width/height hoặc '1600 / 2400') */
+  aspectRatio?: string;
+
   /** Video review nếu có (ví dụ nhẫn số 3) */
   video?: string;
 

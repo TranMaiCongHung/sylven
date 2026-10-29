@@ -1,4 +1,5 @@
 import { PRODUCTS_DATABASE } from "./products.data";
+import { PRODUCT_DIMENSIONS } from "./product-dimensions.data";
 import type {
   Product,
   ProductCategory,
@@ -9,6 +10,42 @@ import type {
 // Helper giả lập độ trễ mạng nhẹ (cho phép test skeleton/loading state tự nhiên)
 const simulateLatency = (ms: number = 20) =>
   new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Thứ tự sắp xếp mặc định theo cặp tỉ lệ (2 cột cân đối, mỹ quan quiet luxury)
+ * Row 1: Constellation Necklace & Gold Alliance Earrings (khớp chính xác Screenshot 2)
+ * Row 2: Gold Remnants Ring & Emerald Circuit Ring (khớp chính xác Screenshot 1 & 2)
+ */
+const CURATED_DEFAULT_ORDER = [
+  "necklaces-1", "earrings-9", // Row 1 (Screenshot 2: Constellation Necklace & Gold Alliance Earrings)
+  "rings-1", "rings-6",         // Row 2 (Screenshot 1 & 2: Gold Remnants Ring & Emerald Circuit Ring)
+  "necklaces-2", "earrings-4", // Row 3: Ascent Necklace & Sapphire Odyssey
+  "rings-3", "rings-5",        // Row 4: Cable Ring & Monolith Ring
+  "necklaces-4", "earrings-6", // Row 5: Memento Necklace & Aquamarine Odyssey
+  "rings-4", "rings-9",        // Row 6: Fragments Band & Emerald Ring
+  "necklaces-5", "earrings-8", // Row 7: Mini Code Necklace & Wire Odyssey
+  "rings-11", "rings-14",      // Row 8: Fragments Ring & Tech Ring
+  "necklaces-6", "necklaces-7",// Row 9: Silver Constellation & USB Relic
+  "rings-7", "rings-12",       // Row 10: Inlaid Ring & Wide Band
+  "rings-13", "necklaces-9",   // Row 11: Slim Band & Voyage Necklace
+  "necklaces-3", "bracelets-1",// Row 12: Code Necklace & Vestige Bracelet
+  "earrings-1", "rings-10",    // Row 13: Circuit Studs & Sapphire Ring
+  "necklaces-8", "rings-8",    // Row 14: Baroque Ascent & Woven Ring
+  "bracelets-2", "earrings-2", // Row 15: Vestige Cuff & Futurist Earrings
+  "earrings-10", "bracelets-3",// Row 16: Circuit Fossil & Orbit Bracelet
+  "earrings-3", "earrings-7",  // Row 17: Connection Drops & Emerald Fossil
+  "earrings-5", "rings-2",     // Row 18: Alliance Duality & Cyber Relic
+];
+
+function enrichProduct(item: Product): Product {
+  const dim = PRODUCT_DIMENSIONS[item.id];
+  return {
+    ...item,
+    width: dim?.width || 1600,
+    height: dim?.height || 2400,
+    aspectRatio: dim?.aspectRatio || "1600 / 2400",
+  };
+}
 
 export const productRepository = {
   /**
@@ -74,6 +111,17 @@ export const productRepository = {
       } else if (options.sortBy === "title") {
         items.sort((a, b) => a.title.localeCompare(b.title));
       }
+    } else if (
+      (!options.category || options.category === "all") &&
+      (!options.material || options.material === "all") &&
+      !options.search
+    ) {
+      // Sắp xếp mặc định theo thứ tự thẩm mỹ cặp đôi (Curated 2-column pairing)
+      items.sort((a, b) => {
+        const idxA = CURATED_DEFAULT_ORDER.indexOf(a.id);
+        const idxB = CURATED_DEFAULT_ORDER.indexOf(b.id);
+        return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+      });
     }
 
     // Phân trang
@@ -83,7 +131,7 @@ export const productRepository = {
       items = items.slice(offset, offset + limit);
     }
 
-    return items;
+    return items.map(enrichProduct);
   },
 
   /**
@@ -92,7 +140,7 @@ export const productRepository = {
   async getProductById(id: string): Promise<Product | null> {
     await simulateLatency(10);
     const found = PRODUCTS_DATABASE.find((item) => item.id === id);
-    return found || null;
+    return found ? enrichProduct(found) : null;
   },
 
   /**
@@ -106,7 +154,7 @@ export const productRepository = {
     const found = PRODUCTS_DATABASE.find(
       (item) => item.category === category && item.itemNumber === itemNumber
     );
-    return found || null;
+    return found ? enrichProduct(found) : null;
   },
 
   /**
@@ -115,7 +163,7 @@ export const productRepository = {
   async getProductBySlug(slug: string): Promise<Product | null> {
     await simulateLatency(10);
     const found = PRODUCTS_DATABASE.find((item) => item.slug === slug);
-    return found || null;
+    return found ? enrichProduct(found) : null;
   },
 
   /**
@@ -137,7 +185,7 @@ export const productRepository = {
    */
   async getCuratedArtworks(): Promise<Product[]> {
     await simulateLatency(10);
-    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isCurated);
+    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isCurated).map(enrichProduct);
   },
 
   /**
@@ -145,7 +193,7 @@ export const productRepository = {
    */
   async getHeroShowcaseItems(): Promise<Product[]> {
     await simulateLatency(10);
-    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isHeroShowcase);
+    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isHeroShowcase).map(enrichProduct);
   },
 
   /**
@@ -153,7 +201,7 @@ export const productRepository = {
    */
   async getCarouselItems(): Promise<Product[]> {
     await simulateLatency(10);
-    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isCarousel);
+    return PRODUCTS_DATABASE.filter((item) => item.featuredFlags?.isCarousel).map(enrichProduct);
   },
 
   /**
@@ -211,7 +259,7 @@ export const productRepository = {
 
     product.price = newPrice;
     product.formattedPrice = newPrice.toLocaleString("vi-VN") + "₫";
-    return product;
+    return enrichProduct(product);
   },
 
   /**
@@ -230,4 +278,3 @@ export const productRepository = {
     }));
   },
 };
-
