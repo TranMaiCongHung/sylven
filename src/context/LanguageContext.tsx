@@ -17,7 +17,8 @@ const LanguageContext = React.createContext<LanguageContextType | undefined>(
 const STORAGE_KEY = "sylven_language";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = React.useState<Language>("vi");
+  // Mặc định mới vô trang web là tiếng Anh ("en")
+  const [language, setLanguageState] = React.useState<Language>("en");
 
   React.useEffect(() => {
     try {
@@ -41,7 +42,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const toggleLanguage = React.useCallback(() => {
     setLanguageState((prev: Language) => {
-      const next: Language = prev === "vi" ? "en" : "vi";
+      const next: Language = prev === "en" ? "vi" : "en";
       try {
         localStorage.setItem(STORAGE_KEY, next);
       } catch {
@@ -73,10 +74,10 @@ export function useLanguage(): LanguageContextType {
   if (!context) {
     // Graceful fallback for SSR or components rendered outside provider
     return {
-      language: "vi",
+      language: "en",
       setLanguage: () => {},
       toggleLanguage: () => {},
-      t: translations.vi,
+      t: translations.en,
     };
   }
   return context;

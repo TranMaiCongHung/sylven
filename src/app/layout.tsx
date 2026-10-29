@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Header, Footer } from "@/components/layout";
+import { BagDrawer } from "@/components/cart";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { CartProvider } from "@/context/CartContext";
 import { siteConfig } from "@/config";
 import "./globals.css";
 
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    locale: "vi_VN",
+    locale: "en_US",
     type: "website",
   },
   icons: {
@@ -45,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -56,9 +58,12 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col font-sans antialiased text-slate-900 bg-white overflow-x-hidden max-w-full">
         <LanguageProvider>
-          <Header />
-          <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
-          <Footer />
+          <CartProvider>
+            <Header />
+            <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+            <Footer />
+            <BagDrawer />
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

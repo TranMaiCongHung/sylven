@@ -2,14 +2,11 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Heart } from "lucide-react";
-import { siteConfig } from "@/config";
 import { BrandLogo } from "@/components/common";
 import { Container } from "./Container";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
   const { language, t } = useLanguage();
 
   const footerColumns = React.useMemo(() => [
@@ -23,6 +20,14 @@ export function Footer() {
       ],
     },
     {
+      title: t.footer.columns.about || (language === "vi" ? "Về Sylven" : "About"),
+      links: [
+        { label: t.aboutPage?.title || "We are SYLVEN", href: "/about" },
+        { label: language === "vi" ? "Tính tuần hoàn & Thủ công" : "Circularity & Craft", href: "/#alchemy" },
+        { label: language === "vi" ? "Đặt lịch hẹn riêng" : "Private Appointment", href: "/san-pham" },
+      ],
+    },
+    {
       title: t.footer.columns.legal,
       links: [
         { label: t.footer.columns.certification, href: "/san-pham" },
@@ -30,60 +35,64 @@ export function Footer() {
         { label: t.footer.columns.terms, href: "#" },
       ],
     },
-  ], [t]);
+  ], [t, language]);
 
   return (
     <footer className="border-t border-stone-200/80 bg-white">
-      <Container>
+      <Container size="lg">
         <div className="py-12 md:py-16">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Brand column */}
-            <div className="lg:col-span-2 space-y-4">
-              <Link
-                href="/"
-                className="flex items-center gap-3 font-bold text-lg text-slate-900"
-              >
-                <BrandLogo size={36} />
-                <span className="font-yavimayan text-xl font-bold tracking-[0.2em] text-[#18181B]">
-                  SYLVEN
-                </span>
-              </Link>
-              <p className="max-w-sm text-sm text-stone-600 leading-relaxed">
+          {/* Even 4-Column Grid: Perfectly aligned baselines and flush left edges */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 xl:gap-14 items-start">
+            {/* Column 1: Brand Info & Social Icons */}
+            <div className="space-y-4">
+              <div className="h-7 flex items-center">
+                <Link
+                  href="/"
+                  className="inline-flex items-center gap-2.5 font-bold text-lg text-slate-900 focus:outline-hidden"
+                >
+                  <BrandLogo size={28} />
+                  <span className="font-yavimayan text-lg sm:text-xl font-bold tracking-[0.2em] text-[#18181B] leading-none">
+                    SYLVEN
+                  </span>
+                </Link>
+              </div>
+              <p className="text-sm text-stone-600 leading-relaxed font-lexend font-light">
                 {t.footer.description}
               </p>
-              <div className="flex items-center gap-3 pt-2 text-stone-500">
-                <a
-                  href={siteConfig.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-none p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
-                  aria-label="GitHub"
+              {/* Social Icons: Perfectly flush left aligned with SYLVEN and paragraph */}
+              <div className="flex items-center gap-4 pt-1 text-stone-500">
+                <span
+                  className="text-stone-500 hover:text-stone-900 transition-colors cursor-pointer select-none inline-flex items-center justify-center"
+                  aria-label="Instagram"
+                  title="Instagram"
+                >
+                  <svg className="h-4 w-4 fill-none stroke-current stroke-[1.75]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                  </svg>
+                </span>
+                <span
+                  className="text-stone-500 hover:text-stone-900 transition-colors cursor-pointer select-none inline-flex items-center justify-center"
+                  aria-label="TikTok"
+                  title="TikTok"
                 >
                   <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z" />
                   </svg>
-                </a>
-                <a
-                  href={siteConfig.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-none p-2 hover:bg-stone-200/50 hover:text-stone-900 transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.79v8.37H6.46v-8.37M7.86 6.54a1.63 1.63 0 1 0 1.63 1.63 1.63 1.63 0 0 0-1.63-1.63z" />
-                  </svg>
-                </a>
+                </span>
               </div>
             </div>
 
-            {/* Links Columns */}
+            {/* Columns 2, 3, 4: Navigation Link Columns */}
             {footerColumns.map((column) => (
-              <div key={column.title} className="space-y-3">
-                <h4 className="font-oranienbaum text-xs font-semibold uppercase tracking-wider text-stone-900">
-                  {column.title}
-                </h4>
-                <ul className="space-y-2 text-sm">
+              <div key={column.title} className="space-y-4">
+                <div className="h-7 flex items-center">
+                  <h4 className="font-oranienbaum text-xs font-semibold uppercase tracking-wider text-stone-900 leading-none">
+                    {column.title}
+                  </h4>
+                </div>
+                <ul className="space-y-2.5 text-sm font-lexend font-light">
                   {column.links.map((link) => (
                     <li key={link.label}>
                       <Link
@@ -97,16 +106,6 @@ export function Footer() {
                 </ul>
               </div>
             ))}
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-stone-200/80 pt-8 text-xs text-stone-500 md:flex-row">
-            <p>
-              © {currentYear} {siteConfig.name}. {t.footer.rights}
-            </p>
-            <p className="flex items-center gap-1">
-              Sylven Atelier <Heart className="h-3.5 w-3.5 text-stone-700 fill-stone-700" /> Haute Sculpture
-            </p>
           </div>
         </div>
       </Container>

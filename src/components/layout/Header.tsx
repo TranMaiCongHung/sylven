@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, Globe, ChevronDown, Check } from "lucide-react";
 import { BrandLogo } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCart } from "@/context/CartContext";
 
 interface NavItem {
   label: string;
@@ -17,8 +18,10 @@ interface NavItem {
 export function Header() {
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
+  const { totalCount, openBag, isOpen: isBagOpen } = useCart();
   const [scrollY, setScrollY] = React.useState(0);
   const [isOverHero, setIsOverHero] = React.useState(true);
+  const [isBrandVisible, setIsBrandVisible] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = React.useState(false);
   const langDropdownRef = React.useRef<HTMLDivElement>(null);
@@ -34,14 +37,20 @@ export function Header() {
         if (pathname === "/") {
           const heroEl = document.getElementById("top");
           if (heroEl) {
+            const heroHeight = heroEl.offsetHeight;
             const rect = heroEl.getBoundingClientRect();
             // Header is 72px tall. While hero bottom is below 72px, header is within the hero background.
             setIsOverHero(rect.bottom > 72);
+            // Brand logo and SYLVEN in header appear after hero brand text fades out (~40% of hero height)
+            const fadeThreshold = Math.max(200, heroHeight * 0.4);
+            setIsBrandVisible(currentScroll >= fadeThreshold);
           } else {
             setIsOverHero(currentScroll < 800);
+            setIsBrandVisible(currentScroll >= 400);
           }
         } else {
           setIsOverHero(false);
+          setIsBrandVisible(true);
         }
       });
     };
@@ -79,6 +88,7 @@ export function Header() {
   // Removed "Trang chủ" tab: landing page is accessed by clicking brand name/logo
   const navItems: NavItem[] = [
     { label: t.nav.products, href: "/san-pham", matchPrefix: true },
+    { label: t.nav.about || "About", href: "/about", matchPrefix: true },
   ];
 
   const isTabActive = (item: NavItem) => {
@@ -115,20 +125,20 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full z-50 select-none transition-all duration-300 ease-out ${
+      className={`fixed top-0 left-0 right-0 w-full z-50 select-none font-lexend transition-all duration-300 ease-out ${
         isTransparent
           ? "bg-transparent border-b border-transparent shadow-none"
           : "bg-white/92 backdrop-blur-md border-b border-stone-200/80 shadow-xs"
       }`}
       style={{ height: "72px" }}
     >
-      <div className="mx-auto w-full max-w-7xl h-full px-4 sm:px-8 flex items-center justify-between">
+      <div className="w-full h-full px-5 sm:px-8 md:px-12 lg:px-16 flex items-center justify-between">
         {/* LEFT: Brand Logo + Brand Name "SYLVEN" (hidden on initial view so it doesn't duplicate bottom text, fades in as user scrolls) */}
         <Link
           href="/"
           onClick={handleBrandClick}
-          className={`flex items-center gap-2.5 sm:gap-3 group focus:outline-hidden transition-all duration-300 ${
-            isLandingPage && scrollY < 200
+          className={`flex items-center gap-2.5 sm:gap-3 group focus:outline-hidden transition-all duration-500 ease-out ${
+            isLandingPage && !isBrandVisible
               ? "opacity-0 pointer-events-none -translate-x-2"
               : "opacity-100 pointer-events-auto translate-x-0"
           }`}
@@ -153,7 +163,7 @@ export function Header() {
         </Link>
 
         {/* RIGHT GROUP: Menu Tabs aligned to the right + Language Dropdown + Mobile Hamburger */}
-        <div className="flex items-center gap-6 sm:gap-8">
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
           {/* Navigation Tabs (right-aligned) */}
           <nav
             aria-label="Thanh điều hướng chính"
@@ -168,11 +178,11 @@ export function Header() {
                   className="relative py-2.5 px-2 focus:outline-hidden group"
                 >
                   <span
-                    className={`text-sm lg:text-[15px] font-medium tracking-[0.08em] transition-colors duration-200 ${
+                    className={`text-sm lg:text-[14.5px] font-light tracking-[0.06em] transition-colors duration-200 ${
                       isTransparent
-                        ? "text-white/90 hover:text-white drop-shadow-sm font-medium"
+                        ? "text-white/90 hover:text-white drop-shadow-sm font-light"
                         : active
-                        ? "text-[#18181B] font-semibold"
+                        ? "text-[#18181B] font-normal"
                         : "text-stone-500 hover:text-stone-900"
                     }`}
                   >
@@ -198,16 +208,55 @@ export function Header() {
                 </Link>
               );
             })}
+            {/* Bag Tab (Matching Image 1: Bag (1) / Bag (0)) */}
+            <button
+              type="button"
+              onClick={openBag}
+              className="relative py-2.5 px-2 focus:outline-hidden group cursor-pointer"
+              aria-label={`Shopping Bag (${totalCount})`}
+            >
+              <span
+                className={`text-sm lg:text-[14.5px] font-light tracking-[0.06em] transition-colors duration-200 ${
+                  isTransparent
+                    ? "text-white/90 hover:text-white drop-shadow-sm font-light"
+                    : isBagOpen
+                    ? "text-[#18181B] font-normal"
+                    : "text-stone-500 hover:text-stone-900"
+                }`}
+              >
+                Bag ({totalCount})
+              </span>
+              <span
+                className={`absolute -bottom-0.5 left-0 right-0 h-[1.5px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-none ${
+                  isTransparent ? "bg-white/80" : "bg-stone-300"
+                }`}
+              />
+            </button>
           </nav>
 
           {/* Controls: Language Dropdown & Mobile Hamburger */}
           <div className="flex items-center gap-3">
+            {/* Mobile / Compact Bag Button */}
+            <button
+              type="button"
+              onClick={openBag}
+              className={`md:hidden flex items-center px-2.5 py-1.5 text-xs font-lexend font-light transition-colors cursor-pointer border ${
+                isTransparent
+                  ? "bg-black/25 hover:bg-black/40 text-white border-white/30 backdrop-blur-sm"
+                  : "bg-white/70 hover:bg-white border-stone-200/90 hover:border-stone-300 text-stone-800"
+              }`}
+              aria-label={`Shopping Bag (${totalCount})`}
+            >
+              <span className="tracking-wider font-normal text-[11px]">
+                Bag ({totalCount})
+              </span>
+            </button>
             {/* Language Dropdown */}
             <div className="relative" ref={langDropdownRef}>
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-sans font-medium transition-all duration-200 cursor-pointer shadow-2xs group focus:outline-hidden ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-lexend font-light transition-all duration-200 cursor-pointer shadow-2xs group focus:outline-hidden ${
                   isTransparent
                     ? "bg-black/25 hover:bg-black/40 text-white border border-white/30 backdrop-blur-sm"
                     : "bg-white/70 hover:bg-white border border-stone-200/90 hover:border-stone-300 text-stone-800"
@@ -221,7 +270,7 @@ export function Header() {
                     isTransparent ? "text-white/80 group-hover:text-white" : "text-stone-500 group-hover:text-stone-800"
                   }`}
                 />
-                <span className="uppercase tracking-wider font-semibold text-[11px]">
+                <span className="tracking-wider font-normal text-[11px]">
                   {language}
                 </span>
                 <ChevronDown
@@ -241,7 +290,7 @@ export function Header() {
                     className="absolute right-0 top-full mt-2 w-44 rounded-none bg-white/95 backdrop-blur-xl border border-stone-200/90 shadow-xl py-1.5 z-50 overflow-hidden"
                     role="listbox"
                   >
-                    <div className="px-3.5 py-1.5 text-[10px] font-sans font-semibold tracking-[0.14em] uppercase text-stone-400 border-b border-stone-200/50">
+                    <div className="px-3.5 py-1.5 text-[10px] font-lexend font-semibold tracking-[0.14em] uppercase text-stone-400 border-b border-stone-200/50">
                       {language === "vi" ? "Ngôn ngữ" : "Language"}
                     </div>
                     {languages.map((item) => {
@@ -264,7 +313,7 @@ export function Header() {
                         >
                           <div className="flex items-center gap-2">
                             <span className="text-sm">{item.flag}</span>
-                            <span className="font-sans">{item.label}</span>
+                            <span className="font-lexend">{item.label}</span>
                           </div>
                           {isSelected ? (
                             <Check className="w-3.5 h-3.5 text-stone-300" />
@@ -321,7 +370,7 @@ export function Header() {
                     <span
                       className={
                         active
-                          ? "text-[#18181B] font-semibold"
+                          ? "text-[#18181B] font-normal"
                           : "text-stone-600 hover:text-stone-900"
                       }
                     >
@@ -332,13 +381,28 @@ export function Header() {
                     {active ? (
                       <span className="w-8 h-[2.5px] bg-[#18181B] rounded-none" />
                     ) : (
-                      <span className="text-xs text-stone-400 font-sans">
+                      <span className="text-xs text-stone-400 font-lexend">
                         →
                       </span>
                     )}
                   </Link>
                 );
               })}
+
+              {/* Mobile Bag button */}
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openBag();
+                }}
+                className="relative flex items-center justify-between py-2.5 text-base font-medium tracking-wide focus:outline-hidden text-left cursor-pointer"
+              >
+                <span className="text-stone-600 hover:text-stone-900 font-light">
+                  Bag ({totalCount})
+                </span>
+                <span className="text-xs text-stone-400 font-lexend">→</span>
+              </button>
 
               {/* Mobile Language Selector */}
               <div className="pt-4 border-t border-stone-200/80 flex items-center justify-between">
@@ -357,7 +421,7 @@ export function Header() {
                           setLanguage(item.code);
                           setMobileMenuOpen(false);
                         }}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-sans transition-colors cursor-pointer ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-none text-xs font-lexend transition-colors cursor-pointer ${
                           isSelected
                             ? "bg-stone-900 text-white font-medium"
                             : "bg-stone-200/70 text-stone-700 hover:bg-stone-300/70"

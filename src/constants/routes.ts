@@ -5,7 +5,7 @@ export const ROUTES = {
   HOME: "/",
   ITEMS: "#items",
   FEATURES: "#features",
-  ABOUT: "#about",
+  ABOUT: "/about",
   CONTACT: "mailto:curator@sylven.dev",
 } as const;
 
