@@ -22,13 +22,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!product) {
     return {
-      title: "Tác Phẩm Không Tìm Thấy | SYLVEN",
+      title: "SYLVEN",
       description: "Tác phẩm trang sức công nghệ đương đại độc bản SYLVEN.",
     };
   }
 
   return {
-    title: `${product.title} | SYLVEN Contemporary Jewelry`,
+    title: "SYLVEN",
     description: `${product.title} - ${product.subtitle.vi}. Giá ước tính: ${product.formattedPrice}. Chế tác thủ công từ vi mạch tái sinh và kim hoàn quý.`,
     openGraph: {
       title: `${product.title} | SYLVEN`,

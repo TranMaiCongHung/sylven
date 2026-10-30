@@ -7,7 +7,10 @@ import { siteConfig } from "@/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SYLVEN",
+  title: {
+    default: "SYLVEN",
+    template: "SYLVEN",
+  },
   description: siteConfig.description,
   keywords: [
     "SYLVEN",
@@ -46,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>SYLVEN</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

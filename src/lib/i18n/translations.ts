@@ -9,6 +9,7 @@ export interface TranslationSchema {
   nav: {
     home: string;
     products: string;
+    campaign?: string;
     about: string;
     languageToggle: string;
   };
@@ -115,7 +116,8 @@ export const translations: Record<Language, TranslationSchema> = {
     // Header & Navigation
     nav: {
       home: "Trang chủ",
-      products: "Sản phẩm",
+      products: "Creations",
+      campaign: "Campaign",
       about: "About",
       languageToggle: "Chuyển đổi ngôn ngữ",
     },
@@ -255,6 +257,7 @@ export const translations: Record<Language, TranslationSchema> = {
     nav: {
       home: "Home",
       products: "Creations",
+      campaign: "Campaign",
       about: "About",
       languageToggle: "Switch language",
     },

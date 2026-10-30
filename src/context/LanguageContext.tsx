@@ -21,6 +21,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = React.useState<Language>("en");
 
   React.useEffect(() => {
+    document.title = "SYLVEN";
+  }, [language]);
+
+  React.useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as Language | null;
       if (saved === "vi" || saved === "en") {

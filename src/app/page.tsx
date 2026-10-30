@@ -8,7 +8,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/layout";
-import { Button, FlexCarousel, SlingButton } from "@/components/ui";
+import { Button, FlexCarousel, SlingButton, ShinyText } from "@/components/ui";
 import { ScrollReveal } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
 import { productRepository, PRODUCTS_DATABASE } from "@/data";
@@ -17,6 +17,10 @@ export default function HomePage() {
   const { language, t } = useLanguage();
   const [mounted, setMounted] = React.useState(false);
   const [scrollY, setScrollY] = React.useState(0);
+
+  React.useEffect(() => {
+    document.title = "SYLVEN";
+  }, []);
 
   const curatedArtworks = React.useMemo(() => {
     return PRODUCTS_DATABASE.filter((it) => it.featuredFlags?.isCurated)
@@ -143,8 +147,26 @@ export default function HomePage() {
               }}
               className="fixed bottom-0 left-0 right-0 w-full justify-center items-end pb-1 sm:pb-2 px-2 sm:px-4 select-none pointer-events-none z-30"
             >
-              <span className="font-yavimayan text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14.5vw] font-bold text-white tracking-[0.14em] sm:tracking-[0.18em] lg:tracking-[0.22em] leading-[0.80] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] text-center w-full block">
-                SYLVEN
+              <span className="font-yavimayan text-[17vw] sm:text-[16vw] md:text-[15vw] lg:text-[14.5vw] font-bold tracking-[0.14em] sm:tracking-[0.18em] lg:tracking-[0.22em] leading-[0.80] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] text-center w-full block">
+                <ShinyText
+                  text="SYLVEN"
+                  color="#ebebeb"
+                  shineColor="#ffffff"
+                  speed={2}
+                  shineWidth={50}
+                  softness={0.7}
+                  trigger="loop"
+                  delay={0}
+                  angle={120}
+                  bands={1}
+                  glow={0.6}
+                  direction="right"
+                  easing="smooth"
+                  yoyo={false}
+                  followPointer={false}
+                  pauseOnHover={false}
+                  disabled={false}
+                />
               </span>
             </div>
           );
