@@ -133,7 +133,7 @@ export default function ProductsPage() {
       <section className="px-4">
         <Container size="lg">
           {/* BREADCRUMB TREE: ALIGNED TO THE LEFT */}
-          <div className="w-full flex justify-start mb-6 sm:mb-8">
+          <div className="w-full flex justify-start mb-4 sm:mb-6">
             <Breadcrumbs
               items={[
                 { label: "HOME", href: "/" },
@@ -142,10 +142,38 @@ export default function ProductsPage() {
             />
           </div>
 
-          <div className="flex flex-col items-center text-center max-w-5xl mx-auto pt-2">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-oranienbaum font-medium text-[#18181B] tracking-[0.03em] uppercase leading-tight text-balance">
-              {t.productsPage.title}
-            </h1>
+          {/* HERO SPLIT BANNER: CONNECTION SALVAGED (Replacing Contemporary Title) */}
+          <div className="w-full mb-8 sm:mb-10 overflow-hidden bg-[#dbbfb2] shadow-xs">
+            <h1 className="sr-only">{t.productsPage.title}</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden bg-[#dbbfb2]">
+              {/* Left: Component with peach background, left-aligned title & justified content */}
+              <div className="w-full md:aspect-[1.5/1] bg-[#dbbfb2] flex flex-col justify-center items-center p-6 sm:p-8 md:p-8 lg:p-10 xl:p-12">
+                <div className="w-full max-w-[460px] flex flex-col items-start">
+                  <h2 className="font-oranienbaum text-2xl sm:text-3xl md:text-[26px] lg:text-[30px] xl:text-[32px] text-[#051933] font-normal tracking-[0.04em] uppercase leading-[1.18] text-left mb-3 sm:mb-4">
+                    <span>{t.manifesto.titleMain || "FINDING BEAUTY IN"}</span>
+                    <span className="block mt-0.5 sm:mt-1">{t.manifesto.titleSub || "THE ABANDONED"}</span>
+                  </h2>
+                  <p
+                    style={{ textAlign: "justify" }}
+                    className="font-lexend font-light text-[11.5px] sm:text-[12px] md:text-[12.5px] lg:text-[13px] text-stone-800 leading-[1.75] sm:leading-[1.8] text-justify w-full"
+                  >
+                    {t.manifesto.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Editorial Campaign Photo */}
+              <div className="relative w-full aspect-[1.5/1] bg-stone-100 overflow-hidden">
+                <Image
+                  src="/images/about/connection-salvaged-models.webp"
+                  alt="Sylven Connection Salvaged Editorial Campaign"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+              </div>
+            </div>
           </div>
 
           {/* UNIFIED LUXURY FILTER BAR (MATCHING IMAGE 1 EXACTLY: FILTER | CATEGORIES | MATERIAL) */}

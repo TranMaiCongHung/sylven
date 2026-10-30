@@ -7,10 +7,7 @@ import { siteConfig } from "@/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
+  title: "SYLVEN",
   description: siteConfig.description,
   keywords: [
     "SYLVEN",

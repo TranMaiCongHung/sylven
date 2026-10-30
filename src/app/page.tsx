@@ -151,33 +151,79 @@ export default function HomePage() {
         })()}
       </section>
 
-      {/* 2. MANIFESTO & PHILOSOPHY HEADLINE SECTION */}
-      <section id="manifesto" className="scroll-mt-20 pt-16 sm:pt-24 pb-10 sm:pb-14 lg:pb-16 relative overflow-hidden">
+      {/* 2. MANIFESTO & PHILOSOPHY SECTION (FINDING BEAUTY IN THE ABANDONED) */}
+      <section id="manifesto" className="scroll-mt-20 py-14 sm:py-20 lg:py-24 relative overflow-hidden bg-white">
         <Container size="lg">
-          <div className="mx-auto max-w-4xl text-center">
-            {/* Headline (No Underline) */}
-            <ScrollReveal direction="up" delay={0.1}>
-              <h1 className="font-oranienbaum text-3xl font-medium tracking-[0.03em] uppercase text-[#18181B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.18] text-balance">
-                {t.manifesto.titlePrefix}
-                {t.manifesto.titleHighlight}
-                {t.manifesto.titleSuffix}
-              </h1>
-            </ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+            {/* Left Narrative Column */}
+            <div className="lg:col-span-6 min-w-0 flex flex-col justify-center">
+              <ScrollReveal direction="up" delay={0.1}>
+                <h2 className="font-oranienbaum text-3xl sm:text-4xl lg:text-[42px] font-normal tracking-[0.03em] uppercase text-[#051933] leading-[1.15]">
+                  <span>{t.manifesto.titleMain || "FINDING BEAUTY IN"}</span>
+                  <span className="block mt-1 sm:mt-1.5 font-normal">
+                    {t.manifesto.titleSub || "THE ABANDONED"}
+                  </span>
+                </h2>
+              </ScrollReveal>
 
-            {/* CTAs */}
-            <ScrollReveal direction="up" delay={0.2}>
-              <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
-                <Link href="#showcase">
-                  <Button
-                    size="lg"
-                    className="bg-[#18181B] text-[#F5F2EB] hover:bg-[#27272A] border border-stone-800 px-7 py-3.5 rounded-none shadow-md hover:shadow-lg font-medium text-sm sm:text-base tracking-wide cursor-pointer"
-                    rightIcon={<ArrowDown className="h-4 w-4 animate-bounce" />}
+              <ScrollReveal direction="up" delay={0.2}>
+                <p
+                  style={{ textAlign: "justify" }}
+                  className="font-lexend font-light text-[13px] sm:text-[13.5px] md:text-[14px] text-stone-600 leading-[1.8] sm:leading-[1.85] mt-5 sm:mt-6 max-w-lg text-justify"
+                >
+                  {t.manifesto.description}
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal direction="up" delay={0.3}>
+                <div className="mt-7 sm:mt-9">
+                  <Link
+                    href="/san-pham"
+                    className="inline-block font-lexend font-light text-xs sm:text-[13px] uppercase tracking-[0.2em] text-[#18181B] hover:underline underline-offset-[6px] decoration-stone-900 transition-all cursor-pointer"
                   >
-                    {t.manifesto.exploreBtn}
-                  </Button>
-                </Link>
-              </div>
-            </ScrollReveal>
+                    {t.manifesto.discoverBtn || "DISCOVER THE COLLECTION"}
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Right Imagery Column: Model Photo with Overlapping Inset Necklace (Pure static images, no outer background) */}
+            <div className="lg:col-span-6 min-w-0 w-full flex justify-center lg:justify-end">
+              <ScrollReveal direction="up" delay={0.25} duration={1} className="w-full max-w-[520px]">
+                <div className="relative w-full">
+                  {/* Main Model Photo (Static, no background, no hover zoom) */}
+                  <Link href="/san-pham" className="block cursor-pointer">
+                    <div className="relative w-full aspect-[4/3] sm:aspect-[1.12/1] overflow-hidden rounded-none">
+                      <Image
+                        src="https://www.oushaba.com/cdn/shop/products/Oushaba_M_14_9_224801_rt1copy_840x.jpg?v=1676292659"
+                        alt="Sylven Connection Salvaged Jewelry Editorial"
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  </Link>
+
+                  {/* Overlapping Inset Product Photo (Memento Necklace - Static, no background box, no hover animation) */}
+                  <Link
+                    href="/san-pham/memento-necklace-gold-04"
+                    className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-10 md:-left-12 w-[140px] sm:w-[180px] md:w-[220px] aspect-[1/1] z-20 block cursor-pointer"
+                    aria-label="View Memento Necklace"
+                  >
+                    <div className="relative w-full h-full overflow-hidden">
+                      <Image
+                        src="https://www.oushaba.com/cdn/shop/products/Necklaces-Mementonecklacegold_-03.jpg?v=1671395481"
+                        alt="Memento Necklace - Recycled Gold & Microcircuitry"
+                        fill
+                        sizes="220px"
+                        className="object-cover object-center"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </Container>
       </section>

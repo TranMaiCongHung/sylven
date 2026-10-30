@@ -178,7 +178,7 @@ export function Header() {
                   className="relative py-2.5 px-2 focus:outline-hidden group"
                 >
                   <span
-                    className={`text-sm lg:text-[14.5px] font-light tracking-[0.06em] transition-colors duration-200 ${
+                    className={`text-sm lg:text-[14px] font-light uppercase tracking-[0.12em] transition-colors duration-200 ${
                       isTransparent
                         ? "text-white/90 hover:text-white drop-shadow-sm font-light"
                         : active
@@ -216,7 +216,7 @@ export function Header() {
               aria-label={`Shopping Bag (${totalCount})`}
             >
               <span
-                className={`text-sm lg:text-[14.5px] font-light tracking-[0.06em] transition-colors duration-200 ${
+                className={`text-sm lg:text-[14px] font-light uppercase tracking-[0.12em] transition-colors duration-200 ${
                   isTransparent
                     ? "text-white/90 hover:text-white drop-shadow-sm font-light"
                     : isBagOpen
@@ -224,7 +224,7 @@ export function Header() {
                     : "text-stone-500 hover:text-stone-900"
                 }`}
               >
-                Bag ({totalCount})
+                BAG ({totalCount})
               </span>
               <span
                 className={`absolute -bottom-0.5 left-0 right-0 h-[1.5px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-none ${
@@ -247,8 +247,8 @@ export function Header() {
               }`}
               aria-label={`Shopping Bag (${totalCount})`}
             >
-              <span className="tracking-wider font-normal text-[11px]">
-                Bag ({totalCount})
+              <span className="tracking-wider font-normal text-[11px] uppercase">
+                BAG ({totalCount})
               </span>
             </button>
             {/* Language Dropdown */}
@@ -368,11 +368,11 @@ export function Header() {
                     className="relative flex items-center justify-between py-2.5 text-base font-medium tracking-wide focus:outline-hidden"
                   >
                     <span
-                      className={
+                      className={`uppercase tracking-[0.12em] ${
                         active
                           ? "text-[#18181B] font-normal"
                           : "text-stone-600 hover:text-stone-900"
-                      }
+                      }`}
                     >
                       {item.label}
                     </span>
@@ -398,8 +398,8 @@ export function Header() {
                 }}
                 className="relative flex items-center justify-between py-2.5 text-base font-medium tracking-wide focus:outline-hidden text-left cursor-pointer"
               >
-                <span className="text-stone-600 hover:text-stone-900 font-light">
-                  Bag ({totalCount})
+                <span className="text-stone-600 hover:text-stone-900 font-light uppercase tracking-[0.12em]">
+                  BAG ({totalCount})
                 </span>
                 <span className="text-xs text-stone-400 font-lexend">→</span>
               </button>
