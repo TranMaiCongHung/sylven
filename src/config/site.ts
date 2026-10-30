@@ -2,7 +2,7 @@ import { ROUTES } from "@/constants";
 
 export const siteConfig = {
   name: "SYLVEN",
-  title: "SYLVEN | Trang Sức Đương Đại Từ Linh Kiện Công Nghệ Tái Sinh",
+  title: "SYLVEN",
   description:
     "SYLVEN là thương hiệu trang sức định hướng thiết kế (design-led), kết hợp Bạc 925 và Titanium F136 chuẩn y sinh cùng linh kiện điện tử tuyển chọn được bọc resin an toàn, mang đến dấu ấn cá nhân và câu chuyện tuần hoàn độc bản.",
   url: "https://sylven.dev",

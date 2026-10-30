@@ -19,12 +19,15 @@ export interface TranslationSchema {
   };
   manifesto: {
     badge: string;
+    titleMain?: string;
+    titleSub?: string;
     titlePrefix: string;
     titleHighlight: string;
     titleSuffix: string;
     description: string;
     exploreBtn: string;
     philosophyBtn: string;
+    discoverBtn?: string;
   };
   showcase: {
     badge: string;
@@ -127,13 +130,16 @@ export const translations: Record<Language, TranslationSchema> = {
     // Manifesto Section
     manifesto: {
       badge: "Sylven • Trang Sức Công Nghệ Tái Sinh",
+      titleMain: "FINDING BEAUTY IN",
+      titleSub: "THE ABANDONED",
       titlePrefix: "Tái sinh công nghệ thành ",
       titleHighlight: "trang sức đương đại",
       titleSuffix: "",
       description:
-        "Bản hòa ca giữa kỹ nghệ chế tác kim loại chuẩn mực (Bạc 925, Titanium F136 y sinh) và vẻ đẹp cấu trúc vi mạch điện tử. Thiết kế thời thượng, êm ái khi đeo hàng ngày, an toàn cho da và truyền tải câu chuyện vật liệu tuần hoàn.",
+        "Bộ sưu tập trang sức nghệ thuật đầu tay, CONNECTION SALVAGED, tái sinh những mảnh linh kiện công nghệ thành tác phẩm độc bản, kết hợp cùng các kim loại quý tái chế và bạc cao cấp, điểm xuyết kim cương cùng đá quý thiên nhiên nguồn gốc chuẩn mực. Chúng tôi tái định hình vi mạch, cổng dữ liệu và các sợi cáp kết nối thành trang sức đương đại - những báu vật công nghệ xứng đáng được trân quý và đồng hành cùng thời gian thay vì bị lãng quên.",
       exploreBtn: "Khám phá bộ sưu tập",
       philosophyBtn: "Triết lý & Quy trình",
+      discoverBtn: "DISCOVER THE COLLECTION",
     },
 
     // Showcase Section
@@ -141,23 +147,23 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Dấu Ấn Thiết Kế • Bộ Sưu Tập Tiêu Biểu",
       title: "Bộ Sưu Tập Thiết Kế Tiêu Biểu",
       description:
-        "Tuyển chọn các thiết kế chủ đạo từ phôi Bạc 925 và Titanium F136 y sinh. Từng mảnh vi mạch được sàng lọc, cắt gọt tinh xảo và phong ấn phẳng mịn dưới lớp resin ngọc cấp trang sức bảo vệ da.",
+        "Tuyển chọn các thiết kế chủ đạo từ xưởng chế tác. Từng mảnh vi mạch được sàng lọc, cắt gọt tinh xảo và hoàn thiện phẳng mịn an toàn bảo vệ da.",
     },
 
     // Alchemy / Philosophy Section
     alchemy: {
       badge: "Triết Lý & Quy Trình Chế Tác",
-      titleMain: "Nghệ Thuật Giả Kim",
-      titleItalic: "",
+      titleMain: "Nghệ Thuật",
+      titleItalic: "Giả Kim Đương Đại",
       description:
-        "SYLVEN định vị là dòng trang sức đương đại định hướng thiết kế (design-led), tiên phong tái sinh linh kiện công nghệ thành tác phẩm đeo thẩm mỹ. Từng mảnh vi mạch được sàng lọc và khử trùng nghiêm ngặt, loại bỏ 100% tạp chất nguy hại, sau đó kết hợp cùng Bạc 925 và Titanium F136 y sinh chống dị ứng dưới lớp resin quang học phẳng mịn. Mỗi tác phẩm đều đi kèm Storytelling Card và mã QR TechDNA minh bạch, xác thực hồ sơ vật liệu cùng dấu ấn chế tác độc bản.",
+        "SYLVEN định vị là dòng trang sức đương đại định hướng thiết kế (design-led), tiên phong tái sinh linh kiện công nghệ thành tác phẩm đeo thẩm mỹ. Từng mảnh vi mạch được sàng lọc và khử trùng nghiêm ngặt, loại bỏ 100% tạp chất nguy hại. Mỗi tác phẩm đều đi kèm Storytelling Card và mã QR TechDNA minh bạch, xác thực hồ sơ vật liệu cùng dấu ấn chế tác độc bản.",
       pillars: [
         {
           title: "Sàng Lọc Vi Mạch An Toàn",
           desc: "Loại bỏ hoàn toàn pin và tạp chất độc hại, khử khuẩn đa tầng trước khi đưa vào chế tác.",
         },
         {
-          title: "Bạc 925 & Titanium F136 Y Sinh",
+          title: "Kỹ Nghệ Kim Hoàn Chuẩn Mực",
           desc: "Chất liệu cao cấp chống dị ứng, siêu nhẹ, phong ấn phẳng mịn dưới lớp resin ngọc bảo vệ da.",
         },
         {
@@ -263,13 +269,16 @@ export const translations: Record<Language, TranslationSchema> = {
     // Manifesto Section
     manifesto: {
       badge: "Sylven • Design-Led Upcycled Jewelry",
+      titleMain: "FINDING BEAUTY IN",
+      titleSub: "THE ABANDONED",
       titlePrefix: "Transforming electronics into ",
       titleHighlight: "contemporary jewelry",
       titleSuffix: "",
       description:
-        "Where precision metallurgy (925 Silver, ASTM F136 Titanium) meets the visual poetry of microcircuitry. Ergonomically refined for daily wear, skin-safe, and deeply rooted in meaningful circular storytelling.",
+        "Our debut collection of wearable art, CONNECTION SALVAGED, features fragments of repurposed technology housed in recycled precious metals and silver, combined with responsibly sourced diamonds and fine gemstones. We reimagine circuit boards, data interfaces, and connecting elements as sculptural wearable art - technological treasures to be worn and cherished, forever transcending the concept of waste.",
       exploreBtn: "Explore Collections",
       philosophyBtn: "Craft & Philosophy",
+      discoverBtn: "DISCOVER THE COLLECTION",
     },
 
     // Showcase Section
@@ -277,23 +286,23 @@ export const translations: Record<Language, TranslationSchema> = {
       badge: "Signature Designs • Hero Showcase",
       title: "Signature Hero Collection",
       description:
-        "Curated hero designs forged from 925 Silver and biocompatible ASTM F136 Titanium. Each screened microchip is precisely inlaid and sealed under crystal-clear jewelry resin.",
+        "Curated hero designs from our atelier. Each screened microchip is precisely inlaid and sealed with an ultra-smooth, skin-safe finish.",
     },
 
     // Alchemy / Philosophy Section
     alchemy: {
       badge: "Philosophy & Craftsmanship Process",
-      titleMain: "The Art of Modern Alchemy",
-      titleItalic: "",
+      titleMain: "The Art of",
+      titleItalic: "Modern Alchemy",
       description:
-        "Positioned as a design-led contemporary jewelry atelier, SYLVEN transforms selected technology components into sculptural wearable art. Every microcircuit is rigorously screened, sanitized, and certified 100% free of hazardous elements, then seamlessly set alongside hypoallergenic 925 Silver and biocompatible ASTM F136 Titanium beneath crystal-clear jewelry-grade resin. Each creation is accompanied by a Storytelling Card and traceable TechDNA QR profile verifying material provenance and bespoke craftsmanship.",
+        "Positioned as a design-led contemporary jewelry atelier, SYLVEN transforms selected technology components into sculptural wearable art. Every microcircuit is rigorously screened, sanitized, and certified 100% free of hazardous elements. Each creation is accompanied by a Storytelling Card and traceable TechDNA QR profile verifying material provenance and bespoke craftsmanship.",
       pillars: [
         {
           title: "Screened Silicon Safety",
           desc: "100% free of hazardous residues and batteries, deeply sanitized before crafting.",
         },
         {
-          title: "925 Silver & Biocompatible Titanium",
+          title: "Artisanal Fine Metallurgy",
           desc: "Ultra-lightweight, hypoallergenic metals sealed under crystal-clear jewelry resin.",
         },
         {
