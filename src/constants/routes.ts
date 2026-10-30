@@ -3,6 +3,8 @@
  */
 export const ROUTES = {
   HOME: "/",
+  CREATIONS: "/san-pham",
+  CAMPAIGN: "/campaign",
   ITEMS: "#items",
   FEATURES: "#features",
   ABOUT: "/about",

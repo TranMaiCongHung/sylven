@@ -12,6 +12,10 @@ export default function AboutPage() {
   const { language, t } = useLanguage();
   const about = t?.aboutPage;
 
+  React.useEffect(() => {
+    document.title = "SYLVEN";
+  }, []);
+
   const carouselRef = React.useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = React.useState(false);
   const [canScrollRight, setCanScrollRight] = React.useState(true);
@@ -353,7 +357,7 @@ export default function AboutPage() {
                     {language === "vi" ? product.ethosTitle.vi : product.ethosTitle.en}
                   </span>
                   <span className="font-lexend font-light text-[11px] sm:text-[11.5px] text-stone-400 uppercase tracking-wider mt-1.5 line-clamp-1">
-                    {product.title} • {product.formattedPrice}
+                    {product.title}
                   </span>
                 </div>
               </Link>

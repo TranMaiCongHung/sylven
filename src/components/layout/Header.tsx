@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X, Globe, ChevronDown, Check } from "lucide-react";
 import { BrandLogo } from "@/components/common";
+import { ShinyText } from "@/components/ui";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
@@ -88,6 +89,7 @@ export function Header() {
   // Removed "Trang chủ" tab: landing page is accessed by clicking brand name/logo
   const navItems: NavItem[] = [
     { label: t.nav.products, href: "/san-pham", matchPrefix: true },
+    { label: t.nav.campaign || "Campaign", href: "/campaign", matchPrefix: true },
     { label: t.nav.about || "About", href: "/about", matchPrefix: true },
   ];
 
@@ -96,12 +98,16 @@ export function Header() {
       return pathname === "/";
     }
     if (item.matchPrefix) {
-      return (
-        pathname === item.href ||
-        pathname.startsWith(`${item.href}/`) ||
-        pathname === "/products" ||
-        pathname.startsWith("/products/")
-      );
+      if (pathname === item.href || pathname.startsWith(`${item.href}/`)) {
+        return true;
+      }
+      if (
+        item.href === "/san-pham" &&
+        (pathname === "/products" || pathname.startsWith("/products/"))
+      ) {
+        return true;
+      }
+      return false;
     }
     return pathname === item.href;
   };
@@ -152,13 +158,27 @@ export function Header() {
             <div className="absolute inset-0 rounded-full bg-stone-900/5 blur-md -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
           <span
-            className={`font-yavimayan text-xl sm:text-2xl font-bold tracking-[0.22em] whitespace-nowrap transition-colors ${
-              isTransparent
-                ? "text-white group-hover:text-stone-200 drop-shadow-sm"
-                : "text-[#18181B] group-hover:text-stone-700"
-            }`}
+            className="font-yavimayan text-xl sm:text-2xl font-bold tracking-[0.22em] whitespace-nowrap transition-colors"
           >
-            SYLVEN
+            <ShinyText
+              text="SYLVEN"
+              color={isTransparent ? "#ebebeb" : "#18181B"}
+              shineColor={isTransparent ? "#ffffff" : "#a1a1aa"}
+              speed={2}
+              shineWidth={45}
+              softness={0.75}
+              trigger="loop"
+              delay={0}
+              angle={120}
+              bands={1}
+              glow={isTransparent ? 0.5 : 0}
+              direction="right"
+              easing="smooth"
+              yoyo={false}
+              followPointer={false}
+              pauseOnHover={false}
+              disabled={false}
+            />
           </span>
         </Link>
 
@@ -270,7 +290,7 @@ export function Header() {
                     isTransparent ? "text-white/80 group-hover:text-white" : "text-stone-500 group-hover:text-stone-800"
                   }`}
                 />
-                <span className="tracking-wider font-normal text-[11px]">
+                <span className="tracking-wider font-normal text-[11px] uppercase">
                   {language}
                 </span>
                 <ChevronDown

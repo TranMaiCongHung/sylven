@@ -17,6 +17,10 @@ import { motion, AnimatePresence } from "motion/react";
 
 export default function ProductsPage() {
   const { language, t } = useLanguage();
+
+  React.useEffect(() => {
+    document.title = "SYLVEN";
+  }, []);
   const [selectedCategory, setSelectedCategory] = React.useState<ProductCategory | "all">("all");
   const [selectedMaterial, setSelectedMaterial] = React.useState<ProductMaterial | "all">("all");
   const [categoryDropdownOpen, setCategoryDropdownOpen] = React.useState(false);
